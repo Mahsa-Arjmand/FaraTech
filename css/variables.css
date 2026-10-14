@@ -1,0 +1,53 @@
+:root {
+  /* Navy palette */
+  --navy-900: #0B1F3A;
+  --navy-800: #102A4C;
+  --navy-700: #16324F;
+  --navy-600: #1E4266;
+  --navy-500: #1E5A8A;
+  --navy-400: #2E6FA3;
+
+  /* Gold accent */
+  --gold: #C9A227;
+  --gold-soft: #E8D28A;
+
+  /* Neutral */
+  --white: #FFFFFF;
+  --off-white: #F7F8FA;
+  --cream: #FBFBFD;
+
+  --gray-900: #1A202C;
+  --gray-700: #4A5568;
+  --gray-500: #718096;
+  --gray-400: #94a3b8;
+  --gray-300: #CBD5E0;
+  --gray-200: #E2E8F0;
+  --gray-100: #EDF2F7;
+
+  /* Fonts */
+  --font-en: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+
+  /* Shadows */
+  --shadow-xs: 0 1px 2px rgba(11, 31, 58, 0.04);
+  --shadow-sm: 0 2px 8px rgba(11, 31, 58, 0.06);
+  --shadow: 0 6px 24px rgba(11, 31, 58, 0.08);
+  --shadow-md: 0 12px 40px rgba(11, 31, 58, 0.10);
+  --shadow-lg: 0 24px 60px rgba(11, 31, 58, 0.14);
+
+  /* Transitions */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --t-fast: 0.2s var(--ease);
+  --t: 0.3s var(--ease);
+  --t-slow: 0.5s var(--ease-out);
+
+  /* Dimensions */
+  --container: 1160px;
+  --header-h: 76px;
+}

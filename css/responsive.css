@@ -1,0 +1,129 @@
+@media (max-width: 1100px) {
+  .team-grid { grid-template-columns: repeat(3, 1fr); }
+  .ai-capabilities-grid { grid-template-columns: repeat(2, 1fr); }
+  .ai-usecases { grid-template-columns: repeat(2, 1fr); }
+  .service-detail-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 1024px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 50px; }
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .testimonials-grid { grid-template-columns: 1fr 1fr; }
+  .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+  .process-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+  .footer-grid { grid-template-columns: 1.6fr 1fr 1fr; gap: 40px; }
+  .why-stats { grid-template-columns: repeat(2, 1fr); }
+  .why-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .about-story { grid-template-columns: 1fr; gap: 50px; }
+  .values-grid { grid-template-columns: 1fr 1fr; }
+  .contact-page-grid { grid-template-columns: 1fr; gap: 40px; }
+  .portfolio-full-grid { grid-template-columns: 1fr; }
+
+  .ai-hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  .ai-process { grid-template-columns: repeat(2, 1fr); }
+  .ai-teaser-card { grid-template-columns: 1fr; padding: 50px 40px; }
+  .ai-hero-visual { min-height: 320px; }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    position: fixed;
+    top: var(--header-h);
+    left: -100%;
+    width: 260px;
+    height: calc(100vh - var(--header-h));
+    background: var(--white);
+    flex-direction: column;
+    align-items: stretch;
+    padding: 20px;
+    gap: 2px;
+    border-right: 1px solid var(--gray-200);
+    transition: left 0.35s var(--ease);
+    box-shadow: 8px 0 30px rgba(11, 31, 58, 0.06);
+    overflow-y: auto;
+  }
+
+  .nav-links.active { left: 0; }
+  .nav-links a { padding: 13px 15px; }
+  .menu-toggle { display: flex; }
+  .nav-actions .btn-ghost { display: none; }
+
+  .section { padding: 60px 0; }
+  .container { padding: 0 20px; }
+
+  .hero { padding: 50px 0 60px; }
+  .hero h1 { font-size: 1.85rem; }
+  .hero-actions { width: 100%; }
+  .hero-actions .btn { flex: 1; justify-content: center; }
+
+  .services-grid { grid-template-columns: 1fr; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .process-wrap { padding: 50px 26px; }
+  .process-grid { grid-template-columns: 1fr; gap: 32px; }
+
+  .contact-section {
+    margin: 60px 20px;
+    padding: 60px 24px;
+    border-radius: 18px;
+  }
+  .contact-form { padding: 24px; }
+  .contact-form .form-row { grid-template-columns: 1fr; }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    padding-bottom: 40px;
+  }
+  .footer-bottom { flex-direction: column; text-align: center; }
+
+  .trusted-inner { gap: 24px; }
+  .trusted-logos { gap: 24px; }
+
+  .why-section { padding: 60px 0; }
+  .why-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+  .stat-card { padding: 22px 18px; }
+  .stat-card .num { font-size: 1.65rem; }
+  .why-grid { grid-template-columns: 1fr; gap: 14px; }
+  .why-item { padding: 22px 20px; }
+
+  .page-header { padding: 50px 0 40px; }
+  .page-header h1 { font-size: 1.7rem; }
+  .values-grid { grid-template-columns: 1fr; }
+  .service-detail-grid { grid-template-columns: 1fr; }
+  .team-grid,
+  .team-grid-compact { grid-template-columns: 1fr 1fr; }
+  .contact-page-form { padding: 24px; }
+  .contact-page-form .form-row { grid-template-columns: 1fr; }
+  .career-item { flex-direction: column; align-items: flex-start; }
+  .career-item .btn { width: 100%; justify-content: center; }
+  .cta-band-inner { flex-direction: column; align-items: flex-start; }
+  .cta-band-inner .btn { width: 100%; justify-content: center; }
+
+  .ai-hero { padding: 60px 0; }
+  .ai-hero h1 { font-size: 1.9rem; }
+  .ai-hero .hero-actions { width: 100%; }
+  .ai-hero .hero-actions .btn { flex: 1; justify-content: center; }
+  .ai-capabilities-grid { grid-template-columns: 1fr; }
+  .ai-usecases { grid-template-columns: 1fr; }
+  .ai-process { grid-template-columns: 1fr; gap: 14px; }
+  .ai-orb-wrap { width: 200px; height: 200px; }
+  .ai-teaser-card { padding: 40px 26px; border-radius: 18px; }
+}
+
+@media (max-width: 480px) {
+  .hero h1 { font-size: 1.6rem; }
+  .why-stats { gap: 10px; }
+  .stat-card { padding: 18px 16px; }
+  .stat-card .lbl { font-size: 0.75rem; }
+  .stat-card .num { font-size: 1.5rem; }
+  .team-grid,
+  .team-grid-compact { grid-template-columns: 1fr; }
+  .ai-hero h1 { font-size: 1.6rem; }
+  .ai-orb-wrap { width: 160px; height: 160px; }
+}

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI Lab — FaraTech</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/reset.css" />
+<link rel="stylesheet" href="css/variables.css" />
+<link rel="stylesheet" href="css/layout.css" />
+<link rel="stylesheet" href="css/components.css" />
+<link rel="stylesheet" href="css/pages.css" />
+<link rel="stylesheet" href="css/ai-lab.css" />
+<link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a href="index.html" class="brand">
+      <span class="brand-mark">F</span>
+      <span class="brand-name"><strong>FaraTech</strong><span>AGENCY</span></span>
+    </a>
+    <nav>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="portfolio.html">Work</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="ai-lab.html" class="active">AI Lab</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav-actions">
+      <a href="contact.html" class="btn btn-primary">Start a Project
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<section class="ai-hero">
+  <div class="container ai-hero-grid">
+    <div class="ai-hero-content">
+      <span class="ai-badge">FARATECH AI LAB</span>
+      <h1>Applied AI, built for <span class="ai-accent">real business problems</span></h1>
+      <p>
+        From intelligent chatbots and content automation to custom machine learning
+        models — our AI Lab turns artificial intelligence into tools that actually
+        move the needle.
+      </p>
+      <div class="hero-actions">
+        <a href="contact.html" class="btn btn-gold">
+          Discuss an AI project
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#capabilities" class="btn btn-outline" style="border-color: rgba(255,255,255,0.3); color:#fff;">
+          See capabilities
+        </a>
+      </div>
+    </div>
+
+    <div class="ai-hero-visual">
+      <div class="ai-orb-wrap">
+        <div class="ai-orb"></div>
+        <div class="ai-orb-ring r1"></div>
+        <div class="ai-orb-ring r2"></div>
+        <div class="ai-orb-ring r3"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="capabilities" class="section">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">CAPABILITIES</span>
+      <h2>What we build with AI</h2>
+      <p>Six areas where we've helped clients turn AI into results.</p>
+    </div>
+
+    <div class="ai-capabilities-grid">
+
+      <article class="ai-card">
+        <div class="ai-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        </div>
+        <h3>AI Chatbots &amp; Assistants</h3>
+        <p>Customer support bots and virtual assistants trained on your own data — available 24/7 in multiple languages.</p>
+        <ul class="ai-card-list">
+          <li>Custom knowledge base</li>
+          <li>Multi-language support</li>
+          <li>CRM integration</li>
+        </ul>
+      </article>
+
+      <article class="ai-card">
+        <div class="ai-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        </div>
+        <h3>Content Generation</h3>
+        <p>Automate product descriptions, blog drafts, ad copy and translations while keeping your brand voice.</p>
+        <ul class="ai-card-list">
+          <li>Brand voice training</li>
+          <li>Bulk content generation</li>
+          <li>Human-in-the-loop editing</li>
+        </ul>
+      </article>
+
+      <article class="ai-card">
+        <div class="ai-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        </div>
+        <h3>Semantic Search</h3>
+        <p>Search that understands meaning, not just keywords — improving product discovery and internal tools.</p>
+        <ul class="ai-card-list">
+          <li>Vector embeddings</li>
+          <li>Multilingual search</li>
+          <li>Relevance ranking</li>
+        </ul>
+      </article>
+
+      <article class="ai-card">
+        <div class="ai-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/></svg>
+        </div>
+        <h3>Predictive Analytics</h3>
+        <p>Forecast sales, churn and demand with models trained on your historical data.</p>
+        <ul class="ai-card-list">
+          <li>Sales forecasting</li>
+          <li>Churn prediction</li>
+          <li>Demand planning</li>
+        </ul>
+      </article>
+
+      <article class="ai-card">
+        <div class="ai-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6v6H9z"/></svg>
+        </div>
+        <h3>Computer Vision</h3>
+        <p>Image recognition, OCR and quality inspection — from document processing to product tagging.</p>
+        <ul class="ai-card-list">
+          <li>Image classification</li>
+          <li>Document OCR</li>
+          <li>Visual search</li>
+        </ul>
+      </article>
+
+      <article class="ai-card">
+        <div class="ai-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><path d="M8 12h8M12 8v8"/></svg>
+        </div>
+        <h3>Workflow Automation</h3>
+        <p>Replace repetitive manual work with AI-powered automations across your tools and systems.</p>
+        <ul class="ai-card-list">
+          <li>Data extraction</li>
+          <li>Email &amp; document routing</li>
+          <li>API orchestration</li>
+        </ul>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">HOW WE WORK</span>
+      <h2>Our AI project process</h2>
+    </div>
+
+    <div class="ai-process">
+      <div class="ai-process-step">
+        <div class="ai-process-num">01</div>
+        <h4>Discovery</h4>
+        <p>We identify where AI can create real value in your business.</p>
+      </div>
+      <div class="ai-process-step">
+        <div class="ai-process-num">02</div>
+        <h4>Data &amp; Feasibility</h4>
+        <p>We assess your data, define success metrics and scope the model.</p>
+      </div>
+      <div class="ai-process-step">
+        <div class="ai-process-num">03</div>
+        <h4>Prototype</h4>
+        <p>We build a working prototype in weeks, not months — and test it.</p>
+      </div>
+      <div class="ai-process-step">
+        <div class="ai-process-num">04</div>
+        <h4>Production</h4>
+        <p>We deploy, monitor and improve the model in your real environment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">USE CASES</span>
+      <h2>Where our AI work shines</h2>
+    </div>
+
+    <div class="ai-usecases">
+      <div class="ai-usecase">
+        <span class="ai-usecase-tag">E-COMMERCE</span>
+        <h4>Product recommendations</h4>
+        <p>Increase average order value with personalized product suggestions.</p>
+      </div>
+      <div class="ai-usecase">
+        <span class="ai-usecase-tag">CUSTOMER SERVICE</span>
+        <h4>24/7 support bots</h4>
+        <p>Cut response time and reduce ticket volume with AI assistants.</p>
+      </div>
+      <div class="ai-usecase">
+        <span class="ai-usecase-tag">MARKETING</span>
+        <h4>Content at scale</h4>
+        <p>Generate hundreds of product descriptions in your brand voice.</p>
+      </div>
+      <div class="ai-usecase">
+        <span class="ai-usecase-tag">OPERATIONS</span>
+        <h4>Document processing</h4>
+        <p>Extract structured data from invoices, contracts and forms.</p>
+      </div>
+      <div class="ai-usecase">
+        <span class="ai-usecase-tag">SAAS</span>
+        <h4>Smart in-app features</h4>
+        <p>Search, summarization and AI copilots inside your product.</p>
+      </div>
+      <div class="ai-usecase">
+        <span class="ai-usecase-tag">FINTECH</span>
+        <h4>Risk &amp; fraud detection</h4>
+        <p>Spot anomalies and fraud in real time with ML models.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container">
+    <div class="cta-band-inner">
+      <div>
+        <h2>Ready to put AI to work in your business?</h2>
+        <p>Book a 30-minute discovery call with our AI Lab team.</p>
+      </div>
+      <a href="contact.html" class="btn btn-gold">
+        Book a call
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand">
+          <span class="brand-mark">F</span>
+          <span class="brand-name"><strong>FaraTech</strong><span>AGENCY</span></span>
+        </div>
+        <p class="footer-about">FaraTech is a digital agency founded in 2016, working in web design &amp; development, user experience, digital marketing and applied AI.</p>
+        <div class="footer-contact">
+          <a href="mailto:info@faratech.ir">info@faratech.ir</a>
+          <a href="tel:+982112345678">+98 21 1234 5678</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="services.html">Web Design</a></li>
+          <li><a href="services.html">UI / UX</a></li>
+          <li><a href="services.html">SEO</a></li>
+          <li><a href="ai-lab.html">AI Solutions</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="team.html">Our Team</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 FaraTech — All rights reserved.</span>
+      <div class="footer-socials">
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="#" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 3.5L2.5 11l5.5 2.5L10 20l3-4.5 6.5 3z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/menu.js"></script>
+<script src="js/animations.js"></script>
+</body>
+</html>

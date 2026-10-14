@@ -1,0 +1,320 @@
+/* ================================================================
+   AI HERO
+   ================================================================ */
+.ai-hero {
+  position: relative;
+  padding: 100px 0;
+  background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-700) 100%);
+  color: var(--white);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.ai-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.ai-hero-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.ai-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  background: rgba(201, 162, 39, 0.15);
+  color: var(--gold);
+  border: 1px solid rgba(201, 162, 39, 0.3);
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  margin-bottom: 22px;
+}
+
+.ai-hero h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin-bottom: 22px;
+  color: var(--white);
+}
+
+.ai-hero h1 .ai-accent {
+  color: var(--gold);
+  position: relative;
+}
+
+.ai-hero h1 .ai-accent::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background: rgba(201, 162, 39, 0.25);
+  border-radius: 2px;
+  z-index: -1;
+}
+
+.ai-hero p {
+  font-size: 1.05rem;
+  color: var(--gray-300);
+  line-height: 1.9;
+  max-width: 520px;
+  margin-bottom: 32px;
+}
+
+.ai-hero .hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.ai-hero-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+}
+
+.ai-orb-wrap {
+  position: relative;
+  width: 260px;
+  height: 260px;
+}
+
+.ai-orb {
+  position: absolute;
+  inset: 40px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, var(--gold), #8a6d0e);
+  box-shadow:
+    0 0 60px rgba(201, 162, 39, 0.5),
+    inset 0 0 40px rgba(255, 255, 255, 0.15);
+  animation: orbPulse 4s ease-in-out infinite;
+}
+
+.ai-orb-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px solid rgba(201, 162, 39, 0.35);
+  animation: orbSpin 12s linear infinite;
+}
+
+.ai-orb-ring.r2 {
+  inset: -20px;
+  border-color: rgba(255, 255, 255, 0.15);
+  animation-duration: 18s;
+  animation-direction: reverse;
+}
+
+.ai-orb-ring.r3 {
+  inset: -40px;
+  border-color: rgba(201, 162, 39, 0.15);
+  animation-duration: 24s;
+}
+
+@keyframes orbPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes orbSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* ================================================================
+   AI CAPABILITIES
+   ================================================================ */
+.ai-capabilities-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.ai-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: 16px;
+  padding: 34px 28px;
+  transition: var(--t);
+  display: flex;
+  flex-direction: column;
+}
+
+.ai-card:hover {
+  border-color: var(--navy-900);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(11, 31, 58, 0.08);
+}
+
+.ai-card-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  background: var(--navy-900);
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 22px;
+  transition: var(--t);
+}
+
+.ai-card:hover .ai-card-icon {
+  background: var(--gold);
+  color: var(--navy-900);
+}
+
+.ai-card-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.ai-card h3 {
+  font-size: 1.05rem;
+  color: var(--navy-900);
+  margin-bottom: 10px;
+  font-weight: 800;
+}
+
+.ai-card > p {
+  color: var(--gray-700);
+  font-size: 0.9rem;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  flex: 1;
+}
+
+.ai-card-list {
+  padding-top: 18px;
+  border-top: 1px solid var(--gray-100);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ai-card-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.83rem;
+  color: var(--gray-700);
+}
+
+.ai-card-list li::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+/* ================================================================
+   AI PROCESS
+   ================================================================ */
+.ai-process {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+
+.ai-process-step {
+  text-align: center;
+  padding: 30px 20px;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: 14px;
+  transition: var(--t);
+}
+
+.ai-process-step:hover {
+  border-color: var(--gold);
+  transform: translateY(-3px);
+}
+
+.ai-process-num {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(201, 162, 39, 0.12);
+  border: 1.5px solid var(--gold);
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 0.9rem;
+  margin: 0 auto 16px;
+}
+
+.ai-process-step h4 {
+  font-size: 0.98rem;
+  color: var(--navy-900);
+  margin-bottom: 8px;
+  font-weight: 800;
+}
+
+.ai-process-step p {
+  font-size: 0.85rem;
+  color: var(--gray-700);
+  line-height: 1.75;
+}
+
+/* ================================================================
+   AI USE CASES
+   ================================================================ */
+.ai-usecases {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.ai-usecase {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-left: 3px solid var(--gold);
+  border-radius: 12px;
+  padding: 26px 24px;
+  transition: var(--t);
+}
+
+.ai-usecase:hover {
+  transform: translateX(4px);
+  box-shadow: 0 10px 24px rgba(11, 31, 58, 0.06);
+}
+
+.ai-usecase-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.ai-usecase h4 {
+  font-size: 1rem;
+  color: var(--navy-900);
+  margin-bottom: 6px;
+  font-weight: 800;
+}
+
+.ai-usecase p {
+  font-size: 0.88rem;
+  color: var(--gray-700);
+  line-height: 1.75;
+}
