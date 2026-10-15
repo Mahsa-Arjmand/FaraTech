@@ -962,3 +962,45 @@
 .contact-form button {
   justify-content: center;
 }
+/* Hero canvas z-index */
+.hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.95;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(10,12,15,0.2) 0%, rgba(10,12,15,0.85) 70%, var(--bg) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hero-grid {
+  position: relative;
+  z-index: 4;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.hero-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  perspective: 1200px;
+}
+
+.hero-frame {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+}
+
+/* ... rest of your existing home.css ... */

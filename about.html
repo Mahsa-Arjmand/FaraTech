@@ -7,14 +7,46 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.128.0/build/three.module.js"
+  }
+}
+</script>
+
 <link rel="stylesheet" href="css/reset.css" />
 <link rel="stylesheet" href="css/variables.css" />
 <link rel="stylesheet" href="css/layout.css" />
 <link rel="stylesheet" href="css/components.css" />
 <link rel="stylesheet" href="css/pages.css" />
+<link rel="stylesheet" href="css/3d-wow.css" />
 <link rel="stylesheet" href="css/responsive.css" />
 </head>
 <body>
+
+<!-- Preloader -->
+<div class="preloader" id="preloader">
+  <div class="preloader-inner">
+    <div class="preloader-cube">
+      <div class="cube-face front"></div>
+      <div class="cube-face back"></div>
+      <div class="cube-face left"></div>
+      <div class="cube-face right"></div>
+      <div class="cube-face top"></div>
+      <div class="cube-face bottom"></div>
+    </div>
+    <span class="preloader-text">FARATECH</span>
+  </div>
+</div>
+
+<!-- Scroll Progress -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- Custom Cursor -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
 <header class="site-header">
   <div class="container nav">
@@ -34,7 +66,7 @@
       </ul>
     </nav>
     <div class="nav-actions">
-      <a href="contact.html" class="btn btn-primary">Start a Project
+      <a href="contact.html" class="btn btn-primary magnetic">Start a Project
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
       <button class="menu-toggle" id="menuToggle" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -42,107 +74,134 @@
   </div>
 </header>
 
-<section class="page-header">
-  <div class="container">
-    <span class="eyebrow">ABOUT FARATECH</span>
-    <h1>We design, build and scale digital products</h1>
-    <p>Founded in 2016, FaraTech is a full-service digital agency helping businesses turn ideas into high-performing websites, platforms and AI-powered tools.</p>
-    <nav class="breadcrumb">
+<!-- PAGE HEADER with 3D canvas -->
+<section class="page-header page-header-3d">
+  <canvas id="pageCanvas" class="page-canvas" aria-hidden="true"></canvas>
+  <div class="page-header-overlay" aria-hidden="true"></div>
+  <div class="container page-header-content">
+    <span class="eyebrow" data-reveal="up">ABOUT FARATECH</span>
+    <h1 data-split>We design, build and scale digital products</h1>
+    <p data-reveal="up" data-delay="300">Founded in 2016, FaraTech is a full-service digital agency helping businesses turn ideas into high-performing websites, platforms and AI-powered tools.</p>
+    <nav class="breadcrumb" data-reveal="up" data-delay="500">
       <a href="index.html">Home</a><span>›</span><span>About</span>
     </nav>
   </div>
 </section>
 
+<!-- OUR STORY with 3D stats -->
 <section class="section">
   <div class="container">
     <div class="about-story">
-      <div class="about-story-text">
+      <div class="about-story-text" data-reveal="left">
         <span class="eyebrow">OUR STORY</span>
-        <h2>Built by makers, for makers</h2>
+        <h2 data-split>Built by makers, for makers</h2>
         <p>FaraTech started as a small studio of three designers and developers who believed that great digital products come from clear thinking, careful craft, and honest collaboration.</p>
         <p>Nearly a decade later, that belief still drives us. We've delivered over 240 projects for startups, enterprises and public organizations — always with the same obsession for quality and results.</p>
         <p>Today, we combine design, engineering and applied AI into one team, so clients get everything from a landing page to a machine learning model under one roof.</p>
       </div>
 
       <div class="about-story-stats">
-        <div class="story-stat"><strong>2016</strong><span>Founded</span></div>
-        <div class="story-stat"><strong>240+</strong><span>Projects</span></div>
-        <div class="story-stat"><strong>30+</strong><span>Team members</span></div>
-        <div class="story-stat"><strong>12</strong><span>Countries served</span></div>
+        <div class="story-stat" data-reveal="3d" data-count="2016">
+          <strong>0</strong><span>Founded</span>
+        </div>
+        <div class="story-stat" data-reveal="3d" data-delay="100" data-count="240" data-suffix="+">
+          <strong>0<span>+</span></strong><span>Projects</span>
+        </div>
+        <div class="story-stat" data-reveal="3d" data-delay="200" data-count="30" data-suffix="+">
+          <strong>0<span>+</span></strong><span>Team members</span>
+        </div>
+        <div class="story-stat" data-reveal="3d" data-delay="300" data-count="12">
+          <strong>0</strong><span>Countries served</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section section-alt">
+<!-- VALUES with 3D cards -->
+<section class="section section-alt section-3d">
+  <div class="section-bg-3d" data-parallax="0.15"></div>
   <div class="container">
-    <div class="section-head center">
-      <span class="eyebrow">WHAT WE BELIEVE</span>
-      <h2>Values that guide every project</h2>
+    <div class="section-head center" data-reveal="up">
+      <span class="eyebrow" style="justify-content:center;">WHAT WE BELIEVE</span>
+      <h2 data-split>Values that guide every project</h2>
     </div>
 
     <div class="values-grid">
-      <div class="value-card">
-        <div class="value-num">01</div>
-        <h3>Craft over shortcuts</h3>
-        <p>We'd rather take one more day to make it right than ship something we're not proud of.</p>
+      <div class="value-card card-3d" data-reveal="3d" data-tilt data-tilt-max="10">
+        <div class="card-3d-inner">
+          <div class="value-num">01</div>
+          <h3>Craft over shortcuts</h3>
+          <p>We'd rather take one more day to make it right than ship something we're not proud of.</p>
+          <div class="card-shine"></div>
+        </div>
       </div>
-      <div class="value-card">
-        <div class="value-num">02</div>
-        <h3>Clarity in everything</h3>
-        <p>Clear pricing, clear timelines, clear communication. No jargon, no surprises.</p>
+      <div class="value-card card-3d" data-reveal="3d" data-delay="120" data-tilt data-tilt-max="10">
+        <div class="card-3d-inner">
+          <div class="value-num">02</div>
+          <h3>Clarity in everything</h3>
+          <p>Clear pricing, clear timelines, clear communication. No jargon, no surprises.</p>
+          <div class="card-shine"></div>
+        </div>
       </div>
-      <div class="value-card">
-        <div class="value-num">03</div>
-        <h3>Results, not just output</h3>
-        <p>A beautiful website that doesn't convert is a hobby — we build for measurable impact.</p>
+      <div class="value-card card-3d" data-reveal="3d" data-delay="240" data-tilt data-tilt-max="10">
+        <div class="card-3d-inner">
+          <div class="value-num">03</div>
+          <h3>Results, not just output</h3>
+          <p>A beautiful website that doesn't convert is a hobby — we build for measurable impact.</p>
+          <div class="card-shine"></div>
+        </div>
       </div>
-      <div class="value-card">
-        <div class="value-num">04</div>
-        <h3>Long-term partnerships</h3>
-        <p>Most of our clients come back. We treat every project as the start of a relationship.</p>
+      <div class="value-card card-3d" data-reveal="3d" data-delay="360" data-tilt data-tilt-max="10">
+        <div class="card-3d-inner">
+          <div class="value-num">04</div>
+          <h3>Long-term partnerships</h3>
+          <p>Most of our clients come back. We treat every project as the start of a relationship.</p>
+          <div class="card-shine"></div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- TIMELINE with animated reveal -->
 <section class="section">
   <div class="container">
-    <div class="section-head">
+    <div class="section-head" data-reveal="up">
       <span class="eyebrow">MILESTONES</span>
-      <h2>Our journey so far</h2>
+      <h2 data-split>Our journey so far</h2>
     </div>
 
     <div class="timeline">
-      <div class="timeline-item">
+      <div class="timeline-item" data-reveal="left">
         <div class="timeline-year">2016</div>
         <div class="timeline-content">
           <h4>FaraTech is founded</h4>
           <p>Three founders, one small office in Tehran, and a shared obsession with detail.</p>
         </div>
       </div>
-      <div class="timeline-item">
+      <div class="timeline-item" data-reveal="left" data-delay="100">
         <div class="timeline-year">2018</div>
         <div class="timeline-content">
           <h4>First 50 projects delivered</h4>
           <p>We expand the team to 10 and start working with larger e-commerce clients.</p>
         </div>
       </div>
-      <div class="timeline-item">
+      <div class="timeline-item" data-reveal="left" data-delay="200">
         <div class="timeline-year">2021</div>
         <div class="timeline-content">
           <h4>UI/UX department launched</h4>
           <p>We build a dedicated design team focused on research-driven product design.</p>
         </div>
       </div>
-      <div class="timeline-item">
+      <div class="timeline-item" data-reveal="left" data-delay="300">
         <div class="timeline-year">2023</div>
         <div class="timeline-content">
           <h4>FaraTech AI Lab opens</h4>
           <p>We start applying AI to real business problems — from chatbots to custom models.</p>
         </div>
       </div>
-      <div class="timeline-item">
+      <div class="timeline-item" data-reveal="left" data-delay="400">
         <div class="timeline-year">2025</div>
         <div class="timeline-content">
           <h4>240+ projects, 12 countries</h4>
@@ -153,14 +212,14 @@
   </div>
 </section>
 
-<section class="cta-band">
+<section class="cta-band" data-reveal="zoom">
   <div class="container">
     <div class="cta-band-inner">
       <div>
         <h2>Want to work with a team that cares?</h2>
         <p>Let's talk about your next project.</p>
       </div>
-      <a href="contact.html" class="btn btn-gold">
+      <a href="contact.html" class="btn btn-gold magnetic">
         Get in touch
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
@@ -171,7 +230,7 @@
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-brand">
+      <div class="footer-brand" data-reveal="up">
         <div class="brand">
           <span class="brand-mark">F</span>
           <span class="brand-name"><strong>FaraTech</strong><span>AGENCY</span></span>
@@ -182,7 +241,7 @@
           <a href="tel:+982112345678">+98 21 1234 5678</a>
         </div>
       </div>
-      <div class="footer-col">
+      <div class="footer-col" data-reveal="up" data-delay="100">
         <h4>Services</h4>
         <ul>
           <li><a href="services.html">Web Design</a></li>
@@ -191,7 +250,7 @@
           <li><a href="ai-lab.html">AI Solutions</a></li>
         </ul>
       </div>
-      <div class="footer-col">
+      <div class="footer-col" data-reveal="up" data-delay="200">
         <h4>Company</h4>
         <ul>
           <li><a href="about.html">About Us</a></li>
@@ -212,7 +271,8 @@
   </div>
 </footer>
 
+<script type="module" src="js/page-3d.js"></script>
+<script src="js/scroll-animations.js"></script>
 <script src="js/menu.js"></script>
-<script src="js/animations.js"></script>
 </body>
 </html>

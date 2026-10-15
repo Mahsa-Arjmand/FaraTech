@@ -1,40 +1,34 @@
-/* Contact form validation */
-(function () {
-  const form = document.getElementById('contactForm');
-  if (!form) return;
+document.addEventListener('DOMContentLoaded', () => {
+  const contactForm = document.getElementById('contactForm');
+  if (!contactForm) return;
 
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  form.addEventListener('submit', (e) => {
+  contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    const name = form.name.value.trim();
-    const email = form.email.value.trim();
-    const message = form.message.value.trim();
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
 
-    form.querySelectorAll('.error').forEach((el) => el.classList.remove('error'));
-
-    let ok = true;
-    if (name.length < 2) {
-      form.name.classList.add('error');
-      ok = false;
-    }
-    if (!emailRegex.test(email)) {
-      form.email.classList.add('error');
-      ok = false;
-    }
-    if (message.length < 10) {
-      form.message.classList.add('error');
-      ok = false;
-    }
-
-    if (!ok) {
-      alert('Please fill out the highlighted fields correctly.');
+    if (!name || !email || !message) {
+      alert('Please fill in all required fields.');
       return;
     }
 
-    console.log('Form data:', { name, email, message });
-    alert('Your message has been sent. The FaraTech team will get back to you shortly.');
-    form.reset();
+    const btn = contactForm.querySelector('button[type="submit"]');
+    const originalText = btn.innerHTML;
+    btn.innerHTML = 'Sending...';
+    btn.disabled = true;
+
+    setTimeout(() => {
+      btn.innerHTML = '✓ Message Sent!';
+      btn.style.background = '#10b981';
+
+      setTimeout(() => {
+        btn.innerHTML = originalText;
+        btn.style.background = '';
+        btn.disabled = false;
+        contactForm.reset();
+      }, 2000);
+    }, 1200);
   });
-})();
+});

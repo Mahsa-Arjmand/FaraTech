@@ -10,14 +10,46 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.128.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.128.0/examples/jsm/"
+  }
+}
+</script>
+
 <link rel="stylesheet" href="css/reset.css" />
 <link rel="stylesheet" href="css/variables.css" />
 <link rel="stylesheet" href="css/layout.css" />
 <link rel="stylesheet" href="css/components.css" />
 <link rel="stylesheet" href="css/home.css" />
+<link rel="stylesheet" href="css/3d-wow.css" />
 <link rel="stylesheet" href="css/responsive.css" />
 </head>
 <body>
+
+<!-- Preloader -->
+<div class="preloader" id="preloader">
+  <div class="preloader-inner">
+    <div class="preloader-cube">
+      <div class="cube-face front"></div>
+      <div class="cube-face back"></div>
+      <div class="cube-face left"></div>
+      <div class="cube-face right"></div>
+      <div class="cube-face top"></div>
+      <div class="cube-face bottom"></div>
+    </div>
+    <span class="preloader-text">FARATECH</span>
+  </div>
+</div>
+
+<!-- Scroll Progress Bar -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- Custom Cursor -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
 <!-- HEADER -->
 <header class="site-header">
@@ -43,7 +75,7 @@
     </nav>
 
     <div class="nav-actions">
-      <a href="contact.html" class="btn btn-primary">
+      <a href="contact.html" class="btn btn-primary magnetic">
         Start a Project
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
@@ -54,31 +86,52 @@
   </div>
 </header>
 
-<!-- HERO -->
+<!-- HERO with 3D canvas -->
 <section class="hero">
   <canvas id="heroCanvas" class="hero-canvas" aria-hidden="true"></canvas>
   <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="hero-noise" aria-hidden="true"></div>
 
   <div class="container hero-grid">
     <div class="hero-content">
-      <h1>
+      <div class="hero-badge" data-reveal="up">
+        <span class="badge-dot"></span>
+        Available for new projects — 2025
+      </div>
+      <h1 data-split>
         We build websites that <span class="accent">actually work</span>
       </h1>
-      <p class="hero-lead">
+      <p class="hero-lead" data-reveal="up" data-delay="200">
         From early-stage startups to established brands, FaraTech helps businesses
         build a strong, professional presence online.
       </p>
-      <div class="hero-actions">
-        <a href="contact.html" class="btn btn-primary">
+      <div class="hero-actions" data-reveal="up" data-delay="400">
+        <a href="contact.html" class="btn btn-primary magnetic">
           Get a Free Consultation
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
-        <a href="portfolio.html" class="btn btn-outline">View Our Work</a>
+        <a href="portfolio.html" class="btn btn-outline magnetic">View Our Work</a>
+      </div>
+
+      <div class="hero-mini-stats" data-reveal="up" data-delay="600">
+        <div class="mini-stat">
+          <strong>240+</strong>
+          <span>Projects</span>
+        </div>
+        <div class="mini-stat">
+          <strong>98%</strong>
+          <span>Satisfaction</span>
+        </div>
+        <div class="mini-stat">
+          <strong>9yrs</strong>
+          <span>Experience</span>
+        </div>
       </div>
     </div>
 
     <div class="hero-visual">
-      <div class="hero-frame">
+      <div class="hero-frame tilt-3d" data-tilt data-tilt-max="12">
+        <div class="hero-frame-glow"></div>
         <div class="hero-frame-bar">
           <div class="dots"><span></span><span></span><span></span></div>
           <div class="url">faratech.ir/dashboard</div>
@@ -102,78 +155,123 @@
           <div class="progress-bar">
             <div class="progress-fill gold"></div>
           </div>
+
+          <div class="hero-frame-footer">
+            <div class="avatar-group">
+              <span>M</span><span>A</span><span>R</span>
+            </div>
+            <span class="hero-frame-status">● Live Preview</span>
+          </div>
         </div>
+      </div>
+
+      <!-- Floating 3D badges -->
+      <div class="float-badge fb-1" data-float="1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        <span>Fast</span>
+      </div>
+      <div class="float-badge fb-2" data-float="2">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <span>Quality</span>
+      </div>
+      <div class="float-badge fb-3" data-float="3">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+        <span>Trusted</span>
       </div>
     </div>
   </div>
+
+  <div class="scroll-hint">
+    <span>Scroll to explore</span>
+    <div class="scroll-hint-line"></div>
+  </div>
 </section>
 
-<!-- TRUSTED -->
+<!-- TRUSTED - Marquee -->
 <section class="trusted">
   <div class="container trusted-inner">
     <span class="trusted-label">TRUSTED BY PROFESSIONAL TEAMS</span>
-    <div class="trusted-logos">
-      <span>Digikala</span>
-      <span>Alibaba</span>
-      <span>Tap30</span>
-      <span>CafeBazaar</span>
-      <span>Filimo</span>
+  </div>
+  <div class="marquee" data-speed="40">
+    <div class="marquee-track">
+      <span>Digikala</span><span>●</span>
+      <span>Alibaba</span><span>●</span>
+      <span>Tap30</span><span>●</span>
+      <span>CafeBazaar</span><span>●</span>
+      <span>Filimo</span><span>●</span>
+      <span>Snapp</span><span>●</span>
+      <span>Digikala</span><span>●</span>
+      <span>Alibaba</span><span>●</span>
+      <span>Tap30</span><span>●</span>
+      <span>CafeBazaar</span><span>●</span>
+      <span>Filimo</span><span>●</span>
+      <span>Snapp</span><span>●</span>
     </div>
   </div>
 </section>
 
-<!-- SERVICES -->
-<section id="services" class="section">
+<!-- SERVICES with 3D cards -->
+<section id="services" class="section section-3d">
+  <div class="section-bg-3d" data-parallax="0.2"></div>
   <div class="container">
-    <div class="section-head">
+    <div class="section-head" data-reveal="up">
       <span class="eyebrow">SERVICES</span>
-      <h2>Digital solutions tailored to your needs</h2>
+      <h2 data-split>Digital solutions tailored to your needs</h2>
       <p>We focus on three core areas — deep, precise and professional.</p>
     </div>
 
     <div class="services-grid">
-      <article class="service-item">
-        <div class="service-icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      <article class="service-item card-3d" data-reveal="3d" data-tilt data-tilt-max="10">
+        <div class="card-3d-inner">
+          <div class="service-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <h3>Web Design &amp; Development</h3>
+          <p>Fast, secure and modern websites built around your business goals.</p>
+          <ul class="service-list">
+            <li>Custom responsive design</li>
+            <li>SEO-friendly structure</li>
+            <li>High performance loading</li>
+          </ul>
+          <div class="card-shine"></div>
         </div>
-        <h3>Web Design &amp; Development</h3>
-        <p>Fast, secure and modern websites built around your business goals.</p>
-        <ul class="service-list">
-          <li>Custom responsive design</li>
-          <li>SEO-friendly structure</li>
-          <li>High performance loading</li>
-        </ul>
       </article>
 
-      <article class="service-item">
-        <div class="service-icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+      <article class="service-item card-3d" data-reveal="3d" data-delay="150" data-tilt data-tilt-max="10">
+        <div class="card-3d-inner">
+          <div class="service-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          </div>
+          <h3>UI / UX Design</h3>
+          <p>Interfaces and experiences that capture users from the very first second.</p>
+          <ul class="service-list">
+            <li>User research &amp; testing</li>
+            <li>Design systems &amp; components</li>
+            <li>Interactive prototypes</li>
+          </ul>
+          <div class="card-shine"></div>
         </div>
-        <h3>UI / UX Design</h3>
-        <p>Interfaces and experiences that capture users from the very first second.</p>
-        <ul class="service-list">
-          <li>User research &amp; testing</li>
-          <li>Design systems &amp; components</li>
-          <li>Interactive prototypes</li>
-        </ul>
       </article>
 
-      <article class="service-item">
-        <div class="service-icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <article class="service-item card-3d" data-reveal="3d" data-delay="300" data-tilt data-tilt-max="10">
+        <div class="card-3d-inner">
+          <div class="service-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          </div>
+          <h3>SEO &amp; Organic Growth</h3>
+          <p>We help the right customers find you at exactly the right moment.</p>
+          <ul class="service-list">
+            <li>Keyword research</li>
+            <li>Technical SEO</li>
+            <li>Content strategy</li>
+          </ul>
+          <div class="card-shine"></div>
         </div>
-        <h3>SEO &amp; Organic Growth</h3>
-        <p>We help the right customers find you at exactly the right moment.</p>
-        <ul class="service-list">
-          <li>Keyword research</li>
-          <li>Technical SEO</li>
-          <li>Content strategy</li>
-        </ul>
       </article>
     </div>
 
-    <div class="section-cta">
-      <a href="services.html" class="btn btn-outline">
+    <div class="section-cta" data-reveal="up">
+      <a href="services.html" class="btn btn-outline magnetic">
         View All Services
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
@@ -181,62 +279,119 @@
   </div>
 </section>
 
-<!-- PORTFOLIO -->
-<section id="portfolio" class="section section-alt">
+<!-- PORTFOLIO with 3D flip cards -->
+<section id="portfolio" class="section section-alt section-3d">
+  <div class="section-bg-3d gold" data-parallax="-0.15"></div>
   <div class="container">
-    <div class="section-head">
+    <div class="section-head" data-reveal="up">
       <span class="eyebrow">SELECTED WORK</span>
-      <h2>Projects we've carefully crafted</h2>
+      <h2 data-split>Projects we've carefully crafted</h2>
     </div>
 
     <div class="portfolio-grid">
-      <article class="portfolio-card">
-        <div class="portfolio-thumb">
-          <div class="portfolio-thumb-overlay">ARAM</div>
-        </div>
-        <div class="portfolio-body">
-          <span class="tag tag-gold">E-COMMERCE</span>
-          <h3>Aram Fashion Store</h3>
-          <p>Full redesign focused on a smooth shopping experience and higher conversion rate.</p>
-        </div>
-      </article>
-
-      <article class="portfolio-card">
-        <div class="portfolio-thumb t-2">
-          <div class="portfolio-thumb-overlay">TRAVEL</div>
-        </div>
-        <div class="portfolio-body">
-          <span class="tag">CORPORATE</span>
-          <h3>Safarin Travel Agency</h3>
-          <p>Tour showcase and online booking with a custom CMS.</p>
-        </div>
-      </article>
-
-      <article class="portfolio-card">
-        <div class="portfolio-thumb t-3">
-          <div class="portfolio-thumb-overlay">FINTECH</div>
-        </div>
-        <div class="portfolio-body">
-          <span class="tag tag-gold">WEB APP</span>
-          <h3>Zarrin Finance Platform</h3>
-          <p>Financial dashboard with a clean interface and real-time reports.</p>
+      <article class="portfolio-card flip-card" data-reveal="3d">
+        <div class="flip-inner">
+          <div class="flip-front">
+            <div class="portfolio-thumb">
+              <div class="portfolio-thumb-overlay">ARAM</div>
+            </div>
+            <div class="portfolio-body">
+              <span class="tag tag-gold">E-COMMERCE</span>
+              <h3>Aram Fashion Store</h3>
+            </div>
+          </div>
+          <div class="flip-back">
+            <div class="flip-back-content">
+              <span class="tag tag-gold">E-COMMERCE</span>
+              <h3>Aram Fashion Store</h3>
+              <p>Full redesign focused on a smooth shopping experience and higher conversion rate.</p>
+              <a href="portfolio.html" class="flip-link">
+                View Project
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
         </div>
       </article>
 
-      <article class="portfolio-card">
-        <div class="portfolio-thumb t-4">
-          <div class="portfolio-thumb-overlay">CLINIC</div>
+      <article class="portfolio-card flip-card" data-reveal="3d" data-delay="150">
+        <div class="flip-inner">
+          <div class="flip-front">
+            <div class="portfolio-thumb t-2">
+              <div class="portfolio-thumb-overlay">TRAVEL</div>
+            </div>
+            <div class="portfolio-body">
+              <span class="tag">CORPORATE</span>
+              <h3>Safarin Travel Agency</h3>
+            </div>
+          </div>
+          <div class="flip-back">
+            <div class="flip-back-content">
+              <span class="tag">CORPORATE</span>
+              <h3>Safarin Travel Agency</h3>
+              <p>Tour showcase and online booking with a custom CMS.</p>
+              <a href="portfolio.html" class="flip-link">
+                View Project
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
         </div>
-        <div class="portfolio-body">
-          <span class="tag">WEBSITE</span>
-          <h3>Roya Beauty Clinic</h3>
-          <p>Website with online appointment booking and a full showcase gallery.</p>
+      </article>
+
+      <article class="portfolio-card flip-card" data-reveal="3d" data-delay="300">
+        <div class="flip-inner">
+          <div class="flip-front">
+            <div class="portfolio-thumb t-3">
+              <div class="portfolio-thumb-overlay">FINTECH</div>
+            </div>
+            <div class="portfolio-body">
+              <span class="tag tag-gold">WEB APP</span>
+              <h3>Zarrin Finance Platform</h3>
+            </div>
+          </div>
+          <div class="flip-back">
+            <div class="flip-back-content">
+              <span class="tag tag-gold">WEB APP</span>
+              <h3>Zarrin Finance Platform</h3>
+              <p>Financial dashboard with a clean interface and real-time reports.</p>
+              <a href="portfolio.html" class="flip-link">
+                View Project
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="portfolio-card flip-card" data-reveal="3d" data-delay="450">
+        <div class="flip-inner">
+          <div class="flip-front">
+            <div class="portfolio-thumb t-4">
+              <div class="portfolio-thumb-overlay">CLINIC</div>
+            </div>
+            <div class="portfolio-body">
+              <span class="tag">WEBSITE</span>
+              <h3>Roya Beauty Clinic</h3>
+            </div>
+          </div>
+          <div class="flip-back">
+            <div class="flip-back-content">
+              <span class="tag">WEBSITE</span>
+              <h3>Roya Beauty Clinic</h3>
+              <p>Website with online appointment booking and a full showcase gallery.</p>
+              <a href="portfolio.html" class="flip-link">
+                View Project
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
         </div>
       </article>
     </div>
 
-    <div class="section-cta">
-      <a href="portfolio.html" class="btn btn-outline">
+    <div class="section-cta" data-reveal="up">
+      <a href="portfolio.html" class="btn btn-outline magnetic">
         View All Projects
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
@@ -244,10 +399,11 @@
   </div>
 </section>
 
-<!-- AI TEASER -->
+<!-- AI TEASER with 3D chip -->
 <section class="ai-teaser-section">
   <div class="container">
-    <div class="ai-teaser-card">
+    <div class="ai-teaser-card" data-reveal="zoom">
+      <canvas id="aiCanvas" class="ai-canvas" aria-hidden="true"></canvas>
       <div class="ai-teaser-card-content">
         <span class="ai-teaser-tag">FARATECH AI LAB</span>
         <h2>We don't just build websites — we build with AI</h2>
@@ -256,90 +412,101 @@
           and custom machine learning models — our AI Lab delivers real,
           business-grade AI solutions.
         </p>
-        <a href="ai-lab.html" class="btn btn-gold">
+        <a href="ai-lab.html" class="btn btn-gold magnetic">
           Explore AI Lab
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
       <div class="ai-teaser-card-visual">
-        <div class="ai-chip-mini">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <rect x="4" y="4" width="16" height="16" rx="2"/>
-            <rect x="9" y="9" width="6" height="6"/>
-            <path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/>
-          </svg>
+        <div class="ai-chip-3d" id="aiChip" data-tilt data-tilt-max="20">
+          <div class="ai-chip-inner">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="4" y="4" width="16" height="16" rx="2"/>
+              <rect x="9" y="9" width="6" height="6"/>
+              <path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/>
+            </svg>
+            <div class="ai-chip-pulse"></div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROCESS -->
-<section id="process" class="section">
+<!-- PROCESS with animated timeline -->
+<section id="process" class="section process-section">
   <div class="container">
     <div class="process-wrap">
-      <div class="process-head">
+      <div class="process-head" data-reveal="up">
         <span class="eyebrow">OUR PROCESS</span>
-        <h2>From idea to launch, in four steps</h2>
+        <h2 data-split>From idea to launch, in four steps</h2>
         <p>A transparent, structured and trackable process.</p>
       </div>
 
       <div class="process-grid">
-        <div class="process-step">
+        <div class="process-step" data-reveal="left">
           <div class="num">01</div>
           <h4>Discovery &amp; Consulting</h4>
           <p>We meet to understand your goals, users and business needs.</p>
+          <div class="process-line"></div>
         </div>
-        <div class="process-step">
+        <div class="process-step" data-reveal="left" data-delay="100">
           <div class="num">02</div>
           <h4>Design &amp; Strategy</h4>
           <p>We design the structure and visuals based on real data.</p>
+          <div class="process-line"></div>
         </div>
-        <div class="process-step">
+        <div class="process-step" data-reveal="left" data-delay="200">
           <div class="num">03</div>
           <h4>Development</h4>
           <p>We build your website with modern technologies and test it thoroughly.</p>
+          <div class="process-line"></div>
         </div>
-        <div class="process-step">
+        <div class="process-step" data-reveal="left" data-delay="300">
           <div class="num">04</div>
           <h4>Launch &amp; Support</h4>
           <p>After launch, we stay with you through training and ongoing support.</p>
+          <div class="process-line"></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- WHY US -->
+<!-- WHY US with animated stats -->
 <section id="why" class="why-section">
   <div class="container">
-    <div class="why-header">
+    <div class="why-header" data-reveal="up">
       <span class="eyebrow">WHY FARATECH</span>
-      <h2>The difference is in the details</h2>
+      <h2 data-split>The difference is in the details</h2>
       <p>We treat your business like our own — driven by results, precision, and long-term thinking.</p>
     </div>
 
     <div class="why-stats">
-      <div class="stat-card dark">
-        <div class="num">98<span class="plus">%</span></div>
+      <div class="stat-card dark" data-count="98" data-suffix="%" data-reveal="up">
+        <div class="num">0<span class="plus">%</span></div>
         <div class="lbl">Client satisfaction</div>
+        <div class="stat-bar"><div class="stat-bar-fill"></div></div>
       </div>
-      <div class="stat-card">
-        <div class="num">240<span class="plus">+</span></div>
+      <div class="stat-card" data-count="240" data-suffix="+" data-reveal="up" data-delay="100">
+        <div class="num">0<span class="plus">+</span></div>
         <div class="lbl">Projects delivered</div>
+        <div class="stat-bar"><div class="stat-bar-fill"></div></div>
       </div>
-      <div class="stat-card">
-        <div class="num">9<span class="plus">yrs</span></div>
+      <div class="stat-card" data-count="9" data-suffix="yrs" data-reveal="up" data-delay="200">
+        <div class="num">0<span class="plus">yrs</span></div>
         <div class="lbl">Industry experience</div>
+        <div class="stat-bar"><div class="stat-bar-fill"></div></div>
       </div>
-      <div class="stat-card dark">
-        <div class="num">48<span class="plus">h</span></div>
+      <div class="stat-card dark" data-count="48" data-suffix="h" data-reveal="up" data-delay="300">
+        <div class="num">0<span class="plus">h</span></div>
         <div class="lbl">To kick off a project</div>
+        <div class="stat-bar"><div class="stat-bar-fill"></div></div>
       </div>
     </div>
 
     <div class="why-grid">
-      <div class="why-item">
+      <div class="why-item" data-reveal="up">
         <div class="why-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
         </div>
@@ -349,7 +516,7 @@
         </div>
       </div>
 
-      <div class="why-item">
+      <div class="why-item" data-reveal="up" data-delay="100">
         <div class="why-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
         </div>
@@ -359,7 +526,7 @@
         </div>
       </div>
 
-      <div class="why-item">
+      <div class="why-item" data-reveal="up" data-delay="200">
         <div class="why-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
         </div>
@@ -369,7 +536,7 @@
         </div>
       </div>
 
-      <div class="why-item">
+      <div class="why-item" data-reveal="up" data-delay="300">
         <div class="why-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
         </div>
@@ -385,13 +552,14 @@
 <!-- TESTIMONIALS -->
 <section class="section section-alt">
   <div class="container">
-    <div class="section-head center">
+    <div class="section-head center" data-reveal="up">
       <span class="eyebrow" style="justify-content:center;">TESTIMONIALS</span>
-      <h2>What our clients say</h2>
+      <h2 data-split>What our clients say</h2>
     </div>
 
     <div class="testimonials-grid">
-      <article class="testimonial">
+      <article class="testimonial" data-reveal="zoom">
+        <div class="testimonial-quote">"</div>
         <div class="testimonial-stars">
           <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -409,7 +577,8 @@
         </div>
       </article>
 
-      <article class="testimonial">
+      <article class="testimonial" data-reveal="zoom" data-delay="150">
+        <div class="testimonial-quote">"</div>
         <div class="testimonial-stars">
           <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -427,7 +596,8 @@
         </div>
       </article>
 
-      <article class="testimonial">
+      <article class="testimonial" data-reveal="zoom" data-delay="300">
+        <div class="testimonial-quote">"</div>
         <div class="testimonial-stars">
           <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -452,8 +622,8 @@
 <section id="contact" class="contact-section">
   <div class="container">
     <div class="contact-grid">
-      <div class="contact-info">
-        <h2>Tell us about your project</h2>
+      <div class="contact-info" data-reveal="left">
+        <h2 data-split>Tell us about your project</h2>
         <p>Fill out the form or call us directly — we respond in under 24 hours.</p>
 
         <div class="contact-items">
@@ -489,7 +659,7 @@
         </div>
       </div>
 
-      <form class="contact-form" id="contactForm" novalidate>
+      <form class="contact-form" id="contactForm" novalidate data-reveal="right">
         <div class="form-row">
           <div class="form-group">
             <label for="name">Full name *</label>
@@ -511,7 +681,7 @@
           <textarea id="message" name="message" placeholder="Tell us about your project and goals..." required></textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" class="btn btn-primary magnetic">
           Send Message
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
@@ -524,7 +694,7 @@
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-brand">
+      <div class="footer-brand" data-reveal="up">
         <div class="brand">
           <span class="brand-mark">F</span>
           <span class="brand-name">
@@ -542,7 +712,7 @@
         </div>
       </div>
 
-      <div class="footer-col">
+      <div class="footer-col" data-reveal="up" data-delay="100">
         <h4>Services</h4>
         <ul>
           <li><a href="services.html">Web Design</a></li>
@@ -552,7 +722,7 @@
         </ul>
       </div>
 
-      <div class="footer-col">
+      <div class="footer-col" data-reveal="up" data-delay="200">
         <h4>Company</h4>
         <ul>
           <li><a href="about.html">About Us</a></li>
@@ -580,9 +750,11 @@
   </div>
 </footer>
 
-<script src="js/hero-bg.js"></script>
+<script type="module" src="js/hero-3d.js"></script>
+<script type="module" src="js/ai-3d.js"></script>
+<script src="js/tilt.js"></script>
+<script src="js/scroll-animations.js"></script>
 <script src="js/menu.js"></script>
-<script src="js/animations.js"></script>
 <script src="js/form.js"></script>
 </body>
 </html>
