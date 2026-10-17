@@ -94,36 +94,36 @@
 
   <div class="container hero-grid">
     <div class="hero-content">
-      <div class="hero-badge" data-reveal="up">
+      <div class="hero-badge" data-reveal="up" data-content="badge" data-section="hero">
         <span class="badge-dot"></span>
         Available for new projects — 2025
       </div>
-      <h1 data-split>
+      <h1 data-split data-content-html="title" data-section="hero">
         We build websites that <span class="accent">actually work</span>
       </h1>
-      <p class="hero-lead" data-reveal="up" data-delay="200">
+      <p class="hero-lead" data-reveal="up" data-delay="200" data-content="subtitle" data-section="hero">
         From early-stage startups to established brands, FaraTech helps businesses
         build a strong, professional presence online.
       </p>
       <div class="hero-actions" data-reveal="up" data-delay="400">
-        <a href="contact.html" class="btn btn-primary magnetic">
+        <a href="contact.html" class="btn btn-primary magnetic" data-content="cta_primary" data-section="hero">
           Get a Free Consultation
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
-        <a href="portfolio.html" class="btn btn-outline magnetic">View Our Work</a>
+        <a href="portfolio.html" class="btn btn-outline magnetic" data-content="cta_secondary" data-section="hero">View Our Work</a>
       </div>
 
       <div class="hero-mini-stats" data-reveal="up" data-delay="600">
         <div class="mini-stat">
-          <strong>240+</strong>
+          <strong data-content="stat_projects" data-section="hero">240+</strong>
           <span>Projects</span>
         </div>
         <div class="mini-stat">
-          <strong>98%</strong>
+          <strong data-content="stat_satisfaction" data-section="hero">98%</strong>
           <span>Satisfaction</span>
         </div>
         <div class="mini-stat">
-          <strong>9yrs</strong>
+          <strong data-content="stat_experience" data-section="hero">9yrs</strong>
           <span>Experience</span>
         </div>
       </div>
@@ -215,9 +215,9 @@
   <div class="section-bg-3d" data-parallax="0.2"></div>
   <div class="container">
     <div class="section-head" data-reveal="up">
-      <span class="eyebrow">SERVICES</span>
-      <h2 data-split>Digital solutions tailored to your needs</h2>
-      <p>We focus on three core areas — deep, precise and professional.</p>
+      <span class="eyebrow" data-content="eyebrow" data-section="services">SERVICES</span>
+      <h2 data-split data-content="title" data-section="services">Digital solutions tailored to your needs</h2>
+      <p data-content="subtitle" data-section="services">We focus on three core areas — deep, precise and professional.</p>
     </div>
 
     <div class="services-grid">
@@ -226,8 +226,8 @@
           <div class="service-icon-wrap">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
           </div>
-          <h3>Web Design &amp; Development</h3>
-          <p>Fast, secure and modern websites built around your business goals.</p>
+          <h3 data-content="service1_title" data-section="services">Web Design &amp; Development</h3>
+          <p data-content="service1_desc" data-section="services">Fast, secure and modern websites built around your business goals.</p>
           <ul class="service-list">
             <li>Custom responsive design</li>
             <li>SEO-friendly structure</li>
@@ -242,8 +242,8 @@
           <div class="service-icon-wrap">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
           </div>
-          <h3>UI / UX Design</h3>
-          <p>Interfaces and experiences that capture users from the very first second.</p>
+          <h3 data-content="service2_title" data-section="services">UI / UX Design</h3>
+          <p data-content="service2_desc" data-section="services">Interfaces and experiences that capture users from the very first second.</p>
           <ul class="service-list">
             <li>User research &amp; testing</li>
             <li>Design systems &amp; components</li>
@@ -258,8 +258,8 @@
           <div class="service-icon-wrap">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
           </div>
-          <h3>SEO &amp; Organic Growth</h3>
-          <p>We help the right customers find you at exactly the right moment.</p>
+          <h3 data-content="service3_title" data-section="services">SEO &amp; Organic Growth</h3>
+          <p data-content="service3_desc" data-section="services">We help the right customers find you at exactly the right moment.</p>
           <ul class="service-list">
             <li>Keyword research</li>
             <li>Technical SEO</li>
@@ -752,10 +752,59 @@
 
 <script type="module" src="js/hero-3d.js"></script>
 <script type="module" src="js/ai-3d.js"></script>
-<script src="js/tilt.js"></script>
 <script src="js/scroll-animations.js"></script>
 <script src="js/menu.js"></script>
 <script src="js/form.js"></script>
 <script src="js/content-sync.js"></script>
+<script>
+// Load content from API
+async function loadPageContent() {
+    const page = 'index';
+    console.log('Loading content for page:', page);
+    
+    try {
+        const response = await fetch('http://localhost:8001/api/public_content.php?page=' + page);
+        const data = await response.json();
+        
+        console.log('Content data received:', data);
+        
+        if (data.success) {
+            const content = data.data;
+            
+            // Update text content (for elements without child HTML)
+            document.querySelectorAll('[data-content]').forEach(element => {
+                const key = element.getAttribute('data-content');
+                const section = element.getAttribute('data-section') || 'hero';
+                
+                console.log('Updating text content:', section, key, content[section]?.[key]);
+                
+                if (content[section] && content[section][key]) {
+                    element.textContent = content[section][key];
+                }
+            });
+            
+            // Update HTML content (for elements with child HTML)
+            document.querySelectorAll('[data-content-html]').forEach(element => {
+                const key = element.getAttribute('data-content-html');
+                const section = element.getAttribute('data-section') || 'hero';
+                
+                console.log('Updating HTML content:', section, key, content[section]?.[key]);
+                
+                if (content[section] && content[section][key]) {
+                    element.innerHTML = content[section][key];
+                }
+            });
+            
+            console.log('Content updated successfully');
+        }
+    } catch (error) {
+        console.error('Error loading content:', error);
+    }
+}
+
+// Load content immediately
+console.log('Starting content load');
+loadPageContent();
+</script>
 </body>
 </html>

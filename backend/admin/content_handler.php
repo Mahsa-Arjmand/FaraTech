@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/../includes/auth.php';
 requireLogin();
+require_once __DIR__ . '/../includes/functions.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     redirect('content.php');
@@ -24,13 +25,29 @@ if ($id > 0) {
         $_SESSION['flash_error'] = 'Failed to update content';
     }
 } else {
-    // Create (or update if exists)
-    $stmt = $db->prepare("INSERT INTO content (page, section, content_key, content_value) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE content_value = ?");
-    $result = $stmt->execute([$page, $section, $content_key, $content_value, $content_value]);
-    if ($result) {
-        $_SESSION['flash_success'] = 'Content saved successfully';
+    // Check if content already exists
+    $checkStmt = $db->prepare("SELECT id FROM content WHERE page = ? AND section = ? AND content_key = ?");
+    $checkStmt->execute([$page, $section, $content_key]);
+    $existing = $checkStmt->fetch();
+    
+    if ($existing) {
+        // Update existing
+        $stmt = $db->prepare("UPDATE content SET content_value = ? WHERE id = ?");
+        $result = $stmt->execute([$content_value, $existing['id']]);
+        if ($result) {
+            $_SESSION['flash_success'] = 'Content updated successfully';
+        } else {
+            $_SESSION['flash_error'] = 'Failed to update content';
+        }
     } else {
-        $_SESSION['flash_error'] = 'Failed to save content';
+        // Create new
+        $stmt = $db->prepare("INSERT INTO content (page, section, content_key, content_value) VALUES (?, ?, ?, ?)");
+        $result = $stmt->execute([$page, $section, $content_key, $content_value]);
+        if ($result) {
+            $_SESSION['flash_success'] = 'Content saved successfully';
+        } else {
+            $_SESSION['flash_error'] = 'Failed to save content';
+        }
     }
 }
 
