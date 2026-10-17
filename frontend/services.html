@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="FaraTech — Services. Web development, custom software, AI solutions and business process automation." />
 <title>Services — FaraTech</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -11,7 +13,8 @@
 <script type="importmap">
 {
   "imports": {
-    "three": "https://unpkg.com/three@0.128.0/build/three.module.js"
+    "three": "https://unpkg.com/three@0.128.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.128.0/examples/jsm/"
   }
 }
 </script>
@@ -26,6 +29,7 @@
 </head>
 <body>
 
+<!-- Preloader -->
 <div class="preloader" id="preloader">
   <div class="preloader-inner">
     <div class="preloader-cube">
@@ -40,16 +44,24 @@
   </div>
 </div>
 
+<!-- Scroll Progress -->
 <div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- Custom Cursor -->
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
+<!-- HEADER -->
 <header class="site-header">
   <div class="container nav">
     <a href="index.html" class="brand">
       <span class="brand-mark">F</span>
-      <span class="brand-name"><strong>FaraTech</strong><span>AGENCY</span></span>
+      <span class="brand-name">
+        <strong>FaraTech</strong>
+        <span>AGENCY</span>
+      </span>
     </a>
+
     <nav>
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html">Home</a></li>
@@ -61,189 +73,91 @@
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
+
     <div class="nav-actions">
-      <a href="contact.html" class="btn btn-primary magnetic">Start a Project
+      <a href="contact.html" class="btn btn-primary magnetic">
+        Start a Project
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
-      <button class="menu-toggle" id="menuToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
 </header>
 
+<!-- PAGE HEADER with 3D canvas -->
 <section class="page-header page-header-3d">
   <canvas id="pageCanvas" class="page-canvas" aria-hidden="true"></canvas>
   <div class="page-header-overlay" aria-hidden="true"></div>
   <div class="container page-header-content">
     <span class="eyebrow" data-reveal="up">SERVICES</span>
-    <h1 data-split>Everything you need to win online</h1>
-    <p data-reveal="up" data-delay="300">From strategy and design to development, marketing and AI — under one roof.</p>
+    <h1 data-split>Digital solutions tailored to your needs</h1>
+    <p data-reveal="up" data-delay="300">
+      Four core areas where we help ideas become practical, scalable digital products.
+    </p>
     <nav class="breadcrumb" data-reveal="up" data-delay="500">
       <a href="index.html">Home</a><span>›</span><span>Services</span>
     </nav>
   </div>
 </section>
 
+<!-- ALL SERVICES — detailed grid (rendered from config) -->
 <section class="section section-3d">
   <div class="section-bg-3d" data-parallax="0.15"></div>
   <div class="container">
-    <div class="service-detail-grid">
-
-      <article class="service-detail card-3d" data-reveal="3d" data-tilt data-tilt-max="8">
-        <div class="card-3d-inner">
-          <div class="service-detail-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-          </div>
-          <h3>Web Design &amp; Development</h3>
-          <p>Fast, secure, modern websites tailored to your business. Built to perform and easy to manage.</p>
-          <ul class="service-detail-list">
-            <li>Custom UI design</li>
-            <li>Responsive &amp; mobile-first</li>
-            <li>Performance optimization</li>
-            <li>CMS integration</li>
-            <li>Accessibility standards</li>
-            <li>Analytics setup</li>
-          </ul>
-          <div class="card-shine"></div>
-        </div>
-      </article>
-
-      <article class="service-detail card-3d" data-reveal="3d" data-delay="120" data-tilt data-tilt-max="8">
-        <div class="card-3d-inner">
-          <div class="service-detail-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-          </div>
-          <h3>UI / UX Design</h3>
-          <p>Design that turns first-time visitors into loyal users — grounded in research and testing.</p>
-          <ul class="service-detail-list">
-            <li>User research &amp; interviews</li>
-            <li>Information architecture</li>
-            <li>Wireframes &amp; prototypes</li>
-            <li>Design systems</li>
-            <li>Usability testing</li>
-            <li>Handoff documentation</li>
-          </ul>
-          <div class="card-shine"></div>
-        </div>
-      </article>
-
-      <article class="service-detail card-3d" data-reveal="3d" data-delay="240" data-tilt data-tilt-max="8">
-        <div class="card-3d-inner">
-          <div class="service-detail-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-          </div>
-          <h3>SEO &amp; Organic Growth</h3>
-          <p>Get found by the right people at the right time — through technical SEO and content strategy.</p>
-          <ul class="service-detail-list">
-            <li>Technical SEO audit</li>
-            <li>Keyword research</li>
-            <li>On-page optimization</li>
-            <li>Content strategy</li>
-            <li>Link building</li>
-            <li>Monthly reporting</li>
-          </ul>
-          <div class="card-shine"></div>
-        </div>
-      </article>
-
-      <article class="service-detail card-3d" data-reveal="3d" data-delay="360" data-tilt data-tilt-max="8">
-        <div class="card-3d-inner">
-          <div class="service-detail-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          </div>
-          <h3>Digital Marketing</h3>
-          <p>Full-funnel marketing — from awareness to conversion — driven by data and creativity.</p>
-          <ul class="service-detail-list">
-            <li>Paid campaigns (Google, Meta)</li>
-            <li>Social media management</li>
-            <li>Email marketing</li>
-            <li>Conversion optimization</li>
-            <li>Content creation</li>
-            <li>Performance analytics</li>
-          </ul>
-          <div class="card-shine"></div>
-        </div>
-      </article>
-
-      <article class="service-detail card-3d" data-reveal="3d" data-delay="480" data-tilt data-tilt-max="8">
-        <div class="card-3d-inner">
-          <div class="service-detail-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><path d="M8 12h8M12 8v8"/></svg>
-          </div>
-          <h3>E-Commerce Solutions</h3>
-          <p>Online stores that convert — from product pages and checkout to inventory and analytics.</p>
-          <ul class="service-detail-list">
-            <li>Store setup &amp; migration</li>
-            <li>Payment integrations</li>
-            <li>Product page optimization</li>
-            <li>Checkout UX</li>
-            <li>Inventory &amp; order tools</li>
-            <li>Analytics dashboard</li>
-          </ul>
-          <div class="card-shine"></div>
-        </div>
-      </article>
-
-      <article class="service-detail card-3d" data-reveal="3d" data-delay="600" data-tilt data-tilt-max="8">
-        <div class="card-3d-inner">
-          <div class="service-detail-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><path d="M12 6v6l4 2"/></svg>
-          </div>
-          <h3>Support &amp; Maintenance</h3>
-          <p>We stay with you after launch — with ongoing updates, monitoring and support.</p>
-          <ul class="service-detail-list">
-            <li>24/7 monitoring</li>
-            <li>Security updates</li>
-            <li>Backup management</li>
-            <li>Performance tuning</li>
-            <li>Content updates</li>
-            <li>Priority support</li>
-          </ul>
-          <div class="card-shine"></div>
-        </div>
-      </article>
-
-    </div>
+    <div class="service-detail-grid"
+         data-ft-render="services"
+         data-ft-variant="detailed"></div>
   </div>
 </section>
 
+<!-- CTA -->
 <section class="cta-band" data-reveal="zoom">
   <div class="container">
     <div class="cta-band-inner">
       <div>
         <h2>Not sure which service you need?</h2>
-        <p>Book a free 30-minute consultation and we'll map it out together.</p>
+        <p>Send us a message and we'll help you figure out the right approach.</p>
       </div>
       <a href="contact.html" class="btn btn-gold magnetic">
-        Book a call
+        Talk to us
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand" data-reveal="up">
         <div class="brand">
           <span class="brand-mark">F</span>
-          <span class="brand-name"><strong>FaraTech</strong><span>AGENCY</span></span>
+          <span class="brand-name">
+            <strong>FaraTech</strong>
+            <span>AGENCY</span>
+          </span>
         </div>
-        <p class="footer-about">FaraTech is a digital agency founded in 2016, working in web design &amp; development, user experience, digital marketing and applied AI.</p>
+        <p class="footer-about">
+          FaraTech is a digital technology studio focused on transforming ideas into practical digital solutions. We help businesses grow through modern web experiences, custom software development, AI-powered solutions, and intelligent business-process automation.
+        </p>
         <div class="footer-contact">
-          <a href="mailto:info@faratech.ir">info@faratech.ir</a>
-          <a href="tel:+982112345678">+98 21 1234 5678</a>
+          <a href="mailto:faratechteam@gmail.com">faratechteam@gmail.com</a>
         </div>
       </div>
+
       <div class="footer-col" data-reveal="up" data-delay="100">
         <h4>Services</h4>
         <ul>
-          <li><a href="services.html">Web Design</a></li>
-          <li><a href="services.html">UI / UX</a></li>
-          <li><a href="services.html">SEO</a></li>
-          <li><a href="ai-lab.html">AI Solutions</a></li>
+          <li><a href="services.html">Web Development</a></li>
+          <li><a href="services.html">Custom Software</a></li>
+          <li><a href="services.html">AI Solutions</a></li>
+          <li><a href="services.html">Automation</a></li>
         </ul>
       </div>
+
       <div class="footer-col" data-reveal="up" data-delay="200">
         <h4>Company</h4>
         <ul>
@@ -254,20 +168,26 @@
         </ul>
       </div>
     </div>
+
     <div class="footer-bottom">
       <span>© 2025 FaraTech — All rights reserved.</span>
       <div class="footer-socials">
-        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
-        <a href="#" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 3.5L2.5 11l5.5 2.5L10 20l3-4.5 6.5 3z"/></svg></a>
+        <a href="https://www.instagram.com/faratechlab_/" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
       </div>
     </div>
   </div>
 </footer>
 
+<!-- ===== SCRIPTS ===== -->
+<!-- 1. Config first (plain) -->
+<script src="js/company-config.js"></script>
+<!-- 2. Binder next (plain) -->
+<script src="js/company-bind.js"></script>
+<!-- 3. 3D + animations -->
 <script type="module" src="js/page-3d.js"></script>
 <script src="js/scroll-animations.js"></script>
 <script src="js/menu.js"></script>
-<script src="js/content-sync.js"></script>
 </body>
 </html>
