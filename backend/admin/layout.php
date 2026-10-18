@@ -328,6 +328,11 @@ $currentPage = basename($_SERVER['PHP_SELF']);
             padding: 6px 12px;
             font-size: 12px;
         }
+
+        .btn-small {
+            padding: 6px 12px;
+            font-size: 12px;
+        }
     </style>
 </head>
 <body>
@@ -339,6 +344,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         <a href="projects.php" class="nav-item <?php echo $currentPage == 'projects.php' ? 'active' : ''; ?>">Projects</a>
         <a href="content.php" class="nav-item <?php echo $currentPage == 'content.php' ? 'active' : ''; ?>">Content</a>
         <a href="comments.php" class="nav-item <?php echo $currentPage == 'comments.php' ? 'active' : ''; ?>">Comments</a>
+        <a href="contact_submissions.php" class="nav-item <?php echo $currentPage == 'contact_submissions.php' ? 'active' : ''; ?>">Contact Submissions</a>
         <a href="team_positions.php" class="nav-item <?php echo $currentPage == 'team_positions.php' ? 'active' : ''; ?>">Team Positions</a>
         <a href="job_applications.php" class="nav-item <?php echo $currentPage == 'job_applications.php' ? 'active' : ''; ?>">Job Applications</a>
         <?php if (isAdmin()): ?>

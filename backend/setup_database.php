@@ -34,6 +34,7 @@ try {
         category VARCHAR(100),
         technologies TEXT,
         image_url VARCHAR(500),
+        video_url VARCHAR(500),
         project_url VARCHAR(500),
         featured BOOLEAN DEFAULT FALSE,
         status ENUM('draft', 'published', 'archived') DEFAULT 'draft',

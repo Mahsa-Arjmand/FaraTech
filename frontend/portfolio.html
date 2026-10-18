@@ -217,7 +217,10 @@ function createProjectCard(project, index) {
               <span class="tag ${tagClass}">${tag.toUpperCase()}</span>
               <h3>${project.title}</h3>
               <p>${project.description || 'A custom project.'}</p>
-              ${project.project_url ? `<a href="${project.project_url}" class="flip-link" target="_blank">View project
+              <a href="project-detail.html?id=${project.id}" class="flip-link">View details
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              ${project.project_url ? `<a href="${project.project_url}" class="flip-link" target="_blank">Visit project
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </a>` : ''}
             </div>

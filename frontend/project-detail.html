@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="FaraTech Project Details" />
+<title>Project Details | FaraTech</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.128.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.128.0/examples/jsm/"
+  }
+}
+</script>
+
+<link rel="stylesheet" href="css/reset.css" />
+<link rel="stylesheet" href="css/variables.css" />
+<link rel="stylesheet" href="css/layout.css" />
+<link rel="stylesheet" href="css/components.css" />
+<link rel="stylesheet" href="css/home.css" />
+<link rel="stylesheet" href="css/pages.css" />
+<link rel="stylesheet" href="css/3d-wow.css" />
+<link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+<!-- Preloader -->
+<div class="preloader" id="preloader">
+  <div class="preloader-inner">
+    <div class="preloader-cube">
+      <div class="cube-face front"></div>
+      <div class="cube-face back"></div>
+      <div class="cube-face left"></div>
+      <div class="cube-face right"></div>
+      <div class="cube-face top"></div>
+      <div class="cube-face bottom"></div>
+    </div>
+    <span class="preloader-text">FARATECH</span>
+  </div>
+</div>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="container nav">
+    <a href="index.html" class="brand">
+      <span class="brand-mark">F</span>
+      <span class="brand-name">
+        <strong>FaraTech</strong>
+        <span>AGENCY</span>
+      </span>
+    </a>
+
+    <nav>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="portfolio.html">Work</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="ai-lab.html">AI Lab</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-actions">
+      <a href="contact.html" class="btn btn-primary magnetic">
+        Start a Project
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- PAGE HEADER -->
+<section class="page-header page-header-3d">
+  <canvas id="pageCanvas" class="page-canvas" aria-hidden="true"></canvas>
+  <div class="page-header-overlay" aria-hidden="true"></div>
+  <div class="container page-header-content">
+    <nav class="breadcrumb" data-reveal="up">
+      <a href="index.html">Home</a><span>›</span><a href="portfolio.html">Work</a><span>›</span><span id="breadcrumbTitle">Project</span>
+    </nav>
+    <h1 data-split id="projectHeaderTitle">Loading Project...</h1>
+    <p data-reveal="up" data-delay="300" id="projectHeaderSubtitle">Please wait while we load the project details.</p>
+  </div>
+</section>
+
+<!-- PROJECT MEDIA SECTION -->
+<section class="section">
+  <div class="container">
+    <div class="project-media-section" id="projectMediaSection">
+      <div id="videoContainer" style="display: none;">
+        <video id="projectVideo" controls class="project-media-video"></video>
+      </div>
+      <div id="imageContainer" style="display: none;">
+        <img id="projectImage" alt="Project Image" class="project-media-image">
+      </div>
+      <div id="galleryContainer" style="display: none;">
+        <h2 class="gallery-title">Project Gallery</h2>
+        <div class="gallery-grid" id="galleryGrid"></div>
+      </div>
+      <div id="noMediaContainer" style="display: none;">
+        <p class="no-media-message">No media available for this project.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT DETAILS SECTION -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="project-details-grid">
+      <div class="project-main-content">
+        <div class="project-description" data-reveal="up">
+          <h2>Project Overview</h2>
+          <p id="projectDescription">Loading description...</p>
+        </div>
+
+        <div class="project-tech" data-reveal="up" data-delay="100">
+          <h2>Technologies Used</h2>
+          <div id="projectTechnologies" class="tech-tags"></div>
+        </div>
+      </div>
+
+      <div class="project-sidebar" data-reveal="up" data-delay="200">
+        <div class="project-info-card">
+          <h3>Project Information</h3>
+          <div class="info-row">
+            <span class="info-label">Client</span>
+            <span class="info-value" id="projectClient">-</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Category</span>
+            <span class="info-value" id="projectCategory">-</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Status</span>
+            <span class="info-value">Published</span>
+          </div>
+        </div>
+
+        <div class="project-actions">
+          <a href="portfolio.html" class="btn btn-secondary btn-full">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Back to Portfolio
+          </a>
+          <a href="#" class="btn btn-primary btn-full" id="projectUrl" target="_blank" style="display: none;">
+            View Live Project
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="cta-band" data-reveal="zoom">
+  <div class="container">
+    <div class="cta-band-inner">
+      <div>
+        <h2>Have a project in mind?</h2>
+        <p>Let's turn your idea into a product your users will love.</p>
+      </div>
+      <a href="contact.html" class="btn btn-gold magnetic">
+        Start a project
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand" data-reveal="up">
+        <div class="brand">
+          <span class="brand-mark">F</span>
+          <span class="brand-name"><strong>FaraTech</strong><span>AGENCY</span></span>
+        </div>
+        <p class="footer-about">FaraTech is a digital technology studio focused on transforming ideas into practical digital solutions. We help businesses grow through modern web experiences, custom software development, AI-powered solutions, and intelligent business-process automation.</p>
+        <div class="footer-contact">
+          <a href="mailto:faratechteam@gmail.com">faratechteam@gmail.com</a>
+        </div>
+      </div>
+      <div class="footer-col" data-reveal="up" data-delay="100">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="services.html">Web Design</a></li>
+          <li><a href="services.html">UI / UX</a></li>
+          <li><a href="services.html">SEO</a></li>
+          <li><a href="ai-lab.html">AI Solutions</a></li>
+        </ul>
+      </div>
+      <div class="footer-col" data-reveal="up" data-delay="200">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="team.html">Our Team</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 FaraTech — All rights reserved.</span>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/faratechlab_/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script type="module" src="js/page-3d.js"></script>
+<script src="js/scroll-animations.js"></script>
+<script src="js/menu.js"></script>
+<script src="js/content-sync.js"></script>
+
+<script>
+// Get project ID from URL
+const urlParams = new URLSearchParams(window.location.search);
+const projectId = urlParams.get('id');
+
+if (!projectId) {
+  document.getElementById('projectHeaderTitle').textContent = 'Project Not Found';
+  document.getElementById('projectHeaderSubtitle').textContent = 'No project ID specified.';
+  document.getElementById('projectDescription').textContent = 'Please go back to the portfolio page and select a project.';
+} else {
+  // Fetch project details from API
+  fetch(`http://localhost:8001/api/public_project.php?id=${projectId}`)
+    .then(response => response.json())
+    .then(data => {
+      if (data.success && data.data) {
+        const project = data.data;
+        
+        // Update page content
+        document.getElementById('projectHeaderTitle').textContent = project.title;
+        document.getElementById('projectHeaderSubtitle').textContent = project.description || 'A custom project by FaraTech.';
+        document.getElementById('breadcrumbTitle').textContent = project.title;
+        document.getElementById('projectDescription').textContent = project.description || 'No description available.';
+        document.getElementById('projectClient').textContent = project.client || '-';
+        document.getElementById('projectCategory').textContent = project.category || '-';
+        
+        // Update page title
+        document.title = `${project.title} | FaraTech`;
+        
+        // Update technologies
+        const techContainer = document.getElementById('projectTechnologies');
+        techContainer.innerHTML = '';
+        if (project.technologies && project.technologies.length > 0) {
+          project.technologies.forEach(tech => {
+            const tag = document.createElement('span');
+            tag.className = 'tech-tag';
+            tag.textContent = tech;
+            techContainer.appendChild(tag);
+          });
+        } else {
+          techContainer.innerHTML = '<span class="no-tech">No technologies specified</span>';
+        }
+        
+        // Update project URL if available
+        if (project.project_url) {
+          const projectUrlLink = document.getElementById('projectUrl');
+          projectUrlLink.href = project.project_url;
+          projectUrlLink.style.display = 'inline-flex';
+        }
+        
+        // Update media
+        const videoContainer = document.getElementById('videoContainer');
+        const imageContainer = document.getElementById('imageContainer');
+        const galleryContainer = document.getElementById('galleryContainer');
+        const noMediaContainer = document.getElementById('noMediaContainer');
+
+        // Load gallery images
+        fetch(`http://localhost:8001/api/project_images.php?project_id=${projectId}`)
+          .then(response => response.json())
+          .then(galleryData => {
+            // Always show video if exists
+            if (project.video_url) {
+              const videoElement = document.getElementById('projectVideo');
+              videoElement.src = project.video_url;
+              videoContainer.style.display = 'block';
+            }
+
+            // Show gallery if exists
+            if (galleryData.success && galleryData.data.length > 0) {
+              const galleryGrid = document.getElementById('galleryGrid');
+              galleryGrid.innerHTML = '';
+              galleryData.data.forEach(img => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                galleryItem.innerHTML = `
+                  <img src="${img.image_url}" alt="${img.caption || 'Gallery image'}">
+                  ${img.caption ? `<div class="gallery-caption">${img.caption}</div>` : ''}
+                `;
+                galleryGrid.appendChild(galleryItem);
+              });
+              galleryContainer.style.display = 'block';
+            } else if (!project.video_url && project.image_url) {
+              // No gallery and no video, show main image
+              const imageElement = document.getElementById('projectImage');
+              imageElement.src = project.image_url;
+              imageContainer.style.display = 'block';
+            }
+
+            // Hide no media container if we have any media
+            if (project.video_url || project.image_url || (galleryData.success && galleryData.data.length > 0)) {
+              noMediaContainer.style.display = 'none';
+            } else {
+              noMediaContainer.style.display = 'block';
+            }
+          })
+          .catch(error => {
+            console.error('Error loading gallery:', error);
+            // Fallback to main media
+            if (project.video_url) {
+              const videoElement = document.getElementById('projectVideo');
+              videoElement.src = project.video_url;
+              videoContainer.style.display = 'block';
+            } else if (project.image_url) {
+              const imageElement = document.getElementById('projectImage');
+              imageElement.src = project.image_url;
+              imageContainer.style.display = 'block';
+            } else {
+              noMediaContainer.style.display = 'block';
+            }
+          });
+      } else {
+        document.getElementById('projectHeaderTitle').textContent = 'Project Not Found';
+        document.getElementById('projectHeaderSubtitle').textContent = data.message || 'The requested project could not be found.';
+        document.getElementById('projectDescription').textContent = 'Please go back to the portfolio page and select a valid project.';
+      }
+    })
+    .catch(error => {
+      console.error('Error loading project:', error);
+      document.getElementById('projectHeaderTitle').textContent = 'Error Loading Project';
+      document.getElementById('projectHeaderSubtitle').textContent = 'Failed to load project details.';
+      document.getElementById('projectDescription').textContent = 'There was an error loading the project. Please try again later or contact support.';
+    });
+}
+</script>
+
+<style>
+.project-media-section {
+  margin: 60px 0;
+}
+
+.project-media-video,
+.project-media-image {
+  width: 100%;
+  max-height: 600px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+}
+
+.gallery-title {
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: var(--color-primary);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.gallery-item {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-5px);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: white;
+  padding: 20px;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .gallery-caption {
+  opacity: 1;
+}
+
+.no-media-message {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--color-text-muted);
+  font-size: 18px;
+}
+
+.project-details-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 60px;
+  margin: 40px 0;
+}
+
+.project-main-content h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: var(--color-primary);
+}
+
+.project-description p {
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--color-text);
+}
+
+.project-tech h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: var(--color-primary);
+}
+
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.tech-tag {
+  background: var(--color-primary);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.no-tech {
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.project-sidebar {
+  position: sticky;
+  top: 100px;
+  height: fit-content;
+}
+
+.project-info-card {
+  background: var(--color-bg-alt);
+  padding: 30px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+}
+
+.project-info-card h3 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: var(--color-primary);
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.info-value {
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.project-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.btn-full {
+  width: 100%;
+  justify-content: center;
+}
+
+@media (max-width: 968px) {
+  .project-details-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .project-sidebar {
+    position: static;
+  }
+}
+</style>
+
+</body>
+</html>

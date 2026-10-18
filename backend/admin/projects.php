@@ -57,9 +57,37 @@ if ($action === 'create' || $action === 'edit') {
             </div>
 
             <div class="form-group">
-                <label for="image_url">Image URL</label>
-                <input type="text" id="image_url" name="image_url"
-                       value="<?php echo $project ? htmlspecialchars($project['image_url']) : ''; ?>">
+                <label for="image_upload">Project Image</label>
+                <input type="file" id="image_upload" name="image_upload" accept="image/*">
+                <?php if ($project && $project['image_url']): ?>
+                    <p>Current: <a href="<?php echo htmlspecialchars($project['image_url']); ?>" target="_blank">View Image</a></p>
+                <?php endif; ?>
+            </div>
+
+            <div class="form-group">
+                <label for="video_upload">Project Video (optional)</label>
+                <input type="file" id="video_upload" name="video_upload" accept="video/*">
+                <?php if ($project && $project['video_url']): ?>
+                    <p>Current: <a href="<?php echo htmlspecialchars($project['video_url']); ?>" target="_blank">View Video</a></p>
+                <?php endif; ?>
+            </div>
+
+            <div class="form-group">
+                <label>Project Gallery Images</label>
+                <div id="galleryInputs">
+                    <div class="gallery-item">
+                        <input type="file" name="gallery_images[]" accept="image/*" class="gallery-image-input">
+                        <input type="text" name="gallery_captions[]" placeholder="Image caption (optional)" class="gallery-caption-input">
+                        <button type="button" class="btn btn-small btn-danger remove-gallery" onclick="removeGalleryItem(this)">Remove</button>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-small" onclick="addGalleryItem()">+ Add More Images</button>
+                <?php if ($project && $id > 0): ?>
+                    <div style="margin-top: 15px;">
+                        <strong>Current Gallery:</strong>
+                        <div id="currentGallery"></div>
+                    </div>
+                <?php endif; ?>
             </div>
 
             <div class="form-group">
@@ -90,6 +118,76 @@ if ($action === 'create' || $action === 'edit') {
             <a href="projects.php" class="btn" style="margin-left: 10px;">Cancel</a>
         </form>
     </div>
+
+    <script>
+    function addGalleryItem() {
+        const container = document.getElementById('galleryInputs');
+        const newItem = document.createElement('div');
+        newItem.className = 'gallery-item';
+        newItem.innerHTML = `
+            <input type="file" name="gallery_images[]" accept="image/*" class="gallery-image-input">
+            <input type="text" name="gallery_captions[]" placeholder="Image caption (optional)" class="gallery-caption-input">
+            <button type="button" class="btn btn-small btn-danger remove-gallery" onclick="removeGalleryItem(this)">Remove</button>
+        `;
+        container.appendChild(newItem);
+    }
+
+    function removeGalleryItem(button) {
+        const container = document.getElementById('galleryInputs');
+        if (container.children.length > 1) {
+            button.parentElement.remove();
+        }
+    }
+
+    <?php if ($project && $id > 0): ?>
+    // Load existing gallery images
+    const projectId = <?php echo $id; ?>;
+    fetch('api/project_images.php?project_id=' + projectId)
+        .then(response => response.json())
+        .then(data => {
+            if (data.success && data.data.length > 0) {
+                const currentGallery = document.getElementById('currentGallery');
+                currentGallery.innerHTML = '';
+                data.data.forEach((img, index) => {
+                    const imgDiv = document.createElement('div');
+                    imgDiv.style.marginTop = '10px';
+                    imgDiv.style.padding = '10px';
+                    imgDiv.style.border = '1px solid #ddd';
+                    imgDiv.style.borderRadius = '5px';
+                    imgDiv.innerHTML = `
+                        <img src="${img.image_url}" style="max-width: 100px; max-height: 100px; margin-right: 10px;">
+                        <span>${img.caption || 'No caption'}</span>
+                        <a href="api/project_images.php?action=delete&id=${img.id}" class="btn btn-small btn-danger" style="margin-left: 10px;">Delete</a>
+                    `;
+                    currentGallery.appendChild(imgDiv);
+                });
+            }
+        });
+    <?php endif; ?>
+    </script>
+
+    <style>
+    .gallery-item {
+        margin: 10px 0;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+    .gallery-item input {
+        margin: 5px 0;
+        width: 100%;
+    }
+    .btn-small {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+    .btn-danger {
+        background: #dc3545;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    </style>
     </div>
     </body>
     </html>

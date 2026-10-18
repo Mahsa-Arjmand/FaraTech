@@ -8,7 +8,7 @@
 @media (max-width: 1024px) {
   .hero-grid { grid-template-columns: 1fr; gap: 50px; }
   .services-grid { grid-template-columns: 1fr 1fr; }
-  .portfolio-grid { grid-template-columns: 1fr; }
+  .portfolio-grid { grid-template-columns: repeat(3, 1fr); }
   .testimonials-grid { grid-template-columns: 1fr 1fr; }
   .contact-grid { grid-template-columns: 1fr; gap: 40px; }
   .process-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
@@ -59,6 +59,7 @@
   .hero-actions .btn { flex: 1; justify-content: center; }
 
   .services-grid { grid-template-columns: 1fr; }
+  .portfolio-grid { grid-template-columns: repeat(3, 1fr); }
   .testimonials-grid { grid-template-columns: 1fr; }
   .process-wrap { padding: 50px 26px; }
   .process-grid { grid-template-columns: 1fr; gap: 32px; }

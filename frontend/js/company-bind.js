@@ -187,30 +187,86 @@
     });
   }
 
-  /* ---- projects (empty state) ---- */
+  /* ---- projects (empty state / API) ---- */
   function renderProjects() {
     document.querySelectorAll('[data-ft-render="projects"]').forEach((grid) => {
-      if (!FARATECH.projects.length) {
-        grid.innerHTML = `
-          <div class="projects-empty" data-reveal="zoom">
-            <div class="projects-empty-inner">
-              <div class="projects-empty-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <rect x="3" y="3" width="18" height="18" rx="2"/>
-                  <path d="M3 9h18M9 21V9"/>
-                </svg>
-              </div>
-              <h3>Portfolio coming soon</h3>
-              <p>We're preparing a curated selection of our recent work. In the meantime, reach out to discuss how we can help with your project.</p>
-              <a href="contact.html" class="btn btn-primary magnetic">
-                Start a conversation
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </a>
-            </div>
-          </div>`;
-        return;
-      }
+      // Fetch projects from API
+      fetch('http://localhost:8001/api/public_projects.php')
+        .then(response => response.json())
+        .then(data => {
+          if (data.success && data.data.length > 0) {
+            // Show first 3 projects
+            const projects = data.data.slice(0, 3);
+            grid.innerHTML = projects.map((project, index) => {
+              const technologies = project.technologies || [];
+              const tag = technologies.length > 0 ? technologies[0] : 'WEB';
+              const tagClass = getCategoryTagClass(project.category);
+
+              return `
+                <article class="portfolio-card flip-card" data-reveal="3d" ${index ? `data-delay="${index * 100}"` : ''}>
+                  <div class="flip-inner">
+                    <div class="flip-front">
+                      <div class="portfolio-thumb">
+                        <div class="portfolio-thumb-overlay">${project.title.substring(0, 4).toUpperCase()}</div>
+                      </div>
+                      <div class="portfolio-body">
+                        <span class="tag ${tagClass}">${tag.toUpperCase()}</span>
+                        <h3>${project.title}</h3>
+                      </div>
+                    </div>
+                    <div class="flip-back">
+                      <div class="flip-back-content">
+                        <span class="tag ${tagClass}">${tag.toUpperCase()}</span>
+                        <h3>${project.title}</h3>
+                        <p>${project.description || 'A custom project.'}</p>
+                        <a href="project-detail.html?id=${project.id}" class="flip-link">View details
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              `;
+            }).join('');
+          } else {
+            // Show empty state
+            grid.innerHTML = `
+              <div class="projects-empty" data-reveal="zoom">
+                <div class="projects-empty-inner">
+                  <div class="projects-empty-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <rect x="3" y="3" width="18" height="18" rx="2"/>
+                      <path d="M3 9h18M9 21V9"/>
+                    </svg>
+                  </div>
+                  <h3>Portfolio coming soon</h3>
+                  <p>We're preparing a curated selection of our recent work. In the meantime, reach out to discuss how we can help with your project.</p>
+                  <a href="contact.html" class="btn btn-primary magnetic">
+                    Start a conversation
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </a>
+                </div>
+              </div>`;
+          }
+        })
+        .catch(error => {
+          console.error('Error loading projects:', error);
+          grid.innerHTML = '<p>Error loading projects. Please try again later.</p>';
+        });
     });
+  }
+
+  function getCategoryTagClass(category) {
+    const classMap = {
+      'E-Commerce': 'tag-gold',
+      'Corporate': 'tag-blue',
+      'Web App': 'tag-purple',
+      'Website': 'tag-green',
+      'Platform': 'tag-red',
+      'AI Product': 'tag-orange',
+      'SaaS': 'tag-pink'
+    };
+    return classMap[category] || 'tag-blue';
   }
 
   /* ---- hide unavailable ---- */

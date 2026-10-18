@@ -590,5 +590,85 @@
 <script src="js/scroll-animations.js"></script>
 <script src="js/menu.js"></script>
 <script src="js/form.js"></script>
+<script src="js/content-sync.js"></script>
+
+<!-- Load projects from API -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('Loading projects script started');
+  const grid = document.querySelector('[data-ft-render="projects"]');
+  console.log('Grid element:', grid);
+
+  if (!grid) {
+    console.error('Grid element not found');
+    return;
+  }
+
+  console.log('Fetching projects from API...');
+  fetch('http://localhost:8001/api/public_projects.php')
+    .then(response => {
+      console.log('Response status:', response.status);
+      return response.json();
+    })
+    .then(data => {
+      console.log('Data received:', data);
+      if (data.success && data.data.length > 0) {
+        console.log('Found', data.data.length, 'projects');
+        const projects = data.data.slice(0, 4);
+        console.log('Rendering', projects.length, 'projects');
+        grid.innerHTML = projects.map((project, index) => {
+          const technologies = project.technologies || [];
+          const tag = technologies.length > 0 ? technologies[0] : 'WEB';
+          const tagClass = getCategoryTagClass(project.category);
+
+          return `
+            <article class="portfolio-card flip-card">
+              <div class="flip-inner">
+                <div class="flip-front">
+                  <div class="portfolio-thumb">
+                    <div class="portfolio-thumb-overlay">${project.title.substring(0, 4).toUpperCase()}</div>
+                  </div>
+                  <div class="portfolio-body">
+                    <span class="tag ${tagClass}">${tag.toUpperCase()}</span>
+                    <h3>${project.title}</h3>
+                  </div>
+                </div>
+                <div class="flip-back">
+                  <div class="flip-back-content">
+                    <span class="tag ${tagClass}">${tag.toUpperCase()}</span>
+                    <h3>${project.title}</h3>
+                    <p>${project.description || 'A custom project.'}</p>
+                    <a href="project-detail.html?id=${project.id}" class="flip-link">View details
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </article>
+          `;
+        }).join('');
+        console.log('Projects rendered successfully');
+      } else {
+        console.log('No projects found or API returned no data');
+      }
+    })
+    .catch(error => {
+      console.error('Error loading projects:', error);
+    });
+});
+
+function getCategoryTagClass(category) {
+  const classMap = {
+    'E-Commerce': 'tag-gold',
+    'Corporate': 'tag-blue',
+    'Web App': 'tag-purple',
+    'Website': 'tag-green',
+    'Platform': 'tag-red',
+    'AI Product': 'tag-orange',
+    'SaaS': 'tag-pink'
+  };
+  return classMap[category] || 'tag-blue';
+}
+</script>
 </body>
 </html>
