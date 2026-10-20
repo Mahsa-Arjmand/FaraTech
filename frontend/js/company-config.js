@@ -13,7 +13,7 @@ window.FARATECH = {
 
   email: "faratechteam@gmail.com",
   instagram: "https://www.instagram.com/faratechlab_/",
-  linkedin: null,
+  linkedin: "https://www.linkedin.com/company/faratechlab",
   phone: null,
   address: null,
 
