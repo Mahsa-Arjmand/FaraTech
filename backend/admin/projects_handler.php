@@ -12,6 +12,7 @@ $id = isset($_POST['id']) ? (int)$_POST['id'] : 0;
 
 $title = cleanInput($_POST['title']);
 $description = cleanInput($_POST['description'] ?? '');
+$details = cleanInput($_POST['details'] ?? '');
 $client = cleanInput($_POST['client'] ?? '');
 $category = cleanInput($_POST['category'] ?? '');
 $technologies = cleanInput($_POST['technologies'] ?? '');
@@ -51,8 +52,8 @@ $gallery_captions = $_POST['gallery_captions'] ?? [];
 
 if ($id > 0) {
     // Update
-    $stmt = $db->prepare("UPDATE projects SET title = ?, description = ?, client = ?, category = ?, technologies = ?, image_url = ?, video_url = ?, project_url = ?, featured = ?, status = ? WHERE id = ?");
-    $result = $stmt->execute([$title, $description, $client, $category, $technologies, $image_url, $video_url, $project_url, $featured, $status, $id]);
+    $stmt = $db->prepare("UPDATE projects SET title = ?, description = ?, details = ?, client = ?, category = ?, technologies = ?, image_url = ?, video_url = ?, project_url = ?, featured = ?, status = ? WHERE id = ?");
+    $result = $stmt->execute([$title, $description, $details, $client, $category, $technologies, $image_url, $video_url, $project_url, $featured, $status, $id]);
     if ($result) {
         $_SESSION['flash_success'] = 'Project updated successfully';
     } else {
@@ -60,8 +61,8 @@ if ($id > 0) {
     }
 } else {
     // Create
-    $stmt = $db->prepare("INSERT INTO projects (title, description, client, category, technologies, image_url, video_url, project_url, featured, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $result = $stmt->execute([$title, $description, $client, $category, $technologies, $image_url, $video_url, $project_url, $featured, $status]);
+    $stmt = $db->prepare("INSERT INTO projects (title, description, details, client, category, technologies, image_url, video_url, project_url, featured, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $result = $stmt->execute([$title, $description, $details, $client, $category, $technologies, $image_url, $video_url, $project_url, $featured, $status]);
     if ($result) {
         $id = $db->lastInsertId();
         $_SESSION['flash_success'] = 'Project created successfully';

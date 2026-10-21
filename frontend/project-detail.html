@@ -127,6 +127,11 @@
           <h2 data-i18n="project.technologiesUsed">Technologies Used</h2>
           <div id="projectTechnologies" class="tech-tags"></div>
         </div>
+
+        <div class="project-details" data-reveal="up" data-delay="200">
+          <h2 data-i18n="project.details">Project Details</h2>
+          <p id="projectDetails" data-i18n="common.loading">Loading...</p>
+        </div>
       </div>
 
       <div class="project-sidebar" data-reveal="up" data-delay="200">
@@ -234,7 +239,9 @@
 .project-description p { font-size: 18px; line-height: 1.8; color: var(--color-text); }
 .project-tech h2 { font-size: 28px; margin-bottom: 20px; color: var(--color-primary); }
 .tech-tags { display: flex; flex-wrap: wrap; gap: 12px; }
-.tech-tag { background: var(--color-primary); color: white; padding: 8px 20px; border-radius: 25px; font-size: 14px; font-weight: 500; }
+.tech-tag { background: var(--navy-900); color: white; padding: 8px 20px; border-radius: 25px; font-size: 14px; font-weight: 500; }
+.project-details h2 { font-size: 28px; margin-bottom: 20px; color: var(--color-primary); }
+.project-details p { font-size: 18px; line-height: 1.8; color: var(--color-text); }
 .project-sidebar { position: sticky; top: 100px; height: fit-content; }
 .project-info-card { background: var(--color-bg-alt); padding: 30px; border-radius: 12px; margin-bottom: 30px; }
 .project-info-card h3 { font-size: 20px; margin-bottom: 20px; color: var(--color-primary); }
@@ -282,6 +289,7 @@
     document.getElementById('projectDescription').textContent = project.description || t('project.noDescription', 'No description available.');
     document.getElementById('projectClient').textContent = project.client || '-';
     document.getElementById('projectCategory').textContent = project.category || '-';
+    document.getElementById('projectDetails').textContent = project.details || t('project.noDetails', 'No additional details available.');
 
     const techContainer = document.getElementById('projectTechnologies');
     techContainer.innerHTML = '';

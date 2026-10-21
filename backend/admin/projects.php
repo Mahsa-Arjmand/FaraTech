@@ -39,6 +39,11 @@ if ($action === 'create' || $action === 'edit') {
             </div>
 
             <div class="form-group">
+                <label for="details">Project Details (Long Description)</label>
+                <textarea id="details" name="details" rows="10"><?php echo $project ? htmlspecialchars($project['details']) : ''; ?></textarea>
+            </div>
+
+            <div class="form-group">
                 <label for="client">Client</label>
                 <input type="text" id="client" name="client"
                        value="<?php echo $project ? htmlspecialchars($project['client']) : ''; ?>">

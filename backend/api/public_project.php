@@ -35,6 +35,7 @@ try {
             COALESCE(NULLIF(description_fa, ''), description) AS description,
             COALESCE(NULLIF(client_fa, ''), client)           AS client,
             COALESCE(NULLIF(category_fa, ''), category)       AS category,
+            details,
             technologies,
             image_url,
             video_url,
