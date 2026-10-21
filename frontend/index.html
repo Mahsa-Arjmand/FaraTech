@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="fa">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,7 +8,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <script type="importmap">
 {
@@ -25,6 +25,7 @@
 <link rel="stylesheet" href="css/components.css" />
 <link rel="stylesheet" href="css/home.css" />
 <link rel="stylesheet" href="css/3d-wow.css" />
+<link rel="stylesheet" href="css/i18n.css" />
 <link rel="stylesheet" href="css/responsive.css" />
 </head>
 <body>
@@ -55,25 +56,29 @@
       <span class="brand-mark">F</span>
       <span class="brand-name">
         <strong>FaraTech</strong>
-        <span>AGENCY</span>
+        <span data-i18n="brand.tagline">AGENCY</span>
       </span>
     </a>
 
     <nav>
       <ul class="nav-links" id="navLinks">
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="portfolio.html">Work</a></li>
-        <li><a href="team.html">Team</a></li>
-        <li><a href="ai-lab.html">AI Lab</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="index.html" class="active" data-i18n="nav.home">Home</a></li>
+        <li><a href="about.html" data-i18n="nav.about">About</a></li>
+        <li><a href="services.html" data-i18n="nav.services">Services</a></li>
+        <li><a href="portfolio.html" data-i18n="nav.work">Work</a></li>
+        <li><a href="team.html" data-i18n="nav.team">Team</a></li>
+        <li><a href="ai-lab.html" data-i18n="nav.aiLab">AI Lab</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
       </ul>
     </nav>
 
     <div class="nav-actions">
+      <div class="lang-switcher" role="group" aria-label="Language">
+        <button type="button" data-lang-switch="fa" data-i18n="lang.fa" aria-label="فارسی">فا</button>
+        <button type="button" data-lang-switch="en" data-i18n="lang.en" aria-label="English">EN</button>
+      </div>
       <a href="contact.html" class="btn btn-primary magnetic">
-        Start a Project
+        <span data-i18n="nav.startProject">Start a Project</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
       <button class="menu-toggle" id="menuToggle" aria-label="Menu">
@@ -93,35 +98,20 @@
     <div class="hero-content">
       <div class="hero-badge" data-reveal="up">
         <span class="badge-dot"></span>
-        Ideas into Digital Solutions
+        <span data-i18n="home.hero.badge">Ideas into Digital Solutions</span>
       </div>
-      <h1 data-split>
-        Your Ideas. Our Technology. <span class="accent">Infinite Possibilities</span>
+      <h1 data-i18n-html="home.hero.title">
+        <span class="hero-title-line1">Your Ideas</span> <span class="hero-title-line2">Our Technology</span> <span class="accent">Infinite Possibilities</span>
       </h1>
-      <p class="hero-lead" data-reveal="up" data-delay="200">
+      <p class="hero-lead" data-reveal="up" data-delay="200" data-i18n="home.hero.lead">
         FaraTech is a digital technology studio focused on transforming ideas into practical digital solutions. We help businesses grow through modern web experiences, custom software development, AI-powered solutions, and intelligent business-process automation.
       </p>
       <div class="hero-actions" data-reveal="up" data-delay="400">
         <a href="contact.html" class="btn btn-primary magnetic">
-          Get a Free Consultation
+          <span data-i18n="home.hero.ctaPrimary">Get a Free Consultation</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
-        <a href="portfolio.html" class="btn btn-outline magnetic">View Our Work</a>
-      </div>
-
-      <div class="hero-mini-stats" data-reveal="up" data-delay="600">
-        <div class="mini-stat">
-          <strong>Innovation</strong>
-          <span>Driven</span>
-        </div>
-        <div class="mini-stat">
-          <strong>Quality</strong>
-          <span>Focused</span>
-        </div>
-        <div class="mini-stat">
-          <strong>Results</strong>
-          <span>Oriented</span>
-        </div>
+        <a href="portfolio.html" class="btn btn-outline magnetic" data-i18n="home.hero.ctaSecondary">View Our Work</a>
       </div>
     </div>
 
@@ -130,23 +120,23 @@
         <div class="hero-frame-glow"></div>
         <div class="hero-frame-bar">
           <div class="dots"><span></span><span></span><span></span></div>
-          <div class="url">faratech/dashboard</div>
+          <div class="url" data-i18n="home.frame.url">faratech/dashboard</div>
         </div>
         <div class="hero-frame-body">
-          <div class="label">ACTIVE PROJECT</div>
-          <h3>Building Digital Solutions</h3>
+          <div class="label" data-i18n="home.frame.activeProject">ACTIVE PROJECT</div>
+          <h3 data-i18n="home.frame.title">Building Digital Solutions</h3>
 
           <div class="progress-row">
-            <span>Web Development</span>
-            <span>In Progress</span>
+            <span data-i18n="home.frame.webDev">Web Development</span>
+            <span data-i18n="home.frame.inProgress">In Progress</span>
           </div>
           <div class="progress-bar">
             <div class="progress-fill"></div>
           </div>
 
           <div class="progress-row">
-            <span>AI Integration</span>
-            <span>Planning</span>
+            <span data-i18n="home.frame.aiIntegration">AI Integration</span>
+            <span data-i18n="home.frame.planning">Planning</span>
           </div>
           <div class="progress-bar">
             <div class="progress-fill gold"></div>
@@ -156,36 +146,31 @@
             <div class="avatar-group">
               <span>F</span><span>T</span>
             </div>
-            <span class="hero-frame-status">● Live Preview</span>
+            <span class="hero-frame-status" data-i18n="home.frame.livePreview">● Live Preview</span>
           </div>
         </div>
       </div>
 
       <div class="float-badge fb-1" data-float="1">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-        <span>Fast</span>
+        <span data-i18n="home.frame.fast">Fast</span>
       </div>
       <div class="float-badge fb-2" data-float="2">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        <span>Quality</span>
+        <span data-i18n="home.frame.quality">Quality</span>
       </div>
       <div class="float-badge fb-3" data-float="3">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
-        <span>Trusted</span>
+        <span data-i18n="home.frame.trusted">Trusted</span>
       </div>
     </div>
-  </div>
-
-  <div class="scroll-hint">
-    <span>Scroll to explore</span>
-    <div class="scroll-hint-line"></div>
   </div>
 </section>
 
 <!-- TRUSTED -->
 <section class="trusted">
   <div class="container trusted-inner">
-    <span class="trusted-label">TRUSTED BY PROFESSIONAL TEAMS</span>
+    <span class="trusted-label" data-i18n="home.trusted.label">TRUSTED BY PROFESSIONAL TEAMS</span>
   </div>
   <div class="marquee" data-speed="40">
     <div class="marquee-track">
@@ -210,16 +195,16 @@
   <div class="section-bg-3d" data-parallax="0.2"></div>
   <div class="container">
     <div class="section-head" data-reveal="up">
-      <span class="eyebrow">SERVICES</span>
-      <h2 data-split>Digital solutions tailored to your needs</h2>
-      <p>Three core areas we focus on — plus more under the hood.</p>
+      <span class="eyebrow" data-i18n="home.services.eyebrow">SERVICES</span>
+      <h2 data-i18n="home.services.title">Digital solutions tailored to your needs</h2>
+      <p data-i18n="home.services.subtitle">Three core areas we focus on — plus more under the hood.</p>
     </div>
 
     <div class="services-grid" data-ft-render="services-home"></div>
 
     <div class="section-cta" data-reveal="up">
       <a href="services.html" class="btn btn-outline magnetic">
-        View All Services
+        <span data-i18n="home.services.viewAll">View All Services</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>
@@ -231,15 +216,15 @@
   <div class="section-bg-3d gold" data-parallax="-0.15"></div>
   <div class="container">
     <div class="section-head" data-reveal="up">
-      <span class="eyebrow">SELECTED WORK</span>
-      <h2 data-split>Projects we've carefully crafted</h2>
+      <span class="eyebrow" data-i18n="home.portfolio.eyebrow">SELECTED WORK</span>
+      <h2 data-split data-i18n="home.portfolio.title">Projects we've carefully crafted</h2>
     </div>
 
-    <div class="portfolio-grid" data-ft-render="projects"></div>
+    <div class="portfolio-grid" data-ft-render="projects" id="homeProjects"></div>
 
     <div class="section-cta" data-reveal="up">
       <a href="portfolio.html" class="btn btn-outline magnetic">
-        View All Projects
+        <span data-i18n="home.portfolio.viewAll">View All Projects</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>
@@ -252,15 +237,15 @@
     <div class="ai-teaser-card" data-reveal="zoom">
       <canvas id="aiCanvas" class="ai-canvas" aria-hidden="true"></canvas>
       <div class="ai-teaser-card-content">
-        <span class="ai-teaser-tag">FARATECH AI LAB</span>
-        <h2>We don't just build websites — we build with AI</h2>
-        <p>
+        <span class="ai-teaser-tag" data-i18n="home.aiTeaser.tag">FARATECH AI LAB</span>
+        <h2 data-i18n="home.aiTeaser.title">We don't just build websites — we build with AI</h2>
+        <p data-i18n="home.aiTeaser.description">
           From AI-powered chatbots and content generation to intelligent automation
           and custom machine learning models — our AI Lab delivers real,
           business-grade AI solutions.
         </p>
         <a href="ai-lab.html" class="btn btn-gold magnetic">
-          Explore AI Lab
+          <span data-i18n="home.aiTeaser.cta">Explore AI Lab</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
@@ -285,34 +270,34 @@
   <div class="container">
     <div class="process-wrap">
       <div class="process-head" data-reveal="up">
-        <span class="eyebrow">OUR PROCESS</span>
-        <h2 data-split>From idea to launch, in four steps</h2>
-        <p>A transparent, structured and trackable process.</p>
+        <span class="eyebrow" data-i18n="home.process.eyebrow">OUR PROCESS</span>
+        <h2 data-split data-i18n="home.process.title">From idea to launch, in four steps</h2>
+        <p data-i18n="home.process.subtitle">A transparent, structured and trackable process.</p>
       </div>
 
       <div class="process-grid">
         <div class="process-step" data-reveal="left">
           <div class="num">01</div>
-          <h4>Discovery &amp; Consulting</h4>
-          <p>We meet to understand your goals, users and business needs.</p>
+          <h4 data-i18n="home.process.step1Title">Discovery &amp; Consulting</h4>
+          <p data-i18n="home.process.step1Desc">We meet to understand your goals, users and business needs.</p>
           <div class="process-line"></div>
         </div>
         <div class="process-step" data-reveal="left" data-delay="100">
           <div class="num">02</div>
-          <h4>Design &amp; Strategy</h4>
-          <p>We design the structure and visuals based on real data.</p>
+          <h4 data-i18n="home.process.step2Title">Design &amp; Strategy</h4>
+          <p data-i18n="home.process.step2Desc">We design the structure and visuals based on real data.</p>
           <div class="process-line"></div>
         </div>
         <div class="process-step" data-reveal="left" data-delay="200">
           <div class="num">03</div>
-          <h4>Development</h4>
-          <p>We build your website with modern technologies and test it thoroughly.</p>
+          <h4 data-i18n="home.process.step3Title">Development</h4>
+          <p data-i18n="home.process.step3Desc">We build your website with modern technologies and test it thoroughly.</p>
           <div class="process-line"></div>
         </div>
         <div class="process-step" data-reveal="left" data-delay="300">
           <div class="num">04</div>
-          <h4>Launch &amp; Support</h4>
-          <p>After launch, we stay with you through training and ongoing support.</p>
+          <h4 data-i18n="home.process.step4Title">Launch &amp; Support</h4>
+          <p data-i18n="home.process.step4Desc">After launch, we stay with you through training and ongoing support.</p>
           <div class="process-line"></div>
         </div>
       </div>
@@ -324,30 +309,30 @@
 <section id="why" class="why-section">
   <div class="container">
     <div class="why-header" data-reveal="up">
-      <span class="eyebrow">WHY FARATECH</span>
-      <h2 data-split>The difference is in the details</h2>
-      <p>We treat your business like our own — driven by results, precision, and long-term thinking.</p>
+      <span class="eyebrow" data-i18n="home.why.eyebrow">WHY FARATECH</span>
+      <h2 data-split data-i18n="home.why.title">The difference is in the details</h2>
+      <p data-i18n="home.why.subtitle">We treat your business like our own — driven by results, precision, and long-term thinking.</p>
     </div>
 
     <div class="why-stats">
       <div class="stat-card dark" data-count="98" data-suffix="%" data-reveal="up">
         <div class="num">0<span class="plus">%</span></div>
-        <div class="lbl">Client satisfaction</div>
+        <div class="lbl" data-i18n="home.why.stat1Lbl">Client satisfaction</div>
         <div class="stat-bar"><div class="stat-bar-fill"></div></div>
       </div>
       <div class="stat-card" data-count="240" data-suffix="+" data-reveal="up" data-delay="100">
         <div class="num">0<span class="plus">+</span></div>
-        <div class="lbl">Projects delivered</div>
+        <div class="lbl" data-i18n="home.why.stat2Lbl">Projects delivered</div>
         <div class="stat-bar"><div class="stat-bar-fill"></div></div>
       </div>
       <div class="stat-card" data-count="9" data-suffix="yrs" data-reveal="up" data-delay="200">
         <div class="num">0<span class="plus">yrs</span></div>
-        <div class="lbl">Industry experience</div>
+        <div class="lbl" data-i18n="home.why.stat3Lbl">Industry experience</div>
         <div class="stat-bar"><div class="stat-bar-fill"></div></div>
       </div>
       <div class="stat-card dark" data-count="48" data-suffix="h" data-reveal="up" data-delay="300">
         <div class="num">0<span class="plus">h</span></div>
-        <div class="lbl">To kick off a project</div>
+        <div class="lbl" data-i18n="home.why.stat4Lbl">To kick off a project</div>
         <div class="stat-bar"><div class="stat-bar-fill"></div></div>
       </div>
     </div>
@@ -358,8 +343,8 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
         </div>
         <div>
-          <h4>Dedicated in-house team</h4>
-          <p>Your project is handled by a stable, experienced team — not scattered freelancers.</p>
+          <h4 data-i18n="home.why.item1Title">Dedicated in-house team</h4>
+          <p data-i18n="home.why.item1Desc">Your project is handled by a stable, experienced team — not scattered freelancers.</p>
         </div>
       </div>
 
@@ -368,8 +353,8 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
         </div>
         <div>
-          <h4>Speed and quality together</h4>
-          <p>Battle-tested processes let us deliver fast — without compromising on quality.</p>
+          <h4 data-i18n="home.why.item2Title">Speed and quality together</h4>
+          <p data-i18n="home.why.item2Desc">Battle-tested processes let us deliver fast — without compromising on quality.</p>
         </div>
       </div>
 
@@ -378,8 +363,8 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
         </div>
         <div>
-          <h4>Transparent pricing</h4>
-          <p>You know the exact cost and timeline before we begin. No hidden fees.</p>
+          <h4 data-i18n="home.why.item3Title">Transparent pricing</h4>
+          <p data-i18n="home.why.item3Desc">You know the exact cost and timeline before we begin. No hidden fees.</p>
         </div>
       </div>
 
@@ -388,8 +373,8 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
         </div>
         <div>
-          <h4>Real support, not just promises</h4>
-          <p>We remain available after launch and resolve issues quickly.</p>
+          <h4 data-i18n="home.why.item4Title">Real support, not just promises</h4>
+          <p data-i18n="home.why.item4Desc">We remain available after launch and resolve issues quickly.</p>
         </div>
       </div>
     </div>
@@ -400,8 +385,8 @@
 <section class="section section-alt">
   <div class="container">
     <div class="section-head center" data-reveal="up">
-      <span class="eyebrow" style="justify-content:center;">TESTIMONIALS</span>
-      <h2 data-split>What our clients say</h2>
+      <span class="eyebrow" style="justify-content:center;" data-i18n="home.testimonials.eyebrow">TESTIMONIALS</span>
+      <h2 data-split data-i18n="home.testimonials.title">What our clients say</h2>
     </div>
 
     <div class="testimonials-grid">
@@ -414,12 +399,12 @@
           <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
         </div>
-        <p>"FaraTech didn't just build a website — they understood our business and delivered solutions that genuinely increased our sales."</p>
+        <p data-i18n="home.testimonials.t1">"FaraTech didn't just build a website — they understood our business and delivered solutions that genuinely increased our sales."</p>
         <div class="testimonial-author">
           <div class="avatar">M</div>
           <div>
-            <strong>Maryam Rezaei</strong>
-            <span>Manager, Aram Store</span>
+            <strong data-i18n="home.testimonials.t1Author">Maryam Rezaei</strong>
+            <span data-i18n="home.testimonials.t1Role">Manager, Aram Store</span>
           </div>
         </div>
       </article>
@@ -433,12 +418,12 @@
           <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
         </div>
-        <p>"Attention to detail and fast responses made the whole process a pleasure. Our platform turned out exactly the way we envisioned it."</p>
+        <p data-i18n="home.testimonials.t2">"Attention to detail and fast responses made the whole process a pleasure. Our platform turned out exactly the way we envisioned it."</p>
         <div class="testimonial-author">
           <div class="avatar">A</div>
           <div>
-            <strong>Ali Mohammadi</strong>
-            <span>Founder, Zarrin Fintech</span>
+            <strong data-i18n="home.testimonials.t2Author">Ali Mohammadi</strong>
+            <span data-i18n="home.testimonials.t2Role">Founder, Zarrin Fintech</span>
           </div>
         </div>
       </article>
@@ -452,12 +437,12 @@
           <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
         </div>
-        <p>"Everything was transparent from the start — cost, timeline and milestones. As a startup, that clarity was incredibly valuable to us."</p>
+        <p data-i18n="home.testimonials.t3">"Everything was transparent from the start — cost, timeline and milestones. As a startup, that clarity was incredibly valuable to us."</p>
         <div class="testimonial-author">
           <div class="avatar">S</div>
           <div>
-            <strong>Sara Karimi</strong>
-            <span>Marketing Manager, Safarin</span>
+            <strong data-i18n="home.testimonials.t3Author">Sara Karimi</strong>
+            <span data-i18n="home.testimonials.t3Role">Marketing Manager, Safarin</span>
           </div>
         </div>
       </article>
@@ -470,8 +455,8 @@
   <div class="container">
     <div class="contact-grid">
       <div class="contact-info" data-reveal="left">
-        <h2 data-split>Tell us about your project</h2>
-        <p>Fill out the form or reach out directly — we respond in under 24 hours.</p>
+        <h2 data-split data-i18n="home.contact.title">Tell us about your project</h2>
+        <p data-i18n="home.contact.subtitle">Fill out the form or reach out directly — we respond in under 24 hours.</p>
 
         <div class="contact-items">
           <div class="contact-item">
@@ -479,7 +464,7 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
             </div>
             <div>
-              <strong>Email</strong>
+              <strong data-i18n="common.email">Email</strong>
               <a href="mailto:faratechteam@gmail.com">faratechteam@gmail.com</a>
             </div>
           </div>
@@ -499,27 +484,27 @@
       <form class="contact-form" id="contactForm" novalidate data-reveal="right">
         <div class="form-row">
           <div class="form-group">
-            <label for="name">Full name *</label>
-            <input type="text" id="name" name="name" placeholder="e.g. John Smith" required />
+            <label for="name" data-i18n="common.fullName">Full name *</label>
+            <input type="text" id="name" name="name" data-i18n-attr="placeholder:home.contact.namePlaceholder" placeholder="e.g. John Smith" required />
           </div>
           <div class="form-group">
-            <label for="phone">Phone</label>
-            <input type="tel" id="phone" name="phone" placeholder="+1 555 123 4567" />
+            <label for="phone" data-i18n="common.phone">Phone</label>
+            <input type="tel" id="phone" name="phone" data-i18n-attr="placeholder:home.contact.phonePlaceholder" placeholder="+1 555 123 4567" />
           </div>
         </div>
 
         <div class="form-group">
-          <label for="email">Email *</label>
-          <input type="email" id="email" name="email" placeholder="you@example.com" required />
+          <label for="email" data-i18n="common.email">Email *</label>
+          <input type="email" id="email" name="email" data-i18n-attr="placeholder:home.contact.emailPlaceholder" placeholder="you@example.com" required />
         </div>
 
         <div class="form-group">
-          <label for="message">Project details *</label>
-          <textarea id="message" name="message" placeholder="Tell us about your project and goals..." required></textarea>
+          <label for="message" data-i18n="home.contact.messagePlaceholder">Project details *</label>
+          <textarea id="message" name="message" data-i18n-attr="placeholder:home.contact.messagePlaceholder" placeholder="Tell us about your project and goals..." required></textarea>
         </div>
 
         <button type="submit" class="btn btn-primary magnetic">
-          Send Message
+          <span data-i18n="common.sendMessage">Send Message</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
       </form>
@@ -536,11 +521,11 @@
           <span class="brand-mark">F</span>
           <span class="brand-name">
             <strong>FaraTech</strong>
-            <span>AGENCY</span>
+            <span data-i18n="brand.tagline">AGENCY</span>
           </span>
         </div>
-        <p class="footer-about">
-          FaraTech is a digital technology studio focused on transforming ideas into practical digital solutions. We help businesses grow through modern web experiences, custom software development, AI-powered solutions, and intelligent business-process automation.
+        <p class="footer-about" data-i18n="footer.about">
+          FaraTech is a digital technology studio focused on transforming ideas into practical digital solutions...
         </p>
         <div class="footer-contact">
           <a href="mailto:faratechteam@gmail.com">faratechteam@gmail.com</a>
@@ -548,39 +533,37 @@
       </div>
 
       <div class="footer-col" data-reveal="up" data-delay="100">
-        <h4>Services</h4>
+        <h4 data-i18n="footer.servicesTitle">Services</h4>
         <ul>
-          <li><a href="services.html">Web Development</a></li>
-          <li><a href="services.html">Custom Software</a></li>
-          <li><a href="services.html">AI Solutions</a></li>
-          <li><a href="services.html">Automation</a></li>
+          <li><a href="services.html" data-i18n="footer.serviceWebDev">Web Development</a></li>
+          <li><a href="services.html" data-i18n="footer.serviceCustomSoftware">Custom Software</a></li>
+          <li><a href="services.html" data-i18n="footer.serviceAI">AI Solutions</a></li>
+          <li><a href="services.html" data-i18n="footer.serviceAutomation">Automation</a></li>
         </ul>
       </div>
 
       <div class="footer-col" data-reveal="up" data-delay="200">
-        <h4>Company</h4>
+        <h4 data-i18n="footer.companyTitle">Company</h4>
         <ul>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="team.html">Our Team</a></li>
-          <li><a href="portfolio.html">Portfolio</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="about.html" data-i18n="footer.aboutUs">About Us</a></li>
+          <li><a href="team.html" data-i18n="footer.ourTeam">Our Team</a></li>
+          <li><a href="portfolio.html" data-i18n="footer.portfolio">Portfolio</a></li>
+          <li><a href="contact.html" data-i18n="footer.contact">Contact</a></li>
         </ul>
       </div>
     </div>
 
     <div class="footer-bottom">
-      <span>© 2025 FaraTech — All rights reserved.</span>
+      <span data-i18n="footer.rights">© 2025 FaraTech — All rights reserved.</span>
       <div class="footer-socials" data-ft-render="socials"></div>
     </div>
   </div>
 </footer>
 
 <!-- ===== SCRIPTS ===== -->
-<!-- 1. Config first (plain) -->
+<script src="js/i18n.js"></script>
 <script src="js/company-config.js"></script>
-<!-- 2. Binder next (plain) -->
 <script src="js/company-bind.js"></script>
-<!-- 3. 3D + animations as modules -->
 <script type="module" src="js/hero-3d.js"></script>
 <script type="module" src="js/ai-3d.js"></script>
 <script src="js/scroll-animations.js"></script>
@@ -588,53 +571,48 @@
 <script src="js/form.js"></script>
 <script src="js/content-sync.js"></script>
 
-<!-- Load projects from API -->
+<!-- Load projects from API (bilingual) -->
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  console.log('Loading projects script started');
-  const grid = document.querySelector('[data-ft-render="projects"]');
-  console.log('Grid element:', grid);
+document.addEventListener('DOMContentLoaded', function () {
+  const grid = document.getElementById('homeProjects');
+  if (!grid) return;
 
-  if (!grid) {
-    console.error('Grid element not found');
-    return;
-  }
+  function loadProjects() {
+    const lang = (window.FT_I18N && window.FT_I18N.current) || 'fa';
+    grid.innerHTML = '<p style="opacity:.5; padding:20px; grid-column:1/-1; text-align:center;">' +
+      (lang === 'fa' ? 'در حال بارگذاری...' : 'Loading...') + '</p>';
 
-  console.log('Fetching projects from API...');
-  fetch('http://localhost:8001/api/public_projects.php')
-    .then(response => {
-      console.log('Response status:', response.status);
-      return response.json();
-    })
-    .then(data => {
-      console.log('Data received:', data);
-      if (data.success && data.data.length > 0) {
-        console.log('Found', data.data.length, 'projects');
-        const projects = data.data.slice(0, 4);
-        console.log('Rendering', projects.length, 'projects');
-        grid.innerHTML = projects.map((project, index) => {
+    fetch('http://localhost:8001/api/public_projects.php?lang=' + lang + '&limit=4')
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (!data.success || !data.data || data.data.length === 0) {
+          grid.innerHTML = '<p style="opacity:.5; padding:20px; grid-column:1/-1; text-align:center;">' +
+            (lang === 'fa' ? 'هنوز پروژه‌ای ثبت نشده.' : 'No projects yet.') + '</p>';
+          return;
+        }
+        grid.innerHTML = data.data.map(function (project, index) {
           const technologies = project.technologies || [];
           const tag = technologies.length > 0 ? technologies[0] : 'WEB';
           const tagClass = getCategoryTagClass(project.category);
-
+          const viewText = lang === 'fa' ? 'مشاهده جزئیات' : 'View details';
           return `
             <article class="portfolio-card flip-card">
               <div class="flip-inner">
                 <div class="flip-front">
                   <div class="portfolio-thumb">
-                    <div class="portfolio-thumb-overlay">${project.title.substring(0, 4).toUpperCase()}</div>
+                    <div class="portfolio-thumb-overlay">${escapeHtml(project.title).substring(0, 4).toUpperCase()}</div>
                   </div>
                   <div class="portfolio-body">
-                    <span class="tag ${tagClass}">${tag.toUpperCase()}</span>
-                    <h3>${project.title}</h3>
+                    <span class="tag ${tagClass}">${escapeHtml(String(tag)).toUpperCase()}</span>
+                    <h3>${escapeHtml(project.title)}</h3>
                   </div>
                 </div>
                 <div class="flip-back">
                   <div class="flip-back-content">
-                    <span class="tag ${tagClass}">${tag.toUpperCase()}</span>
-                    <h3>${project.title}</h3>
-                    <p>${project.description || 'A custom project.'}</p>
-                    <a href="project-detail.html?id=${project.id}" class="flip-link">View details
+                    <span class="tag ${tagClass}">${escapeHtml(String(tag)).toUpperCase()}</span>
+                    <h3>${escapeHtml(project.title)}</h3>
+                    <p>${escapeHtml(project.description || (lang === 'fa' ? 'یک پروژه سفارشی.' : 'A custom project.'))}</p>
+                    <a href="project-detail.html?id=${project.id}&lang=${lang}" class="flip-link">${viewText}
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                     </a>
                   </div>
@@ -643,28 +621,44 @@ document.addEventListener('DOMContentLoaded', function() {
             </article>
           `;
         }).join('');
-        console.log('Projects rendered successfully');
-      } else {
-        console.log('No projects found or API returned no data');
-      }
-    })
-    .catch(error => {
-      console.error('Error loading projects:', error);
-    });
-});
 
-function getCategoryTagClass(category) {
-  const classMap = {
-    'E-Commerce': 'tag-gold',
-    'Corporate': 'tag-blue',
-    'Web App': 'tag-purple',
-    'Website': 'tag-green',
-    'Platform': 'tag-red',
-    'AI Product': 'tag-orange',
-    'SaaS': 'tag-pink'
-  };
-  return classMap[category] || 'tag-blue';
-}
+        if (window.FaraTechReveal && typeof window.FaraTechReveal.refresh === 'function') {
+          window.FaraTechReveal.refresh();
+        }
+      })
+      .catch(function (err) {
+        console.error('Error loading projects:', err);
+        grid.innerHTML = '<p style="opacity:.5; padding:20px; grid-column:1/-1; text-align:center;">' +
+          (lang === 'fa' ? 'خطا در بارگذاری پروژه‌ها.' : 'Error loading projects.') + '</p>';
+      });
+  }
+
+  function escapeHtml(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
+  function getCategoryTagClass(category) {
+    const map = {
+      'E-Commerce': 'tag-gold', 'فروشگاه اینترنتی': 'tag-gold',
+      'Corporate': 'tag-blue', 'شرکتی': 'tag-blue',
+      'Web App': 'tag-purple', 'وب اپلیکیشن': 'tag-purple',
+      'Website': 'tag-green', 'وب‌سایت': 'tag-green',
+      'Platform': 'tag-red', 'پلتفرم': 'tag-red',
+      'AI Product': 'tag-orange', 'محصول AI': 'tag-orange',
+      'SaaS': 'tag-pink',
+    };
+    return map[category] || 'tag-blue';
+  }
+
+  // بارگذاری اولیه
+  loadProjects();
+
+  // بارگذاری مجدد با تغییر زبان
+  document.addEventListener('ft:langchange', loadProjects);
+});
 </script>
+
 </body>
 </html>

@@ -1,138 +1,105 @@
 <?php
-require_once __DIR__ . '/../config/database.php';
+/**
+ * FaraTech — Job Application Submit API
+ * POST /api/job_application.php
+ * body (form-data): position_id, full_name, email, phone, cover_letter,
+ *                   resume_url, portfolio_url, linkedin_url, lang
+ */
+header('Content-Type: application/json; charset=utf-8');
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: POST, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type');
+
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(204);
+    exit;
+}
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    http_response_code(405);
+    echo json_encode(['success' => false, 'message' => 'Method not allowed']);
+    exit;
+}
+
 require_once __DIR__ . '/../includes/functions.php';
-require_once __DIR__ . '/../includes/auth.php';
 
-header('Content-Type: application/json');
+$lang = $_POST['lang'] ?? 'fa';
+if (!in_array($lang, ['fa', 'en'], true)) $lang = 'fa';
 
-$action = $_GET['action'] ?? '';
+function respond($lang, $success, $message, $extra = []) {
+    echo json_encode(array_merge([
+        'success' => $success,
+        'message' => $message,
+    ], $extra), JSON_UNESCAPED_UNICODE);
+    exit;
+}
 
-switch ($action) {
-    case 'list':
-        requireLogin();
-        $db = getDBConnection();
-        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-        $perPage = isset($_GET['per_page']) ? (int)$_GET['per_page'] : 20;
-        $search = isset($_GET['search']) ? cleanInput($_GET['search']) : '';
-        $status = isset($_GET['status']) ? cleanInput($_GET['status']) : '';
-        $positionId = isset($_GET['position_id']) ? (int)$_GET['position_id'] : 0;
+$positionId = isset($_POST['position_id']) ? (int)$_POST['position_id'] : 0;
+$fullName   = trim($_POST['full_name'] ?? '');
+$email      = trim($_POST['email'] ?? '');
+$phone      = trim($_POST['phone'] ?? '');
+$coverLetter = trim($_POST['cover_letter'] ?? '');
+$resumeUrl  = trim($_POST['resume_url'] ?? '');
+$portfolioUrl = trim($_POST['portfolio_url'] ?? '');
+$linkedinUrl = trim($_POST['linkedin_url'] ?? '');
 
-        $where = ['1=1'];
-        $params = [];
+if ($fullName === '' || $email === '') {
+    respond($lang, false, $lang === 'fa' ? 'نام و ایمیل الزامی هستند.' : 'Name and email are required.');
+}
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    respond($lang, false, $lang === 'fa' ? 'ایمیل معتبر نیست.' : 'Invalid email address.');
+}
 
-        if ($search) {
-            $where[] = "(full_name LIKE ? OR email LIKE ?)";
-            $params[] = "%$search%";
-            $params[] = "%$search%";
+try {
+    $db = getDBConnection();
+
+    // بررسی وجود موقعیت
+    if ($positionId > 0) {
+        $chk = $db->prepare("SELECT id FROM team_positions WHERE id = ? LIMIT 1");
+        $chk->execute([$positionId]);
+        if (!$chk->fetchColumn()) {
+            respond($lang, false, $lang === 'fa' ? 'موقعیت شغلی یافت نشد.' : 'Position not found.');
         }
+    }
 
-        if ($status) {
-            $where[] = "status = ?";
-            $params[] = $status;
-        }
+    // جلوگیری از ارسال تکراری در ۵ دقیقه اخیر (اختیاری)
+    $dup = $db->prepare("SELECT COUNT(*) FROM job_applications
+                         WHERE email = ? AND position_id = ?
+                           AND created_at >= DATE_SUB(NOW(), INTERVAL 5 MINUTE)");
+    $dup->execute([$email, $positionId]);
+    if ((int)$dup->fetchColumn() > 0) {
+        respond($lang, false, $lang === 'fa'
+            ? 'شما اخیراً درخواست داده‌اید. لطفاً چند دقیقه بعد دوباره تلاش کنید.'
+            : 'You recently applied. Please try again in a few minutes.');
+    }
 
-        if ($positionId > 0) {
-            $where[] = "position_id = ?";
-            $params[] = $positionId;
-        }
+    $stmt = $db->prepare("
+        INSERT INTO job_applications
+            (position_id, full_name, email, phone, cover_letter,
+             resume_url, portfolio_url, linkedin_url, status, created_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'pending', NOW())
+    ");
+    $stmt->execute([
+        $positionId ?: null,
+        $fullName,
+        $email,
+        $phone ?: null,
+        $coverLetter ?: null,
+        $resumeUrl ?: null,
+        $portfolioUrl ?: null,
+        $linkedinUrl ?: null,
+    ]);
 
-        $whereClause = implode(' AND ', $where);
+    $newId = (int)$db->lastInsertId();
 
-        // Get total count
-        $countStmt = $db->prepare("SELECT COUNT(*) FROM job_applications WHERE $whereClause");
-        $countStmt->execute($params);
-        $total = $countStmt->fetchColumn();
+    respond($lang, true, $lang === 'fa'
+        ? 'درخواست شما با موفقیت ثبت شد.'
+        : 'Your application was submitted successfully.', ['id' => $newId]);
 
-        // Get pagination
-        $pagination = getPagination($page, $perPage, $total);
-
-        // Get applications with position name
-        $stmt = $db->prepare("SELECT ja.*, tp.name as position_name FROM job_applications ja LEFT JOIN team_positions tp ON ja.position_id = tp.id WHERE $whereClause ORDER BY ja.created_at DESC LIMIT ? OFFSET ?");
-        $params[] = $perPage;
-        $params[] = $pagination['offset'];
-        $stmt->execute($params);
-        $applications = $stmt->fetchAll();
-
-        jsonResponse(true, 'Job applications retrieved successfully', [
-            'applications' => $applications,
-            'pagination' => $pagination
-        ]);
-
-    case 'get':
-        requireLogin();
-        $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
-        $db = getDBConnection();
-        $stmt = $db->prepare("SELECT ja.*, tp.name as position_name FROM job_applications ja LEFT JOIN team_positions tp ON ja.position_id = tp.id WHERE ja.id = ?");
-        $stmt->execute([$id]);
-        $application = $stmt->fetch();
-
-        if ($application) {
-            jsonResponse(true, 'Job application retrieved successfully', $application);
-        } else {
-            jsonResponse(false, 'Job application not found');
-        }
-
-    case 'update_status':
-        requireLogin();
-        $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
-        $status = isset($_GET['status']) ? cleanInput($_GET['status']) : '';
-        $notes = isset($_GET['notes']) ? cleanInput($_GET['notes']) : '';
-
-        if (!in_array($status, ['pending', 'reviewed', 'interview', 'hired', 'rejected'])) {
-            jsonResponse(false, 'Invalid status');
-        }
-
-        $db = getDBConnection();
-        $stmt = $db->prepare("UPDATE job_applications SET status = ?, notes = ? WHERE id = ?");
-        $result = $stmt->execute([$status, $notes, $id]);
-
-        if ($result) {
-            jsonResponse(true, 'Job application status updated successfully');
-        } else {
-            jsonResponse(false, 'Failed to update job application status');
-        }
-
-    case 'delete':
-        requireLogin();
-        $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
-        $db = getDBConnection();
-        $stmt = $db->prepare("DELETE FROM job_applications WHERE id = ?");
-        $result = $stmt->execute([$id]);
-
-        if ($result) {
-            jsonResponse(true, 'Job application deleted successfully');
-        } else {
-            jsonResponse(false, 'Failed to delete job application');
-        }
-
-    case 'public_create':
-        // Public API to submit job application
-        $data = json_decode(file_get_contents('php://input'), true);
-
-        if (empty($data['full_name']) || empty($data['email'])) {
-            jsonResponse(false, 'Required fields: full_name, email');
-        }
-
-        $db = getDBConnection();
-        $stmt = $db->prepare("INSERT INTO job_applications (position_id, full_name, email, phone, cover_letter, resume_url, portfolio_url, linkedin_url, ip_address, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending')");
-        $result = $stmt->execute([
-            (int)($data['position_id'] ?? 0),
-            cleanInput($data['full_name']),
-            cleanInput($data['email']),
-            cleanInput($data['phone'] ?? ''),
-            cleanInput($data['cover_letter'] ?? ''),
-            cleanInput($data['resume_url'] ?? ''),
-            cleanInput($data['portfolio_url'] ?? ''),
-            cleanInput($data['linkedin_url'] ?? ''),
-            $_SERVER['REMOTE_ADDR'] ?? ''
-        ]);
-
-        if ($result) {
-            jsonResponse(true, 'Job application submitted successfully');
-        } else {
-            jsonResponse(false, 'Failed to submit job application');
-        }
-
-    default:
-        jsonResponse(false, 'Invalid action');
+} catch (Throwable $e) {
+    http_response_code(500);
+    echo json_encode([
+        'success' => false,
+        'message' => $lang === 'fa' ? 'خطا در ثبت درخواست.' : 'Failed to save application.',
+    ], JSON_UNESCAPED_UNICODE);
 }

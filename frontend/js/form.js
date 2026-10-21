@@ -1,27 +1,17 @@
-alert('Form script loaded!');
-console.log('Form script loaded immediately');
-
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('Form script loaded in DOMContentLoaded');
   const contactForm = document.getElementById('contactForm');
-  console.log('Contact form element:', contactForm);
   if (!contactForm) {
-    console.error('Contact form not found!');
-    alert('Contact form not found!');
     return;
   }
 
   contactForm.addEventListener('submit', (e) => {
-    console.log('Form submitted');
     e.preventDefault();
 
     const name = document.getElementById('name').value.trim();
     const email = document.getElementById('email').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const topic = document.getElementById('topic').value.trim();
+    const phone = document.getElementById('phone') ? document.getElementById('phone').value.trim() : '';
+    const topic = document.getElementById('topic') ? document.getElementById('topic').value.trim() : '';
     const message = document.getElementById('message').value.trim();
-
-    console.log('Form data:', { name, email, phone, topic, message });
 
     if (!name || !email || !message) {
       alert('Please fill in all required fields.');
@@ -40,17 +30,14 @@ document.addEventListener('DOMContentLoaded', () => {
     formData.append('topic', topic);
     formData.append('message', message);
 
-    console.log('Sending to API...');
     fetch('http://localhost:8001/api/contact.php', {
       method: 'POST',
       body: formData
     })
     .then(response => {
-      console.log('Response status:', response.status);
       return response.json();
     })
     .then(data => {
-      console.log('Response data:', data);
       if (data.success) {
         btn.innerHTML = '✓ Message Sent!';
         btn.style.background = '#10b981';
@@ -74,7 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     })
     .catch(error => {
-      console.error('Error:', error);
       btn.innerHTML = 'Error';
       btn.style.background = '#ef4444';
       alert('Failed to send message. Please try again.');

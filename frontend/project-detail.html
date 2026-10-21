@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="fa">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="FaraTech Project Details" />
-<title>Project Details | FaraTech</title>
+<title>جزئیات پروژه | FaraTech</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <script type="importmap">
 {
@@ -26,11 +26,11 @@
 <link rel="stylesheet" href="css/home.css" />
 <link rel="stylesheet" href="css/pages.css" />
 <link rel="stylesheet" href="css/3d-wow.css" />
+<link rel="stylesheet" href="css/i18n.css" />
 <link rel="stylesheet" href="css/responsive.css" />
 </head>
 <body>
 
-<!-- Preloader -->
 <div class="preloader" id="preloader">
   <div class="preloader-inner">
     <div class="preloader-cube">
@@ -49,55 +49,51 @@
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
-<!-- HEADER -->
 <header class="site-header">
   <div class="container nav">
     <a href="index.html" class="brand">
       <span class="brand-mark">F</span>
-      <span class="brand-name">
-        <strong>FaraTech</strong>
-        <span>AGENCY</span>
-      </span>
+      <span class="brand-name"><strong>FaraTech</strong><span data-i18n="brand.tagline">AGENCY</span></span>
     </a>
-
     <nav>
       <ul class="nav-links" id="navLinks">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="portfolio.html">Work</a></li>
-        <li><a href="team.html">Team</a></li>
-        <li><a href="ai-lab.html">AI Lab</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+        <li><a href="about.html" data-i18n="nav.about">About</a></li>
+        <li><a href="services.html" data-i18n="nav.services">Services</a></li>
+        <li><a href="portfolio.html" data-i18n="nav.work">Work</a></li>
+        <li><a href="team.html" data-i18n="nav.team">Team</a></li>
+        <li><a href="ai-lab.html" data-i18n="nav.aiLab">AI Lab</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
       </ul>
     </nav>
-
     <div class="nav-actions">
+      <div class="lang-switcher" role="group" aria-label="Language">
+        <button type="button" data-lang-switch="fa" data-i18n="lang.fa" aria-label="فارسی">فا</button>
+        <button type="button" data-lang-switch="en" data-i18n="lang.en" aria-label="English">EN</button>
+      </div>
       <a href="contact.html" class="btn btn-primary magnetic">
-        Start a Project
+        <span data-i18n="nav.startProject">Start a Project</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
-      <button class="menu-toggle" id="menuToggle" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </div>
 </header>
 
-<!-- PAGE HEADER -->
 <section class="page-header page-header-3d">
   <canvas id="pageCanvas" class="page-canvas" aria-hidden="true"></canvas>
   <div class="page-header-overlay" aria-hidden="true"></div>
   <div class="container page-header-content">
     <nav class="breadcrumb" data-reveal="up">
-      <a href="index.html">Home</a><span>›</span><a href="portfolio.html">Work</a><span>›</span><span id="breadcrumbTitle">Project</span>
+      <a href="index.html" data-i18n="nav.home">Home</a><span>›</span>
+      <a href="portfolio.html" data-i18n="project.breadcrumbWork">Work</a><span>›</span>
+      <span id="breadcrumbTitle">Project</span>
     </nav>
-    <h1 data-split id="projectHeaderTitle">Loading Project...</h1>
-    <p data-reveal="up" data-delay="300" id="projectHeaderSubtitle">Please wait while we load the project details.</p>
+    <h1 data-split id="projectHeaderTitle" data-i18n="common.loading">Loading Project...</h1>
+    <p data-reveal="up" data-delay="300" id="projectHeaderSubtitle" data-i18n="project.loadingDesc">Please wait while we load the project details.</p>
   </div>
 </section>
 
-<!-- PROJECT MEDIA SECTION -->
 <section class="section">
   <div class="container">
     <div class="project-media-section" id="projectMediaSection">
@@ -108,56 +104,55 @@
         <img id="projectImage" alt="Project Image" class="project-media-image">
       </div>
       <div id="galleryContainer" style="display: none;">
-        <h2 class="gallery-title">Project Gallery</h2>
+        <h2 class="gallery-title" data-i18n="project.gallery">Project Gallery</h2>
         <div class="gallery-grid" id="galleryGrid"></div>
       </div>
       <div id="noMediaContainer" style="display: none;">
-        <p class="no-media-message">No media available for this project.</p>
+        <p class="no-media-message" data-i18n="project.noMedia">No media available for this project.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROJECT DETAILS SECTION -->
 <section class="section section-alt">
   <div class="container">
     <div class="project-details-grid">
       <div class="project-main-content">
         <div class="project-description" data-reveal="up">
-          <h2>Project Overview</h2>
-          <p id="projectDescription">Loading description...</p>
+          <h2 data-i18n="project.overview">Project Overview</h2>
+          <p id="projectDescription" data-i18n="common.loading">Loading...</p>
         </div>
 
         <div class="project-tech" data-reveal="up" data-delay="100">
-          <h2>Technologies Used</h2>
+          <h2 data-i18n="project.technologiesUsed">Technologies Used</h2>
           <div id="projectTechnologies" class="tech-tags"></div>
         </div>
       </div>
 
       <div class="project-sidebar" data-reveal="up" data-delay="200">
         <div class="project-info-card">
-          <h3>Project Information</h3>
+          <h3 data-i18n="project.infoTitle">Project Information</h3>
           <div class="info-row">
-            <span class="info-label">Client</span>
+            <span class="info-label" data-i18n="project.infoClient">Client</span>
             <span class="info-value" id="projectClient">-</span>
           </div>
           <div class="info-row">
-            <span class="info-label">Category</span>
+            <span class="info-label" data-i18n="project.infoCategory">Category</span>
             <span class="info-value" id="projectCategory">-</span>
           </div>
           <div class="info-row">
-            <span class="info-label">Status</span>
-            <span class="info-value">Published</span>
+            <span class="info-label" data-i18n="project.infoStatus">Status</span>
+            <span class="info-value" data-i18n="project.statusPublished">Published</span>
           </div>
         </div>
 
         <div class="project-actions">
           <a href="portfolio.html" class="btn btn-secondary btn-full">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-            Back to Portfolio
+            <span data-i18n="project.backToPortfolio">Back to Portfolio</span>
           </a>
           <a href="#" class="btn btn-primary btn-full" id="projectUrl" target="_blank" style="display: none;">
-            View Live Project
+            <span data-i18n="project.viewLive">View Live Project</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>
@@ -166,62 +161,96 @@
   </div>
 </section>
 
-<!-- CTA SECTION -->
 <section class="cta-band" data-reveal="zoom">
   <div class="container">
     <div class="cta-band-inner">
       <div>
-        <h2>Have a project in mind?</h2>
-        <p>Let's turn your idea into a product your users will love.</p>
+        <h2 data-i18n="portfolio.cta.title">Have a project in mind?</h2>
+        <p data-i18n="portfolio.cta.desc">Let's turn your idea into a product your users will love.</p>
       </div>
       <a href="contact.html" class="btn btn-gold magnetic">
-        Start a project
+        <span data-i18n="portfolio.cta.btn">Start a project</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand" data-reveal="up">
         <div class="brand">
           <span class="brand-mark">F</span>
-          <span class="brand-name"><strong>FaraTech</strong><span>AGENCY</span></span>
+          <span class="brand-name"><strong>FaraTech</strong><span data-i18n="brand.tagline">AGENCY</span></span>
         </div>
-        <p class="footer-about">FaraTech is a digital technology studio focused on transforming ideas into practical digital solutions. We help businesses grow through modern web experiences, custom software development, AI-powered solutions, and intelligent business-process automation.</p>
+        <p class="footer-about" data-i18n="footer.about">FaraTech is a digital technology studio...</p>
         <div class="footer-contact">
           <a href="mailto:faratechteam@gmail.com">faratechteam@gmail.com</a>
         </div>
       </div>
       <div class="footer-col" data-reveal="up" data-delay="100">
-        <h4>Services</h4>
+        <h4 data-i18n="footer.servicesTitle">Services</h4>
         <ul>
-          <li><a href="services.html">Web Design</a></li>
-          <li><a href="services.html">UI / UX</a></li>
-          <li><a href="services.html">SEO</a></li>
-          <li><a href="ai-lab.html">AI Solutions</a></li>
+          <li><a href="services.html" data-i18n="footer.serviceWebDev">Web Development</a></li>
+          <li><a href="services.html" data-i18n="footer.serviceCustomSoftware">Custom Software</a></li>
+          <li><a href="services.html" data-i18n="footer.serviceAI">AI Solutions</a></li>
+          <li><a href="services.html" data-i18n="footer.serviceAutomation">Automation</a></li>
         </ul>
       </div>
       <div class="footer-col" data-reveal="up" data-delay="200">
-        <h4>Company</h4>
+        <h4 data-i18n="footer.companyTitle">Company</h4>
         <ul>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="team.html">Our Team</a></li>
-          <li><a href="portfolio.html">Portfolio</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="about.html" data-i18n="footer.aboutUs">About Us</a></li>
+          <li><a href="team.html" data-i18n="footer.ourTeam">Our Team</a></li>
+          <li><a href="portfolio.html" data-i18n="footer.portfolio">Portfolio</a></li>
+          <li><a href="contact.html" data-i18n="footer.contact">Contact</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2025 FaraTech — All rights reserved.</span>
+      <span data-i18n="footer.rights">© 2025 FaraTech — All rights reserved.</span>
       <div class="footer-socials" data-ft-render="socials"></div>
     </div>
   </div>
 </footer>
 
+<style>
+.project-media-section { margin: 60px 0; }
+.project-media-video, .project-media-image {
+  width: 100%; max-height: 600px; object-fit: cover;
+  border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+}
+.gallery-title { font-size: 28px; margin-bottom: 30px; color: var(--color-primary); }
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.gallery-item { position: relative; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s ease; }
+.gallery-item:hover { transform: translateY(-5px); }
+.gallery-item img { width: 100%; height: 250px; object-fit: cover; display: block; }
+.gallery-caption { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white; padding: 20px; font-size: 14px; opacity: 0; transition: opacity 0.3s ease; }
+.gallery-item:hover .gallery-caption { opacity: 1; }
+.no-media-message { text-align: center; padding: 60px 20px; color: var(--color-text-muted); font-size: 18px; }
+.project-details-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 60px; margin: 40px 0; }
+.project-main-content h2 { font-size: 28px; margin-bottom: 20px; color: var(--color-primary); }
+.project-description p { font-size: 18px; line-height: 1.8; color: var(--color-text); }
+.project-tech h2 { font-size: 28px; margin-bottom: 20px; color: var(--color-primary); }
+.tech-tags { display: flex; flex-wrap: wrap; gap: 12px; }
+.tech-tag { background: var(--color-primary); color: white; padding: 8px 20px; border-radius: 25px; font-size: 14px; font-weight: 500; }
+.project-sidebar { position: sticky; top: 100px; height: fit-content; }
+.project-info-card { background: var(--color-bg-alt); padding: 30px; border-radius: 12px; margin-bottom: 30px; }
+.project-info-card h3 { font-size: 20px; margin-bottom: 20px; color: var(--color-primary); }
+.info-row { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid var(--color-border); }
+.info-row:last-child { border-bottom: none; }
+.info-label { font-weight: 600; color: var(--color-text-muted); }
+.info-value { font-weight: 500; color: var(--color-text); }
+.project-actions { display: flex; flex-direction: column; gap: 15px; }
+.btn-full { width: 100%; justify-content: center; }
+@media (max-width: 968px) {
+  .project-details-grid { grid-template-columns: 1fr; gap: 40px; }
+  .project-sidebar { position: static; }
+}
+</style>
+
+<script src="js/i18n.js"></script>
 <script src="js/company-config.js"></script>
 <script src="js/company-bind.js"></script>
 <script type="module" src="js/page-3d.js"></script>
@@ -230,306 +259,148 @@
 <script src="js/content-sync.js"></script>
 
 <script>
-// Get project ID from URL
-const urlParams = new URLSearchParams(window.location.search);
-const projectId = urlParams.get('id');
+(function () {
+  function t(key, fb) { return (window.FT_I18N && window.FT_I18N.t(key)) || fb || key; }
+  function escapeHtml(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
 
-if (!projectId) {
-  document.getElementById('projectHeaderTitle').textContent = 'Project Not Found';
-  document.getElementById('projectHeaderSubtitle').textContent = 'No project ID specified.';
-  document.getElementById('projectDescription').textContent = 'Please go back to the portfolio page and select a project.';
-} else {
-  // Fetch project details from API
-  fetch(`http://localhost:8001/api/public_project.php?id=${projectId}`)
-    .then(response => response.json())
-    .then(data => {
-      if (data.success && data.data) {
-        const project = data.data;
-        
-        // Update page content
-        document.getElementById('projectHeaderTitle').textContent = project.title;
-        document.getElementById('projectHeaderSubtitle').textContent = project.description || 'A custom project by FaraTech.';
-        document.getElementById('breadcrumbTitle').textContent = project.title;
-        document.getElementById('projectDescription').textContent = project.description || 'No description available.';
-        document.getElementById('projectClient').textContent = project.client || '-';
-        document.getElementById('projectCategory').textContent = project.category || '-';
-        
-        // Update page title
-        document.title = `${project.title} | FaraTech`;
-        
-        // Update technologies
-        const techContainer = document.getElementById('projectTechnologies');
-        techContainer.innerHTML = '';
-        if (project.technologies && project.technologies.length > 0) {
-          project.technologies.forEach(tech => {
-            const tag = document.createElement('span');
-            tag.className = 'tech-tag';
-            tag.textContent = tech;
-            techContainer.appendChild(tag);
-          });
+  const urlParams = new URLSearchParams(window.location.search);
+  const projectId = urlParams.get('id');
+  let currentProject = null;
+
+  function updateUI() {
+    if (!currentProject) return;
+    const lang = (window.FT_I18N && window.FT_I18N.current) || 'fa';
+    const project = currentProject;
+
+    document.getElementById('projectHeaderTitle').textContent = project.title || '';
+    document.getElementById('projectHeaderSubtitle').textContent = project.description || '';
+    document.getElementById('breadcrumbTitle').textContent = project.title || '';
+    document.getElementById('projectDescription').textContent = project.description || t('project.noDescription', 'No description available.');
+    document.getElementById('projectClient').textContent = project.client || '-';
+    document.getElementById('projectCategory').textContent = project.category || '-';
+
+    const techContainer = document.getElementById('projectTechnologies');
+    techContainer.innerHTML = '';
+    if (project.technologies && project.technologies.length > 0) {
+      project.technologies.forEach(function (tech) {
+        const tag = document.createElement('span');
+        tag.className = 'tech-tag';
+        tag.textContent = tech;
+        techContainer.appendChild(tag);
+      });
+    }
+
+    if (project.project_url) {
+      const link = document.getElementById('projectUrl');
+      link.href = project.project_url;
+      link.style.display = 'inline-flex';
+    }
+  }
+
+  function loadProject() {
+    const lang = (window.FT_I18N && window.FT_I18N.current) || 'fa';
+
+    if (!projectId) {
+      document.getElementById('projectHeaderTitle').textContent = t('project.notFound', 'Project Not Found');
+      document.getElementById('projectHeaderSubtitle').textContent = t('project.notFoundDesc', 'Please go back to the portfolio page.');
+      document.getElementById('projectDescription').textContent = t('project.notFoundDesc', 'Please go back.');
+      return;
+    }
+
+    fetch('http://localhost:8001/api/public_project.php?id=' + encodeURIComponent(projectId) + '&lang=' + lang)
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (data.success && data.data) {
+          currentProject = data.data;
+          updateUI();
+          document.title = (currentProject.title || 'Project') + ' | FaraTech';
+          loadGallery(lang);
         } else {
-          techContainer.innerHTML = '<span class="no-tech">No technologies specified</span>';
+          document.getElementById('projectHeaderTitle').textContent = t('project.notFound', 'Project Not Found');
+          document.getElementById('projectHeaderSubtitle').textContent = data.message || '';
+          document.getElementById('projectDescription').textContent = t('project.notFoundDesc', 'Not found.');
         }
-        
-        // Update project URL if available
-        if (project.project_url) {
-          const projectUrlLink = document.getElementById('projectUrl');
-          projectUrlLink.href = project.project_url;
-          projectUrlLink.style.display = 'inline-flex';
+      })
+      .catch(function (err) {
+        console.error(err);
+        document.getElementById('projectHeaderTitle').textContent = t('project.errorLoading', 'Error Loading Project');
+        document.getElementById('projectHeaderSubtitle').textContent = '';
+        document.getElementById('projectDescription').textContent = t('project.errorLoadingDesc', 'Error.');
+      });
+  }
+
+  function loadGallery(lang) {
+    const videoContainer = document.getElementById('videoContainer');
+    const imageContainer = document.getElementById('imageContainer');
+    const galleryContainer = document.getElementById('galleryContainer');
+    const noMediaContainer = document.getElementById('noMediaContainer');
+    const project = currentProject;
+
+    // reset
+    videoContainer.style.display = 'none';
+    imageContainer.style.display = 'none';
+    galleryContainer.style.display = 'none';
+    noMediaContainer.style.display = 'none';
+
+    if (project.video_url) {
+      document.getElementById('projectVideo').src = project.video_url;
+      videoContainer.style.display = 'block';
+    }
+
+    fetch('http://localhost:8001/api/project_images.php?project_id=' + encodeURIComponent(projectId))
+      .then(function (r) { return r.json(); })
+      .then(function (galleryData) {
+        if (galleryData.success && galleryData.data && galleryData.data.length > 0) {
+          const grid = document.getElementById('galleryGrid');
+          grid.innerHTML = galleryData.data.map(function (img) {
+            return `
+              <div class="gallery-item">
+                <img src="${escapeHtml(img.image_url)}" alt="${escapeHtml(img.caption || '')}">
+                ${img.caption ? `<div class="gallery-caption">${escapeHtml(img.caption)}</div>` : ''}
+              </div>
+            `;
+          }).join('');
+          galleryContainer.style.display = 'block';
+        } else if (!project.video_url && project.image_url) {
+          document.getElementById('projectImage').src = project.image_url;
+          imageContainer.style.display = 'block';
         }
-        
-        // Update media
-        const videoContainer = document.getElementById('videoContainer');
-        const imageContainer = document.getElementById('imageContainer');
-        const galleryContainer = document.getElementById('galleryContainer');
-        const noMediaContainer = document.getElementById('noMediaContainer');
 
-        // Load gallery images
-        fetch(`http://localhost:8001/api/project_images.php?project_id=${projectId}`)
-          .then(response => response.json())
-          .then(galleryData => {
-            // Always show video if exists
-            if (project.video_url) {
-              const videoElement = document.getElementById('projectVideo');
-              videoElement.src = project.video_url;
-              videoContainer.style.display = 'block';
-            }
+        if (project.video_url || project.image_url || (galleryData.success && galleryData.data.length > 0)) {
+          noMediaContainer.style.display = 'none';
+        } else {
+          noMediaContainer.style.display = 'block';
+        }
+      })
+      .catch(function () {
+        if (project.video_url) {
+          videoContainer.style.display = 'block';
+        } else if (project.image_url) {
+          document.getElementById('projectImage').src = project.image_url;
+          imageContainer.style.display = 'block';
+        } else {
+          noMediaContainer.style.display = 'block';
+        }
+      });
+  }
 
-            // Show gallery if exists
-            if (galleryData.success && galleryData.data.length > 0) {
-              const galleryGrid = document.getElementById('galleryGrid');
-              galleryGrid.innerHTML = '';
-              galleryData.data.forEach(img => {
-                const galleryItem = document.createElement('div');
-                galleryItem.className = 'gallery-item';
-                galleryItem.innerHTML = `
-                  <img src="${img.image_url}" alt="${img.caption || 'Gallery image'}">
-                  ${img.caption ? `<div class="gallery-caption">${img.caption}</div>` : ''}
-                `;
-                galleryGrid.appendChild(galleryItem);
-              });
-              galleryContainer.style.display = 'block';
-            } else if (!project.video_url && project.image_url) {
-              // No gallery and no video, show main image
-              const imageElement = document.getElementById('projectImage');
-              imageElement.src = project.image_url;
-              imageContainer.style.display = 'block';
-            }
+  // اجرای فوری بدون منتظر ماندن برای i18n
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadProject);
+  } else {
+    loadProject();
+  }
 
-            // Hide no media container if we have any media
-            if (project.video_url || project.image_url || (galleryData.success && galleryData.data.length > 0)) {
-              noMediaContainer.style.display = 'none';
-            } else {
-              noMediaContainer.style.display = 'block';
-            }
-          })
-          .catch(error => {
-            console.error('Error loading gallery:', error);
-            // Fallback to main media
-            if (project.video_url) {
-              const videoElement = document.getElementById('projectVideo');
-              videoElement.src = project.video_url;
-              videoContainer.style.display = 'block';
-            } else if (project.image_url) {
-              const imageElement = document.getElementById('projectImage');
-              imageElement.src = project.image_url;
-              imageContainer.style.display = 'block';
-            } else {
-              noMediaContainer.style.display = 'block';
-            }
-          });
-      } else {
-        document.getElementById('projectHeaderTitle').textContent = 'Project Not Found';
-        document.getElementById('projectHeaderSubtitle').textContent = data.message || 'The requested project could not be found.';
-        document.getElementById('projectDescription').textContent = 'Please go back to the portfolio page and select a valid project.';
-      }
-    })
-    .catch(error => {
-      console.error('Error loading project:', error);
-      document.getElementById('projectHeaderTitle').textContent = 'Error Loading Project';
-      document.getElementById('projectHeaderSubtitle').textContent = 'Failed to load project details.';
-      document.getElementById('projectDescription').textContent = 'There was an error loading the project. Please try again later or contact support.';
-    });
-}
+  document.addEventListener('ft:langchange', function () {
+    // اگر داده‌ها لود شده‌اند، دوباره از API با زبان جدید بگیر
+    loadProject();
+  });
+})();
 </script>
-
-<style>
-.project-media-section {
-  margin: 60px 0;
-}
-
-.project-media-video,
-.project-media-image {
-  width: 100%;
-  max-height: 600px;
-  object-fit: cover;
-  border-radius: 12px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-}
-
-.gallery-title {
-  font-size: 28px;
-  margin-bottom: 30px;
-  color: var(--color-primary);
-}
-
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-}
-
-.gallery-item {
-  position: relative;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
-
-.gallery-item:hover {
-  transform: translateY(-5px);
-}
-
-.gallery-item img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-  display: block;
-}
-
-.gallery-caption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-  color: white;
-  padding: 20px;
-  font-size: 14px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.gallery-item:hover .gallery-caption {
-  opacity: 1;
-}
-
-.no-media-message {
-  text-align: center;
-  padding: 60px 20px;
-  color: var(--color-text-muted);
-  font-size: 18px;
-}
-
-.project-details-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 60px;
-  margin: 40px 0;
-}
-
-.project-main-content h2 {
-  font-size: 28px;
-  margin-bottom: 20px;
-  color: var(--color-primary);
-}
-
-.project-description p {
-  font-size: 18px;
-  line-height: 1.8;
-  color: var(--color-text);
-}
-
-.project-tech h2 {
-  font-size: 28px;
-  margin-bottom: 20px;
-  color: var(--color-primary);
-}
-
-.tech-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.tech-tag {
-  background: var(--color-primary);
-  color: white;
-  padding: 8px 20px;
-  border-radius: 25px;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.no-tech {
-  color: var(--color-text-muted);
-  font-style: italic;
-}
-
-.project-sidebar {
-  position: sticky;
-  top: 100px;
-  height: fit-content;
-}
-
-.project-info-card {
-  background: var(--color-bg-alt);
-  padding: 30px;
-  border-radius: 12px;
-  margin-bottom: 30px;
-}
-
-.project-info-card h3 {
-  font-size: 20px;
-  margin-bottom: 20px;
-  color: var(--color-primary);
-}
-
-.info-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 0;
-  border-bottom: 1px solid var(--color-border);
-}
-
-.info-row:last-child {
-  border-bottom: none;
-}
-
-.info-label {
-  font-weight: 600;
-  color: var(--color-text-muted);
-}
-
-.info-value {
-  font-weight: 500;
-  color: var(--color-text);
-}
-
-.project-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.btn-full {
-  width: 100%;
-  justify-content: center;
-}
-
-@media (max-width: 968px) {
-  .project-details-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-  
-  .project-sidebar {
-    position: static;
-  }
-}
-</style>
 
 </body>
 </html>

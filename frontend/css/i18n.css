@@ -1,0 +1,289 @@
+/* =====================================================================
+   FaraTech — i18n Styles
+   فونت فارسی، چیدمان RTL، سوییچر زبان
+   ===================================================================== */
+
+/* ---------------------------------------------------------------------
+   فونت فارسی (Vazirmatn از گوگل فونت)
+   --------------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap');
+
+/* ---------------------------------------------------------------------
+   تغییر فونت بر اساس زبان
+   --------------------------------------------------------------------- */
+html[lang="fa"] body,
+html[lang="fa"] button,
+html[lang="fa"] input,
+html[lang="fa"] textarea,
+html[lang="fa"] select {
+  font-family: 'Vazirmatn', 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+html[lang="en"] body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* کمی فاصله بهتر برای فارسی (حروف فارسی معمولاً فشرده‌تر هستند) */
+html[lang="fa"] h1,
+html[lang="fa"] h2,
+html[lang="fa"] h3,
+html[lang="fa"] h4 {
+  line-height: 1.45;
+  letter-spacing: 0;
+}
+
+html[lang="fa"] p,
+html[lang="fa"] li {
+  line-height: 1.85;
+}
+
+/* ---------------------------------------------------------------------
+   سوییچر زبان
+   --------------------------------------------------------------------- */
+.lang-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 9px;
+  backdrop-filter: blur(8px);
+  flex-shrink: 0;
+}
+
+.lang-switcher button {
+  min-width: 34px;
+  height: 30px;
+  padding: 0 10px;
+  border: none;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.3);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  font-family: inherit;
+  line-height: 1;
+}
+
+.lang-switcher button:hover {
+  color: #fff;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.lang-switcher button.active {
+  background: var(--color-primary, #e5b94a);
+  color: #0a0a0a;
+  box-shadow: 0 2px 8px rgba(229, 185, 74, 0.35);
+}
+
+/* در حالت اسکرول‌شده یا هدر روشن (اگر رنگ متفاوت است) */
+.site-header.scrolled .lang-switcher {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.site-header.scrolled .lang-switcher button {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.site-header.scrolled .lang-switcher button:hover {
+  color: #000;
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.site-header.scrolled .lang-switcher button.active {
+  background: var(--color-primary, #e5b94a);
+  color: #0a0a0a;
+}
+
+/* ---------------------------------------------------------------------
+   اصلاحات RTL عمومی
+   --------------------------------------------------------------------- */
+html[dir="rtl"] {
+  /* جهت‌گیری متن */
+  text-align: right;
+}
+
+/* برخی عناصر باید همچنان LTR بمانند (اعداد، URL، کد) */
+html[dir="rtl"] .ltr,
+html[dir="rtl"] .url,
+html[dir="rtl"] .hero-frame-bar .url,
+html[dir="rtl"] code,
+html[dir="rtl"] pre,
+html[dir="rtl"] input[type="email"],
+html[dir="rtl"] input[type="url"],
+html[dir="rtl"] input[type="tel"] {
+  direction: ltr;
+  text-align: left;
+}
+
+/* آیکن‌ها و SVG ها */
+html[dir="rtl"] .btn svg,
+html[dir="rtl"] .nav-actions .btn svg {
+  transform: scaleX(-1);
+  transition: transform 0.3s ease;
+}
+
+html[dir="rtl"] .btn:hover svg {
+  transform: scaleX(-1) translateX(-4px);
+}
+
+/* marquee برای RTL */
+html[dir="rtl"] .marquee-track {
+  animation-direction: reverse;
+}
+
+/* بولت‌ها و لیست‌ها */
+html[dir="rtl"] ul,
+html[dir="rtl"] ol {
+  padding-right: 1.5rem;
+  padding-left: 0;
+}
+
+/* breadcrumb */
+html[dir="rtl"] .breadcrumb span:first-child {
+  transform: scaleX(-1);
+  display: inline-block;
+}
+
+/* فرم‌ها */
+html[dir="rtl"] .form-group label {
+  text-align: right;
+}
+
+html[dir="rtl"] select {
+  background-position: left 12px center;
+  padding-left: 36px;
+  padding-right: 14px;
+}
+
+/* فوتر */
+html[dir="rtl"] .footer-grid {
+  text-align: right;
+}
+
+html[dir="rtl"] .footer-socials {
+  direction: ltr;
+}
+
+/* scroll progress */
+html[dir="rtl"] .scroll-progress {
+  transform-origin: right;
+}
+
+/* کیوب پرلودر */
+html[dir="rtl"] .preloader-text {
+  direction: ltr;
+  font-family: 'Inter', sans-serif;
+}
+
+/* کارت‌های 3D — shine از راست */
+html[dir="rtl"] .card-shine {
+  background: linear-gradient(270deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%);
+}
+
+/* Process line */
+html[dir="rtl"] .process-step {
+  text-align: right;
+}
+
+/* Timeline */
+html[dir="rtl"] .timeline-item {
+  padding-right: 2rem;
+  padding-left: 0;
+}
+
+/* AI chip */
+html[dir="rtl"] .ai-chip-inner svg {
+  transform: scaleX(-1);
+}
+
+/* Hero frame — کیبورد شبیه‌سازی */
+html[dir="rtl"] .hero-frame-bar .dots {
+  order: 2;
+}
+
+/* Blog / general cards — جهت hover */
+html[dir="rtl"] .flip-link svg {
+  transform: scaleX(-1);
+}
+
+/* اعداد فارسی در برخی موارد (اختیاری) */
+html[lang="fa"] .stat-card .num {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------------------------------------------------------------------
+   کلاس‌های کمکی
+   --------------------------------------------------------------------- */
+body.is-fa { direction: rtl; }
+body.is-en { direction: ltr; }
+
+/* مخفی کردن عناصر مخصوص یک زبان */
+html[lang="fa"] [data-only-en],
+html[lang="en"] [data-only-fa] {
+  display: none !important;
+}
+
+/* ---------------------------------------------------------------------
+   Responsive
+   --------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .lang-switcher button {
+    min-width: 30px;
+    height: 28px;
+    padding: 0 8px;
+    font-size: 12px;
+  }
+}
+
+/* ---------------------------------------------------------------------
+   اضافه کردن سوییچر به nav-actions (بدون درگیری با flex)
+   --------------------------------------------------------------------- */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+@media (max-width: 900px) {
+  .nav-actions {
+    gap: 8px;
+  }
+  .nav-actions .lang-switcher {
+    /* در موبایل، سوییچر داخل منوی بازشو نمایش داده می‌شود */
+    order: -1;
+  }
+}
+
+/* ---------------------------------------------------------------------
+   فونت فارسی برای placeholder ها
+   --------------------------------------------------------------------- */
+::placeholder {
+  opacity: 1 !important;
+  color: var(--gray-600) !important;
+}
+
+html[lang="fa"] ::placeholder {
+  font-family: 'Vazirmatn', sans-serif;
+}
+
+/* ---------------------------------------------------------------------
+   پیشگیری از شکستن کلمات فارسی در دکمه‌ها
+   --------------------------------------------------------------------- */
+html[lang="fa"] .btn {
+  font-family: 'Vazirmatn', sans-serif;
+  font-weight: 600;
+}
+
+/* ---------------------------------------------------------------------
+   اعداد در فارسی — جلوگیری از معکوس شدن
+   --------------------------------------------------------------------- */
+html[dir="rtl"] .num,
+html[dir="rtl"] .stat-card .num {
+  direction: ltr;
+  display: inline-block;
+}

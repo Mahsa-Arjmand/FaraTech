@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="fa">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>About — FaraTech | Your Ideas. Our Technology. Infinite Possibilities</title>
+<title>درباره ما — FaraTech</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <script type="importmap">
 {
@@ -22,11 +22,11 @@
 <link rel="stylesheet" href="css/components.css" />
 <link rel="stylesheet" href="css/pages.css" />
 <link rel="stylesheet" href="css/3d-wow.css" />
+<link rel="stylesheet" href="css/i18n.css" />
 <link rel="stylesheet" href="css/responsive.css" />
 </head>
 <body>
 
-<!-- Preloader -->
 <div class="preloader" id="preloader">
   <div class="preloader-inner">
     <div class="preloader-cube">
@@ -41,10 +41,7 @@
   </div>
 </div>
 
-<!-- Scroll Progress -->
 <div class="scroll-progress" id="scrollProgress"></div>
-
-<!-- Custom Cursor -->
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
@@ -52,21 +49,26 @@
   <div class="container nav">
     <a href="index.html" class="brand">
       <span class="brand-mark">F</span>
-      <span class="brand-name"><strong>FaraTech</strong><span>AGENCY</span></span>
+      <span class="brand-name"><strong>FaraTech</strong><span data-i18n="brand.tagline">AGENCY</span></span>
     </a>
     <nav>
       <ul class="nav-links" id="navLinks">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html" class="active">About</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="portfolio.html">Work</a></li>
-        <li><a href="team.html">Team</a></li>
-        <li><a href="ai-lab.html">AI Lab</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+        <li><a href="about.html" class="active" data-i18n="nav.about">About</a></li>
+        <li><a href="services.html" data-i18n="nav.services">Services</a></li>
+        <li><a href="portfolio.html" data-i18n="nav.work">Work</a></li>
+        <li><a href="team.html" data-i18n="nav.team">Team</a></li>
+        <li><a href="ai-lab.html" data-i18n="nav.aiLab">AI Lab</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
       </ul>
     </nav>
     <div class="nav-actions">
-      <a href="contact.html" class="btn btn-primary magnetic">Start a Project
+      <div class="lang-switcher" role="group" aria-label="Language">
+        <button type="button" data-lang-switch="fa" data-i18n="lang.fa" aria-label="فارسی">فا</button>
+        <button type="button" data-lang-switch="en" data-i18n="lang.en" aria-label="English">EN</button>
+      </div>
+      <a href="contact.html" class="btn btn-primary magnetic">
+        <span data-i18n="nav.startProject">Start a Project</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
       <button class="menu-toggle" id="menuToggle" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -74,88 +76,91 @@
   </div>
 </header>
 
-<!-- PAGE HEADER with 3D canvas -->
 <section class="page-header page-header-3d">
   <canvas id="pageCanvas" class="page-canvas" aria-hidden="true"></canvas>
   <div class="page-header-overlay" aria-hidden="true"></div>
   <div class="container page-header-content">
-    <span class="eyebrow" data-reveal="up">ABOUT FARATECH</span>
-    <h1 data-split>We design, build and scale digital products</h1>
-    <p data-reveal="up" data-delay="300">FaraTech is a digital technology studio focused on transforming ideas into practical digital solutions. We help businesses grow through modern web experiences, custom software development, AI-powered solutions, and intelligent business-process automation.</p>
+    <span class="eyebrow" data-reveal="up" data-i18n="about.eyebrow">ABOUT FARATECH</span>
+    <h1 data-split data-i18n="about.title">We design, build and scale digital products</h1>
+    <p data-reveal="up" data-delay="300" data-i18n="about.headerDesc">
+      FaraTech is a digital technology studio focused on transforming ideas into practical digital solutions...
+    </p>
     <nav class="breadcrumb" data-reveal="up" data-delay="500">
-      <a href="index.html">Home</a><span>›</span><span>About</span>
+      <a href="index.html" data-i18n="nav.home">Home</a><span>›</span><span data-i18n="nav.about">About</span>
     </nav>
   </div>
 </section>
 
-<!-- OUR STORY with 3D stats -->
 <section class="section">
   <div class="container">
     <div class="about-story">
       <div class="about-story-text" data-reveal="left">
-        <span class="eyebrow">OUR STORY</span>
-        <h2 data-split>Ideas into Digital Solutions</h2>
-        <p>FaraTech is a digital technology studio focused on transforming ideas into practical digital solutions. We help businesses grow through modern web experiences, custom software development, AI-powered solutions, and intelligent business-process automation.</p>
-        <p>Our approach combines thoughtful design, modern engineering, and intelligent technology to create useful, scalable digital products.</p>
+        <span class="eyebrow" data-i18n="about.story.eyebrow">OUR STORY</span>
+        <h2 data-split data-i18n="about.story.title">Ideas into Digital Solutions</h2>
+        <p data-i18n="about.story.p1">FaraTech is a digital technology studio...</p>
+        <p data-i18n="about.story.p2">Our approach combines thoughtful design...</p>
       </div>
 
       <div class="about-story-stats">
         <div class="story-stat" data-reveal="3d">
-          <strong>Digital</strong><span>Technology</span>
+          <strong data-i18n="footer.serviceAutomation">Digital</strong>
+          <span data-i18n="footer.serviceAI">Technology</span>
         </div>
         <div class="story-stat" data-reveal="3d" data-delay="100">
-          <strong>Web</strong><span>Development</span>
+          <strong data-i18n="nav.services">Web</strong>
+          <span data-i18n="footer.serviceWebDev">Development</span>
         </div>
         <div class="story-stat" data-reveal="3d" data-delay="200">
-          <strong>AI</strong><span>Solutions</span>
+          <strong>AI</strong>
+          <span data-i18n="footer.serviceAI">Solutions</span>
         </div>
         <div class="story-stat" data-reveal="3d" data-delay="300">
-          <strong>Business</strong><span>Automation</span>
+          <strong data-i18n="nav.work">Business</strong>
+          <span data-i18n="footer.serviceAutomation">Automation</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- VALUES with 3D cards -->
 <section class="section section-alt section-3d">
   <div class="section-bg-3d" data-parallax="0.15"></div>
   <div class="container">
     <div class="section-head center" data-reveal="up">
-      <span class="eyebrow" style="justify-content:center;">WHAT WE BELIEVE</span>
-      <h2 data-split>Values that guide every project</h2>
+      <span class="eyebrow" style="justify-content:center;" data-i18n="about.values.eyebrow">WHAT WE BELIEVE</span>
+      <h2 data-split data-i18n="about.values.title">Values that guide every project</h2>
     </div>
 
     <div class="values-grid">
       <div class="value-card card-3d" data-reveal="3d" data-tilt data-tilt-max="10">
         <div class="card-3d-inner">
           <div class="value-num">01</div>
-          <h3>Craft over shortcuts</h3>
-          <p>We'd rather take one more day to make it right than ship something we're not proud of.</p>
+          <h3 data-i18n="about.values.v1Title">Craft over shortcuts</h3>
+          <p data-i18n="about.values.v1Desc">We'd rather take one more day...</p>
           <div class="card-shine"></div>
         </div>
       </div>
       <div class="value-card card-3d" data-reveal="3d" data-delay="120" data-tilt data-tilt-max="10">
         <div class="card-3d-inner">
           <div class="value-num">02</div>
-          <h3>Clarity in everything</h3>
-          <p>Clear pricing, clear timelines, clear communication. No jargon, no surprises.</p>
+          <h3 data-i18n="about.values.v2Title">Clarity in everything</h3>
+          <p data-i18n="about.values.v2Desc">Clear pricing, clear timelines...</p>
           <div class="card-shine"></div>
         </div>
       </div>
       <div class="value-card card-3d" data-reveal="3d" data-delay="240" data-tilt data-tilt-max="10">
         <div class="card-3d-inner">
           <div class="value-num">03</div>
-          <h3>Results, not just output</h3>
-          <p>A beautiful website that doesn't convert is a hobby — we build for measurable impact.</p>
+          <h3 data-i18n="about.values.v3Title">Results, not just output</h3>
+          <p data-i18n="about.values.v3Desc">A beautiful website that doesn't convert...</p>
           <div class="card-shine"></div>
         </div>
       </div>
       <div class="value-card card-3d" data-reveal="3d" data-delay="360" data-tilt data-tilt-max="10">
         <div class="card-3d-inner">
           <div class="value-num">04</div>
-          <h3>Long-term partnerships</h3>
-          <p>Most of our clients come back. We treat every project as the start of a relationship.</p>
+          <h3 data-i18n="about.values.v4Title">Long-term partnerships</h3>
+          <p data-i18n="about.values.v4Desc">Most of our clients come back...</p>
           <div class="card-shine"></div>
         </div>
       </div>
@@ -163,34 +168,33 @@
   </div>
 </section>
 
-<!-- TIMELINE with animated reveal -->
 <section class="section">
   <div class="container">
     <div class="section-head" data-reveal="up">
-      <span class="eyebrow">MILESTONES</span>
-      <h2 data-split>Our journey so far</h2>
+      <span class="eyebrow" data-i18n="about.timeline.eyebrow">MILESTONES</span>
+      <h2 data-split data-i18n="about.timeline.title">Our journey so far</h2>
     </div>
 
     <div class="timeline">
       <div class="timeline-item" data-reveal="left">
-        <div class="timeline-year">Mission</div>
+        <div class="timeline-year" data-i18n="about.timeline.t1Year">Mission</div>
         <div class="timeline-content">
-          <h4>Transforming Ideas</h4>
-          <p>Focused on transforming ideas into practical digital solutions.</p>
+          <h4 data-i18n="about.timeline.t1Title">Transforming Ideas</h4>
+          <p data-i18n="about.timeline.t1Desc">Focused on transforming ideas into practical digital solutions.</p>
         </div>
       </div>
       <div class="timeline-item" data-reveal="left" data-delay="100">
-        <div class="timeline-year">Approach</div>
+        <div class="timeline-year" data-i18n="about.timeline.t2Year">Approach</div>
         <div class="timeline-content">
-          <h4>Thoughtful Design</h4>
-          <p>Combining thoughtful design, modern engineering, and intelligent technology.</p>
+          <h4 data-i18n="about.timeline.t2Title">Thoughtful Design</h4>
+          <p data-i18n="about.timeline.t2Desc">Combining thoughtful design, modern engineering, and intelligent technology.</p>
         </div>
       </div>
       <div class="timeline-item" data-reveal="left" data-delay="200">
-        <div class="timeline-year">Focus</div>
+        <div class="timeline-year" data-i18n="about.timeline.t3Year">Focus</div>
         <div class="timeline-content">
-          <h4>Scalable Products</h4>
-          <p>Creating useful, scalable digital products for businesses.</p>
+          <h4 data-i18n="about.timeline.t3Title">Scalable Products</h4>
+          <p data-i18n="about.timeline.t3Desc">Creating useful, scalable digital products for businesses.</p>
         </div>
       </div>
     </div>
@@ -201,11 +205,11 @@
   <div class="container">
     <div class="cta-band-inner">
       <div>
-        <h2>Want to work with a team that cares?</h2>
-        <p>Let's talk about your next project.</p>
+        <h2 data-i18n="team.cta.title">Want to work with a team that cares?</h2>
+        <p data-i18n="team.cta.desc">Let's talk about your next project.</p>
       </div>
       <a href="contact.html" class="btn btn-gold magnetic">
-        Get in touch
+        <span data-i18n="ctaBand.getInTouch">Get in touch</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>
@@ -218,39 +222,40 @@
       <div class="footer-brand" data-reveal="up">
         <div class="brand">
           <span class="brand-mark">F</span>
-          <span class="brand-name"><strong>FaraTech</strong><span>AGENCY</span></span>
+          <span class="brand-name"><strong>FaraTech</strong><span data-i18n="brand.tagline">AGENCY</span></span>
         </div>
-        <p class="footer-about">FaraTech is a digital technology studio focused on transforming ideas into practical digital solutions. We help businesses grow through modern web experiences, custom software development, AI-powered solutions, and intelligent business-process automation.</p>
+        <p class="footer-about" data-i18n="footer.about">FaraTech is a digital technology studio...</p>
         <div class="footer-contact">
           <a href="mailto:faratechteam@gmail.com">faratechteam@gmail.com</a>
         </div>
       </div>
       <div class="footer-col" data-reveal="up" data-delay="100">
-        <h4>Services</h4>
+        <h4 data-i18n="footer.servicesTitle">Services</h4>
         <ul>
-          <li><a href="services.html">Web Design</a></li>
-          <li><a href="services.html">UI / UX</a></li>
-          <li><a href="services.html">SEO</a></li>
-          <li><a href="ai-lab.html">AI Solutions</a></li>
+          <li><a href="services.html" data-i18n="footer.serviceWebDev">Web Development</a></li>
+          <li><a href="services.html" data-i18n="footer.serviceCustomSoftware">Custom Software</a></li>
+          <li><a href="services.html" data-i18n="footer.serviceAI">AI Solutions</a></li>
+          <li><a href="services.html" data-i18n="footer.serviceAutomation">Automation</a></li>
         </ul>
       </div>
       <div class="footer-col" data-reveal="up" data-delay="200">
-        <h4>Company</h4>
+        <h4 data-i18n="footer.companyTitle">Company</h4>
         <ul>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="team.html">Our Team</a></li>
-          <li><a href="portfolio.html">Portfolio</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="about.html" data-i18n="footer.aboutUs">About Us</a></li>
+          <li><a href="team.html" data-i18n="footer.ourTeam">Our Team</a></li>
+          <li><a href="portfolio.html" data-i18n="footer.portfolio">Portfolio</a></li>
+          <li><a href="contact.html" data-i18n="footer.contact">Contact</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2025 FaraTech — All rights reserved.</span>
+      <span data-i18n="footer.rights">© 2025 FaraTech — All rights reserved.</span>
       <div class="footer-socials" data-ft-render="socials"></div>
     </div>
   </div>
 </footer>
 
+<script src="js/i18n.js"></script>
 <script src="js/company-config.js"></script>
 <script src="js/company-bind.js"></script>
 <script type="module" src="js/page-3d.js"></script>

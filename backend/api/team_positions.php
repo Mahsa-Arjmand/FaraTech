@@ -1,124 +1,65 @@
 <?php
-require_once __DIR__ . '/../config/database.php';
+/**
+ * FaraTech — Public Team Positions API
+ * GET /api/public_team_positions.php?lang=fa|en
+ *
+ * اگر name_fa/description_fa وجود داشت و زبان fa بود، آنها برمی‌گردند؛
+ * در غیر این صورت فیلدهای انگلیسی fallback می‌شوند.
+ */
+header('Content-Type: application/json; charset=utf-8');
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type');
+
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(204);
+    exit;
+}
+
 require_once __DIR__ . '/../includes/functions.php';
-require_once __DIR__ . '/../includes/auth.php';
 
-header('Content-Type: application/json');
+$lang = isset($_GET['lang']) && in_array($_GET['lang'], ['fa', 'en'], true)
+    ? $_GET['lang']
+    : 'en';
 
-$action = $_GET['action'] ?? '';
+try {
+    $db = getDBConnection();
 
-switch ($action) {
-    case 'list':
-        requireLogin();
-        $db = getDBConnection();
-        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-        $perPage = isset($_GET['per_page']) ? (int)$_GET['per_page'] : 20;
-        $search = isset($_GET['search']) ? cleanInput($_GET['search']) : '';
+    // بررسی وجود ستون‌های _fa
+    $cols = $db->query("SHOW COLUMNS FROM team_positions")->fetchAll(PDO::FETCH_COLUMN);
+    $hasFa = in_array('name_fa', $cols, true) && in_array('description_fa', $cols, true);
 
-        $where = ['1=1'];
-        $params = [];
+    if ($hasFa) {
+        $sql = "SELECT
+                    id,
+                    COALESCE(NULLIF(name_fa, ''), name) AS name,
+                    COALESCE(NULLIF(description_fa, ''), description) AS description,
+                    display_order,
+                    created_at
+                FROM team_positions
+                ORDER BY display_order ASC, created_at ASC";
+    } else {
+        $sql = "SELECT
+                    id, name, description, display_order, created_at
+                FROM team_positions
+                ORDER BY display_order ASC, created_at ASC";
+    }
 
-        if ($search) {
-            $where[] = "(name LIKE ? OR description LIKE ?)";
-            $params[] = "%$search%";
-            $params[] = "%$search%";
-        }
+    $rows = $db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
-        $whereClause = implode(' AND ', $where);
+    // در حالت fa، اگر فیلد _fa واقعاً وجود دارد، آن را به‌عنوان name/description نمایش بده
+    // (بالا با COALESCE انجام شد)
+    echo json_encode([
+        'success' => true,
+        'lang'    => $lang,
+        'count'   => count($rows),
+        'data'    => $rows,
+    ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
-        // Get total count
-        $countStmt = $db->prepare("SELECT COUNT(*) FROM team_positions WHERE $whereClause");
-        $countStmt->execute($params);
-        $total = $countStmt->fetchColumn();
-
-        // Get pagination
-        $pagination = getPagination($page, $perPage, $total);
-
-        // Get positions
-        $stmt = $db->prepare("SELECT * FROM team_positions WHERE $whereClause ORDER BY display_order ASC, created_at ASC LIMIT ? OFFSET ?");
-        $params[] = $perPage;
-        $params[] = $pagination['offset'];
-        $stmt->execute($params);
-        $positions = $stmt->fetchAll();
-
-        jsonResponse(true, 'Team positions retrieved successfully', [
-            'positions' => $positions,
-            'pagination' => $pagination
-        ]);
-
-    case 'get':
-        requireLogin();
-        $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
-        $db = getDBConnection();
-        $stmt = $db->prepare("SELECT * FROM team_positions WHERE id = ?");
-        $stmt->execute([$id]);
-        $position = $stmt->fetch();
-
-        if ($position) {
-            jsonResponse(true, 'Team position retrieved successfully', $position);
-        } else {
-            jsonResponse(false, 'Team position not found');
-        }
-
-    case 'create':
-        requireLogin();
-        $db = getDBConnection();
-        $data = json_decode(file_get_contents('php://input'), true);
-
-        $stmt = $db->prepare("INSERT INTO team_positions (name, description, display_order) VALUES (?, ?, ?)");
-        $result = $stmt->execute([
-            cleanInput($data['name']),
-            cleanInput($data['description'] ?? ''),
-            (int)($data['display_order'] ?? 0)
-        ]);
-
-        if ($result) {
-            jsonResponse(true, 'Team position created successfully', ['id' => $db->lastInsertId()]);
-        } else {
-            jsonResponse(false, 'Failed to create team position');
-        }
-
-    case 'update':
-        requireLogin();
-        $db = getDBConnection();
-        $data = json_decode(file_get_contents('php://input'), true);
-        $id = (int)$data['id'];
-
-        $stmt = $db->prepare("UPDATE team_positions SET name = ?, description = ?, display_order = ? WHERE id = ?");
-        $result = $stmt->execute([
-            cleanInput($data['name']),
-            cleanInput($data['description'] ?? ''),
-            (int)($data['display_order'] ?? 0),
-            $id
-        ]);
-
-        if ($result) {
-            jsonResponse(true, 'Team position updated successfully');
-        } else {
-            jsonResponse(false, 'Failed to update team position');
-        }
-
-    case 'delete':
-        requireLogin();
-        $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
-        $db = getDBConnection();
-        $stmt = $db->prepare("DELETE FROM team_positions WHERE id = ?");
-        $result = $stmt->execute([$id]);
-
-        if ($result) {
-            jsonResponse(true, 'Team position deleted successfully');
-        } else {
-            jsonResponse(false, 'Failed to delete team position');
-        }
-
-    case 'public_list':
-        // Public API to get all positions
-        $db = getDBConnection();
-        $stmt = $db->query("SELECT * FROM team_positions ORDER BY display_order ASC, created_at ASC");
-        $positions = $stmt->fetchAll();
-
-        jsonResponse(true, 'Team positions retrieved successfully', $positions);
-
-    default:
-        jsonResponse(false, 'Invalid action');
+} catch (Throwable $e) {
+    http_response_code(500);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Failed to load team positions',
+    ], JSON_UNESCAPED_UNICODE);
 }

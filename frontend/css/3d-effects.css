@@ -57,16 +57,19 @@
 }
 
 /* ===== SERVICE ITEM 3D ===== */
-.service-item {
+.service-item,
+.service-card {
   transform-style: preserve-3d;
 }
 
-.service-item .service-icon-wrap {
+.service-item .service-icon-wrap,
+.service-card .service-icon {
   transform: translateZ(15px);
   transition: transform 0.3s ease;
 }
 
-.service-item:hover .service-icon-wrap {
+.service-item:hover .service-icon-wrap,
+.service-card:hover .service-icon {
   transform: translateZ(30px) scale(1.05);
 }
 
