@@ -187,7 +187,19 @@ html[dir="rtl"] .card-shine {
 
 /* Process line */
 html[dir="rtl"] .process-step {
-  text-align: right;
+  text-align: center;
+}
+
+html[dir="rtl"] .process-step .num {
+  margin: 0 auto 18px;
+}
+
+html[dir="rtl"] .process-step h4 {
+  text-align: center;
+}
+
+html[dir="rtl"] .process-step p {
+  text-align: center;
 }
 
 /* Timeline */

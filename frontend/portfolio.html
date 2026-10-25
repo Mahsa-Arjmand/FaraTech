@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function () {
     container.innerHTML = '<p style="opacity:.5; padding:40px; text-align:center; grid-column:1/-1;">' +
       (lang === 'fa' ? 'در حال بارگذاری...' : 'Loading...') + '</p>';
 
-    fetch('http://localhost:8001/api/public_projects.php?lang=' + lang)
+    fetch('http://localhost:8000/api/public_projects.php?lang=' + lang)
       .then(function (r) { return r.json(); })
       .then(function (data) {
         if (!data.success || !data.data || data.data.length === 0) {

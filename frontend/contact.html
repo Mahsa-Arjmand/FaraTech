@@ -121,7 +121,20 @@
               </div>
               <div>
                 <strong>Instagram</strong>
-                <a href="https://www.instagram.com/faratechlab_/" target="_blank" rel="noopener noreferrer">@faratechlab_</a>
+                <a href="https://www.instagram.com/faratech.lab/" target="_blank" rel="noopener noreferrer">@faratech.lab</a>
+              </div>
+              <div class="card-shine"></div>
+            </div>
+          </div>
+
+          <div class="contact-page-item card-3d" data-tilt data-tilt-max="6">
+            <div class="card-3d-inner">
+              <div class="ic">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              </div>
+              <div>
+                <strong>LinkedIn</strong>
+                <a href="https://www.linkedin.com/company/faratechlab" target="_blank" rel="noopener noreferrer">FaraTech</a>
               </div>
               <div class="card-shine"></div>
             </div>
@@ -257,7 +270,7 @@ document.addEventListener('DOMContentLoaded', function () {
     formData.append('topic', topic);
     formData.append('message', message);
 
-    fetch('http://localhost:8001/api/contact.php', { method: 'POST', body: formData })
+    fetch('http://localhost:8000/api/contact.php', { method: 'POST', body: formData })
       .then(function (r) { return r.json(); })
       .then(function (data) {
         if (data.success) {

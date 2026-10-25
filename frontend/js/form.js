@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     formData.append('topic', topic);
     formData.append('message', message);
 
-    fetch('http://localhost:8001/api/contact.php', {
+    fetch('http://localhost:8000/api/contact.php', {
       method: 'POST',
       body: formData
     })

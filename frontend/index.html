@@ -170,22 +170,22 @@
 <!-- TRUSTED -->
 <section class="trusted">
   <div class="container trusted-inner">
-    <span class="trusted-label" data-i18n="home.trusted.label">TRUSTED BY PROFESSIONAL TEAMS</span>
+    <span class="trusted-label" data-i18n="home.trusted.label">مورد اعتماد تیم‌های حرفه‌ای</span>
   </div>
   <div class="marquee" data-speed="40">
     <div class="marquee-track">
-      <span>Digikala</span><span>●</span>
-      <span>Alibaba</span><span>●</span>
-      <span>Tap30</span><span>●</span>
-      <span>CafeBazaar</span><span>●</span>
-      <span>Filimo</span><span>●</span>
-      <span>Snapp</span><span>●</span>
-      <span>Digikala</span><span>●</span>
-      <span>Alibaba</span><span>●</span>
-      <span>Tap30</span><span>●</span>
-      <span>CafeBazaar</span><span>●</span>
-      <span>Filimo</span><span>●</span>
-      <span>Snapp</span><span>●</span>
+      <span>Hedieh Kindergarden</span><span>●</span>
+      <span>Beseen</span><span>●</span>
+      <span>Apply now</span><span>●</span>
+      <span>Hedieh Kindergarden</span><span>●</span>
+      <span>Beseen</span><span>●</span>
+      <span>Apply now</span><span>●</span>
+      <span>Hedieh Kindergarden</span><span>●</span>
+      <span>Beseen</span><span>●</span>
+      <span>Apply now</span><span>●</span>
+      <span>Hedieh Kindergarden</span><span>●</span>
+      <span>Beseen</span><span>●</span>
+      <span>Apply now</span><span>●</span>
     </div>
   </div>
 </section>
@@ -320,12 +320,12 @@
         <div class="lbl" data-i18n="home.why.stat1Lbl">Client satisfaction</div>
         <div class="stat-bar"><div class="stat-bar-fill"></div></div>
       </div>
-      <div class="stat-card" data-count="240" data-suffix="+" data-reveal="up" data-delay="100">
+      <div class="stat-card" data-count="20" data-suffix="+" data-reveal="up" data-delay="100">
         <div class="num">0<span class="plus">+</span></div>
         <div class="lbl" data-i18n="home.why.stat2Lbl">Projects delivered</div>
         <div class="stat-bar"><div class="stat-bar-fill"></div></div>
       </div>
-      <div class="stat-card" data-count="9" data-suffix="yrs" data-reveal="up" data-delay="200">
+      <div class="stat-card" data-count="4" data-suffix="yrs" data-reveal="up" data-delay="200">
         <div class="num">0<span class="plus">yrs</span></div>
         <div class="lbl" data-i18n="home.why.stat3Lbl">Industry experience</div>
         <div class="stat-bar"><div class="stat-bar-fill"></div></div>
@@ -475,7 +475,7 @@
             </div>
             <div>
               <strong>Instagram</strong>
-              <a href="https://www.instagram.com/faratechlab_/" target="_blank" rel="noopener noreferrer">@faratechlab_</a>
+              <a href="https://www.instagram.com/faratech.lab/" target="_blank" rel="noopener noreferrer">@faratech.lab</a>
             </div>
           </div>
         </div>
@@ -582,7 +582,7 @@ document.addEventListener('DOMContentLoaded', function () {
     grid.innerHTML = '<p style="opacity:.5; padding:20px; grid-column:1/-1; text-align:center;">' +
       (lang === 'fa' ? 'در حال بارگذاری...' : 'Loading...') + '</p>';
 
-    fetch('http://localhost:8001/api/public_projects.php?lang=' + lang + '&limit=4')
+    fetch('http://localhost:8000/api/public_projects.php?lang=' + lang + '&limit=4')
       .then(function (r) { return r.json(); })
       .then(function (data) {
         if (!data.success || !data.data || data.data.length === 0) {

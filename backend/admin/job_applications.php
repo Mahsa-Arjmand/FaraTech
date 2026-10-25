@@ -41,6 +41,14 @@ if ($action === 'view' && $id > 0) {
                 <?php echo htmlspecialchars($application['position_name'] ?? 'Not specified'); ?>
             </div>
             <div>
+                <strong>Type:</strong><br>
+                <?php if ($application['is_internship']): ?>
+                    <span style="font-size:14px; color:#e5b94a; font-weight:600;">کارآموزی</span>
+                <?php else: ?>
+                    <span style="font-size:14px; color:#10b981; font-weight:600;">شغلی</span>
+                <?php endif; ?>
+            </div>
+            <div>
                 <strong>Status:</strong><br>
                 <span class="badge badge-<?php echo $application['status']; ?>">
                     <?php echo ucfirst($application['status']); ?>
@@ -64,11 +72,15 @@ if ($action === 'view' && $id > 0) {
         <div style="margin-bottom: 20px;">
             <strong>Links:</strong>
             <ul style="margin-top: 10px; padding-left: 20px;">
-                <?php if ($application['resume_url']): ?>
-                    <li><a href="<?php echo htmlspecialchars($application['resume_url']); ?>" target="_blank">Resume/CV</a></li>
+                <?php if ($application['resume_file']): ?>
+                    <li><a href="<?php echo htmlspecialchars($application['resume_file']); ?>" target="_blank" download>Download Resume/CV</a></li>
+                <?php elseif ($application['resume_url']): ?>
+                    <li><a href="<?php echo htmlspecialchars($application['resume_url']); ?>" target="_blank">Resume/CV URL</a></li>
                 <?php endif; ?>
-                <?php if ($application['portfolio_url']): ?>
-                    <li><a href="<?php echo htmlspecialchars($application['portfolio_url']); ?>" target="_blank">Portfolio</a></li>
+                <?php if ($application['portfolio_file']): ?>
+                    <li><a href="<?php echo htmlspecialchars($application['portfolio_file']); ?>" target="_blank" download>Download Portfolio</a></li>
+                <?php elseif ($application['portfolio_url']): ?>
+                    <li><a href="<?php echo htmlspecialchars($application['portfolio_url']); ?>" target="_blank">Portfolio URL</a></li>
                 <?php endif; ?>
                 <?php if ($application['linkedin_url']): ?>
                     <li><a href="<?php echo htmlspecialchars($application['linkedin_url']); ?>" target="_blank">LinkedIn</a></li>

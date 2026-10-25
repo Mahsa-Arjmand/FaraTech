@@ -24,7 +24,7 @@ window.FARATECH = {
     "فرا تِک یک استودیوی فناوری دیجیتال است که ایده‌ها را به راهکارهای عملی دیجیتال تبدیل می‌کند. ما به کسب‌وکارها کمک می‌کنیم تا از طریق تجربه‌های وب مدرن، نرم‌افزار سفارشی، راهکارهای هوشمند مبتنی بر AI و اتوماسیون فرآیندهای کسب‌وکار رشد کنند. تمرکز ما بر ترکیب طراحی متفکرانه، مهندسی مدرن و فناوری هوشمند برای ساخت محصولات دیجیتال مفید، مقیاس‌پذیر و آینده‌نگر است.",
 
   email: "faratechteam@gmail.com",
-  instagram: "https://www.instagram.com/faratechlab_/",
+  instagram: "https://www.instagram.com/faratech.lab/",
   linkedin: "https://www.linkedin.com/company/faratechlab",
   phone: null,
   address: null,
@@ -46,10 +46,32 @@ window.FARATECH = {
       role: "Software & Digital Solutions",
       role_fa: "نرم‌افزار و راهکارهای دیجیتال",
       focus:
-        "Software development, digital solutions, and building practical technology products.",
+        "Software development, digital solutions, intelligent systems, and building practical technology products.",
       focus_fa:
-        "توسعه نرم‌افزار، راهکارهای دیجیتال و ساخت محصولات فناوری عملی.",
+        "توسعه نرم‌افزار، راهکارهای دیجیتال، سیستم‌های هوشمند و ساخت محصولات فناوری عملی.",
       initials: "MA",
+      photo: null,
+    },
+    {
+      name: "Hannaneh Pourmozeh",
+      role: "Sales & Consultant",
+      role_fa: "فروش و مشاور",
+      focus:
+        "Sales strategy, client consulting, and business development.",
+      focus_fa:
+        "استراتژی فروش، مشاوره مشتریان و توسعه کسب‌وکار.",
+      initials: "HP",
+      photo: null,
+    },
+    {
+      name: "Sara Bayat",
+      role: "Advertising & Digital Marketing",
+      role_fa: "تبلیغات و دیجیتال مارکتینگ",
+      focus:
+        "Digital marketing, advertising campaigns, and brand promotion.",
+      focus_fa:
+        "دیجیتال مارکتینگ، کمپین‌های تبلیغاتی و ترویج برند.",
+      initials: "SB",
       photo: null,
     },
   ],

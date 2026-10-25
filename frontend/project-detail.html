@@ -220,40 +220,168 @@
   </div>
 </footer>
 
+<!-- Image Lightbox -->
+<div id="imageLightbox" class="image-lightbox" style="display:none;">
+  <div class="lightbox-content">
+    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <button class="lightbox-prev" onclick="prevImage()">&#10094;</button>
+    <button class="lightbox-next" onclick="nextImage()">&#10095;</button>
+    <img id="lightboxImage" src="" alt="">
+  </div>
+</div>
+
 <style>
-.project-media-section { margin: 60px 0; }
+.project-media-section { margin: 40px 0; max-width: 900px; margin-left: auto; margin-right: auto; text-align: center; }
 .project-media-video, .project-media-image {
-  width: 100%; max-height: 600px; object-fit: cover;
-  border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+  width: 100%; max-height: 400px; object-fit: contain;
+  border-radius: 16px; box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+  background: #000;
+  display: block;
+  margin: 0 auto;
 }
-.gallery-title { font-size: 28px; margin-bottom: 30px; color: var(--color-primary); }
-.gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-.gallery-item { position: relative; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s ease; }
-.gallery-item:hover { transform: translateY(-5px); }
-.gallery-item img { width: 100%; height: 250px; object-fit: cover; display: block; }
-.gallery-caption { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white; padding: 20px; font-size: 14px; opacity: 0; transition: opacity 0.3s ease; }
+
+.project-media-image {
+  cursor: pointer;
+}
+
+#videoContainer, #imageContainer {
+  margin-bottom: 60px;
+}
+.gallery-title { font-size: 24px; margin-bottom: 24px; color: var(--color-primary); font-weight: 700; text-align: center; margin-top: 60px; }
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin-top: 40px; }
+.gallery-item { 
+  position: relative; 
+  border-radius: 16px; 
+  overflow: hidden; 
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06); 
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: #fff;
+}
+.gallery-item:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.12); }
+.gallery-item img { width: 100%; height: 200px; object-fit: cover; display: block; cursor: pointer; }
+.gallery-caption { 
+  position: absolute; 
+  bottom: 0; 
+  left: 0; 
+  right: 0; 
+  background: linear-gradient(transparent, rgba(0,0,0,0.85)); 
+  color: white; 
+  padding: 16px 20px; 
+  font-size: 13px; 
+  opacity: 0; 
+  transition: opacity 0.3s ease;
+}
 .gallery-item:hover .gallery-caption { opacity: 1; }
-.no-media-message { text-align: center; padding: 60px 20px; color: var(--color-text-muted); font-size: 18px; }
-.project-details-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 60px; margin: 40px 0; }
-.project-main-content h2 { font-size: 28px; margin-bottom: 20px; color: var(--color-primary); }
-.project-description p { font-size: 18px; line-height: 1.8; color: var(--color-text); }
-.project-tech h2 { font-size: 28px; margin-bottom: 20px; color: var(--color-primary); }
-.tech-tags { display: flex; flex-wrap: wrap; gap: 12px; }
-.tech-tag { background: var(--navy-900); color: white; padding: 8px 20px; border-radius: 25px; font-size: 14px; font-weight: 500; }
-.project-details h2 { font-size: 28px; margin-bottom: 20px; color: var(--color-primary); }
-.project-details p { font-size: 18px; line-height: 1.8; color: var(--color-text); }
+.no-media-message { 
+  text-align: center; 
+  padding: 40px 20px; 
+  color: var(--color-text-muted); 
+  font-size: 16px;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+}
+.project-details-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; margin: 60px 0; }
+.project-main-content h2 { font-size: 24px; margin-bottom: 16px; color: var(--color-primary); font-weight: 700; }
+.project-description { margin-bottom: 40px; }
+.project-description p { font-size: 16px; line-height: 1.7; color: var(--color-text); }
+.project-tech { margin-bottom: 40px; }
+.project-tech h2 { font-size: 24px; margin-bottom: 16px; color: var(--color-primary); font-weight: 700; }
+.tech-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+.tech-tag { 
+  background: var(--navy-900); 
+  color: white; 
+  padding: 8px 18px; 
+  border-radius: 20px; 
+  font-size: 13px; 
+  font-weight: 500;
+}
+.project-details h2 { font-size: 24px; margin-bottom: 16px; color: var(--color-primary); font-weight: 700; }
+.project-details p { font-size: 16px; line-height: 1.7; color: var(--color-text); }
 .project-sidebar { position: sticky; top: 100px; height: fit-content; }
-.project-info-card { background: var(--color-bg-alt); padding: 30px; border-radius: 12px; margin-bottom: 30px; }
-.project-info-card h3 { font-size: 20px; margin-bottom: 20px; color: var(--color-primary); }
-.info-row { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid var(--color-border); }
+.project-info-card { 
+  background: #fff; 
+  padding: 24px; 
+  border-radius: 16px; 
+  margin-bottom: 24px;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+}
+.project-info-card h3 { font-size: 18px; margin-bottom: 16px; color: var(--color-primary); font-weight: 700; }
+.info-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--color-border); }
 .info-row:last-child { border-bottom: none; }
-.info-label { font-weight: 600; color: var(--color-text-muted); }
-.info-value { font-weight: 500; color: var(--color-text); }
-.project-actions { display: flex; flex-direction: column; gap: 15px; }
+.info-label { font-weight: 600; color: var(--color-text-muted); font-size: 14px; }
+.info-value { font-weight: 500; color: var(--color-text); font-size: 14px; }
+.project-actions { display: flex; flex-direction: column; gap: 12px; }
 .btn-full { width: 100%; justify-content: center; }
+
+/* Image Lightbox */
+.image-lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.95);
+  z-index: 10000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.lightbox-content img {
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 36px;
+  cursor: pointer;
+  padding: 10px;
+  line-height: 1;
+}
+
+.lightbox-prev, .lightbox-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.2);
+  border: none;
+  color: white;
+  font-size: 32px;
+  cursor: pointer;
+  padding: 15px 20px;
+  border-radius: 50%;
+  transition: background 0.3s;
+}
+
+.lightbox-prev { left: -60px; }
+.lightbox-next { right: -60px; }
+
+.lightbox-prev:hover, .lightbox-next:hover {
+  background: rgba(255,255,255,0.4);
+}
+
 @media (max-width: 968px) {
-  .project-details-grid { grid-template-columns: 1fr; gap: 40px; }
+  .project-details-grid { grid-template-columns: 1fr; gap: 30px; }
   .project-sidebar { position: static; }
+  .project-media-section { max-width: 100%; }
+  .lightbox-prev { left: 10px; }
+  .lightbox-next { right: 10px; }
 }
 </style>
 
@@ -312,6 +440,8 @@
   function loadProject() {
     const lang = (window.FT_I18N && window.FT_I18N.current) || 'fa';
 
+    console.log('Loading project with ID:', projectId, 'Language:', lang);
+
     if (!projectId) {
       document.getElementById('projectHeaderTitle').textContent = t('project.notFound', 'Project Not Found');
       document.getElementById('projectHeaderSubtitle').textContent = t('project.notFoundDesc', 'Please go back to the portfolio page.');
@@ -319,9 +449,13 @@
       return;
     }
 
-    fetch('http://localhost:8001/api/public_project.php?id=' + encodeURIComponent(projectId) + '&lang=' + lang)
-      .then(function (r) { return r.json(); })
+    fetch('http://localhost:8000/api/public_project.php?id=' + encodeURIComponent(projectId) + '&lang=' + lang)
+      .then(function (r) {
+        console.log('Response status:', r.status);
+        return r.json();
+      })
       .then(function (data) {
+        console.log('Project data:', data);
         if (data.success && data.data) {
           currentProject = data.data;
           updateUI();
@@ -334,7 +468,7 @@
         }
       })
       .catch(function (err) {
-        console.error(err);
+        console.error('Error loading project:', err);
         document.getElementById('projectHeaderTitle').textContent = t('project.errorLoading', 'Error Loading Project');
         document.getElementById('projectHeaderSubtitle').textContent = '';
         document.getElementById('projectDescription').textContent = t('project.errorLoadingDesc', 'Error.');
@@ -359,14 +493,16 @@
       videoContainer.style.display = 'block';
     }
 
-    fetch('http://localhost:8001/api/project_images.php?project_id=' + encodeURIComponent(projectId))
+    fetch('http://localhost:8000/api/project_images.php?project_id=' + encodeURIComponent(projectId))
       .then(function (r) { return r.json(); })
       .then(function (galleryData) {
         if (galleryData.success && galleryData.data && galleryData.data.length > 0) {
           const grid = document.getElementById('galleryGrid');
-          grid.innerHTML = galleryData.data.map(function (img) {
+          const allImages = galleryData.data.map(function(img) { return img.image_url; });
+          window.galleryImages = allImages;
+          grid.innerHTML = galleryData.data.map(function (img, index) {
             return `
-              <div class="gallery-item">
+              <div class="gallery-item" onclick="openLightbox('${escapeHtml(img.image_url)}', ${index})">
                 <img src="${escapeHtml(img.image_url)}" alt="${escapeHtml(img.caption || '')}">
                 ${img.caption ? `<div class="gallery-caption">${escapeHtml(img.caption)}</div>` : ''}
               </div>
@@ -374,8 +510,15 @@
           }).join('');
           galleryContainer.style.display = 'block';
         } else if (!project.video_url && project.image_url) {
-          document.getElementById('projectImage').src = project.image_url;
+          const mainImage = document.getElementById('projectImage');
+          mainImage.src = project.image_url;
           imageContainer.style.display = 'block';
+          // Make main image clickable to open in lightbox
+          mainImage.style.cursor = 'pointer';
+          mainImage.onclick = function() {
+            window.galleryImages = [project.image_url];
+            openLightbox(project.image_url, 0);
+          };
         }
 
         if (project.video_url || project.image_url || (galleryData.success && galleryData.data.length > 0)) {
@@ -384,12 +527,20 @@
           noMediaContainer.style.display = 'block';
         }
       })
-      .catch(function () {
+      .catch(function (err) {
+        console.error('Error loading gallery:', err);
         if (project.video_url) {
           videoContainer.style.display = 'block';
         } else if (project.image_url) {
-          document.getElementById('projectImage').src = project.image_url;
+          const mainImage = document.getElementById('projectImage');
+          mainImage.src = project.image_url;
           imageContainer.style.display = 'block';
+          // Make main image clickable to open in lightbox
+          mainImage.style.cursor = 'pointer';
+          mainImage.onclick = function() {
+            window.galleryImages = [project.image_url];
+            openLightbox(project.image_url, 0);
+          };
         } else {
           noMediaContainer.style.display = 'block';
         }
@@ -407,6 +558,76 @@
     // اگر داده‌ها لود شده‌اند، دوباره از API با زبان جدید بگیر
     loadProject();
   });
+
+  // Lightbox functionality
+  let currentImageIndex = 0;
+  window.galleryImages = [];
+
+  window.openLightbox = function(src, index) {
+    const lightbox = document.getElementById('imageLightbox');
+    const lightboxImage = document.getElementById('lightboxImage');
+    
+    currentImageIndex = index;
+    lightboxImage.src = src;
+    lightbox.style.display = 'flex';
+    
+    // Show/hide navigation buttons based on number of images
+    const prevBtn = document.querySelector('.lightbox-prev');
+    const nextBtn = document.querySelector('.lightbox-next');
+    if (window.galleryImages.length <= 1) {
+      prevBtn.style.display = 'none';
+      nextBtn.style.display = 'none';
+    } else {
+      prevBtn.style.display = 'block';
+      nextBtn.style.display = 'block';
+    }
+  };
+
+  window.closeLightbox = function() {
+    document.getElementById('imageLightbox').style.display = 'none';
+  };
+
+  window.prevImage = function() {
+    if (window.galleryImages.length === 0) return;
+    currentImageIndex = (currentImageIndex - 1 + window.galleryImages.length) % window.galleryImages.length;
+    document.getElementById('lightboxImage').src = window.galleryImages[currentImageIndex];
+  };
+
+  window.nextImage = function() {
+    if (window.galleryImages.length === 0) return;
+    currentImageIndex = (currentImageIndex + 1) % window.galleryImages.length;
+    document.getElementById('lightboxImage').src = window.galleryImages[currentImageIndex];
+  };
+
+  // Initialize lightbox event listeners
+  function initLightboxEvents() {
+    // Close lightbox on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeLightbox();
+      } else if (e.key === 'ArrowLeft') {
+        prevImage();
+      } else if (e.key === 'ArrowRight') {
+        nextImage();
+      }
+    });
+
+    // Close lightbox on background click
+    const lightbox = document.getElementById('imageLightbox');
+    if (lightbox) {
+      lightbox.addEventListener('click', function(e) {
+        if (e.target === this) {
+          closeLightbox();
+        }
+      });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLightboxEvents);
+  } else {
+    initLightboxEvents();
+  }
 })();
 </script>
 

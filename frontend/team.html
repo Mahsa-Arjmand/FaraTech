@@ -115,7 +115,27 @@
           <div class="team-avatar">MA</div>
           <h3>Mahsa Arjmandfar</h3>
           <span class="team-role" data-i18n="team.founder2.role">Software &amp; Digital Solutions</span>
-          <p data-i18n="team.founder2.focus">Software development, digital solutions, and building practical technology products.</p>
+          <p data-i18n="team.founder2.focus">Software development, digital solutions, intelligent systems, and building practical technology products.</p>
+          <div class="card-shine"></div>
+        </div>
+      </article>
+
+      <article class="team-card card-3d" data-reveal="3d" data-delay="240" data-tilt data-tilt-max="8">
+        <div class="card-3d-inner">
+          <div class="team-avatar">HP</div>
+          <h3>Hannaneh Pourmozeh</h3>
+          <span class="team-role" data-i18n="team.member1.role">Sales &amp; Consultant</span>
+          <p data-i18n="team.member1.focus">Sales strategy, client consulting, and business development.</p>
+          <div class="card-shine"></div>
+        </div>
+      </article>
+
+      <article class="team-card card-3d" data-reveal="3d" data-delay="360" data-tilt data-tilt-max="8">
+        <div class="card-3d-inner">
+          <div class="team-avatar">SB</div>
+          <h3>Sara Bayat</h3>
+          <span class="team-role" data-i18n="team.member2.role">Advertising &amp; Digital Marketing</span>
+          <p data-i18n="team.member2.focus">Digital marketing, advertising campaigns, and brand promotion.</p>
           <div class="card-shine"></div>
         </div>
       </article>
@@ -123,19 +143,28 @@
   </div>
 </section>
 
-<section class="section">
+<section class="section" style="background:#fff; padding:60px 0;">
   <div class="container">
     <div class="section-head center" data-reveal="up">
-      <span class="eyebrow" style="justify-content:center;" data-i18n="team.careers.eyebrow">CAREERS</span>
-      <h2 data-split data-i18n="team.careers.title">Want to join the team?</h2>
-      <p data-i18n="team.careers.desc">We're always looking for talented people who love building things that matter.</p>
+      <span class="eyebrow" style="justify-content:center; color:#1a1a1a;">فرصت‌های شغلی و کارآموزی</span>
+      <h2 data-split style="color:#1a1a1a;" data-i18n="team.careers.title">می‌خواهید به تیم بپیوندید؟</h2>
+      <p style="color:#666;" data-i18n="team.careers.desc">همیشه به دنبال افراد با استعدادی هستیم که عاشق ساختن چیزهای مهم هستند.</p>
     </div>
 
-    <div class="careers-list" id="careersList">
-      <p data-i18n="common.loading">Loading...</p>
+    <div class="careers-list" id="careersList" style="color:#1a1a1a;">
+      <p style="opacity:1; padding:20px; text-align:center; color:#1a1a1a; background:#fff;" data-i18n="common.loading">Loading...</p>
     </div>
   </div>
 </section>
+
+<!-- Notification Toast -->
+<div id="notificationToast" class="notification-toast" style="display:none;">
+  <div class="notification-content">
+    <span class="notification-icon"></span>
+    <span class="notification-message"></span>
+    <button class="notification-close" onclick="hideNotification()">&times;</button>
+  </div>
+</div>
 
 <!-- Job Application Modal -->
 <div id="jobApplicationModal" class="job-modal" style="display:none;">
@@ -167,12 +196,12 @@
         <textarea id="coverLetter" name="cover_letter" rows="4"></textarea>
       </div>
       <div class="form-group">
-        <label>Resume/CV URL</label>
-        <input type="url" id="resumeUrl" name="resume_url">
+        <label>Resume/CV</label>
+        <input type="file" id="resumeFile" name="resume_file" accept=".pdf,.doc,.docx">
       </div>
       <div class="form-group">
-        <label>Portfolio URL</label>
-        <input type="url" id="portfolioUrl" name="portfolio_url">
+        <label>Portfolio</label>
+        <input type="file" id="portfolioFile" name="portfolio_file" accept=".pdf,.zip,.rar">
       </div>
       <div class="form-group">
         <label>LinkedIn URL</label>
@@ -275,14 +304,82 @@
   transition: all 0.3s ease;
   gap: 16px;
   flex-wrap: wrap;
+  background: #ffffff !important;
 }
 .career-item:hover {
   border-color: var(--color-primary, #e5b94a);
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(0,0,0,0.06);
 }
-.career-item h4 { margin: 0 0 6px; font-size: 17px; }
-.career-item span { color: var(--color-text-muted, #666); font-size: 14px; }
+.career-item h4 { margin: 0 0 6px; font-size: 17px; color: #1a1a1a !important; font-weight: 600; }
+.career-item span { color: #666 !important; font-size: 14px; display: block; }
+
+/* Notification Toast */
+.notification-toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10000;
+  min-width: 300px;
+  max-width: 400px;
+}
+
+.notification-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  animation: slideIn 0.3s ease;
+}
+
+.notification-toast.success .notification-content {
+  background: #10b981;
+  color: white;
+}
+
+.notification-toast.error .notification-content {
+  background: #ef4444;
+  color: white;
+}
+
+.notification-icon {
+  font-size: 20px;
+}
+
+.notification-message {
+  flex: 1;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.notification-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.notification-close:hover {
+  opacity: 1;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
 </style>
 
 <script src="js/i18n.js"></script>
@@ -307,6 +404,10 @@
 
   async function loadCareers() {
     const container = document.getElementById('careersList');
+    if (!container) {
+      console.error('careersList container not found');
+      return;
+    }
     const lang = (window.FT_I18N && window.FT_I18N.current) || 'fa';
     container.innerHTML = '<p style="opacity:.5; padding:20px; text-align:center;">' +
       (lang === 'fa' ? 'در حال بارگذاری...' : 'Loading...') + '</p>';
@@ -317,10 +418,12 @@
       if (window.FaraTechSync && typeof window.FaraTechSync.fetchTeamPositions === 'function') {
         positions = await window.FaraTechSync.fetchTeamPositions();
       } else {
-        const r = await fetch('http://localhost:8001/api/public_team_positions.php?lang=' + lang);
+        const r = await fetch('http://localhost:8000/api/public_team_positions.php?lang=' + lang);
         const data = await r.json();
         positions = data.success ? data.data : [];
       }
+
+      console.log('Loaded positions:', positions);
 
       if (!positions || positions.length === 0) {
         container.innerHTML = '<p style="opacity:.5; padding:20px; text-align:center;">' +
@@ -330,14 +433,14 @@
 
       const applyText = t('team.careers.apply', 'Apply');
       container.innerHTML = positions.map(function (position) {
-        // پشتیبانی از فیلدهای name_fa و description_fa اگر برگردند
-        const name = (lang === 'fa' && position.name_fa) ? position.name_fa : position.name;
-        const desc = (lang === 'fa' && position.description_fa) ? position.description_fa : (position.description || '');
+        // API قبلاً ترجمه را انجام داده، مستقیماً از name و description استفاده می‌کنیم
+        const name = position.name || '';
+        const desc = position.description || '';
         return `
-          <div class="career-item" data-reveal="left">
+          <div class="career-item" style="opacity:1 !important; background:#ffffff !important; border:1px solid #e5e5e5 !important; visibility:visible !important; display:flex !important;">
             <div>
-              <h4>${escapeHtml(name)}</h4>
-              <span>${escapeHtml(desc || t('team.careers.fullTime', 'Full-time · Remote / Tehran'))}</span>
+              <h4 style="color:#1a1a1a !important; opacity:1 !important;">${escapeHtml(name)}</h4>
+              <span style="color:#666 !important; opacity:1 !important;">${escapeHtml(desc || t('team.careers.fullTime', 'Full-time · Remote / Tehran'))}</span>
             </div>
             <button type="button" class="btn btn-outline magnetic"
               onclick="openJobModal(${position.id}, '${escapeHtml(name).replace(/'/g, "\\'")}')">
@@ -368,6 +471,28 @@
     document.getElementById('jobApplicationForm').reset();
   };
 
+  window.showNotification = function(message, type = 'success') {
+    const toast = document.getElementById('notificationToast');
+    const toastContent = toast.querySelector('.notification-content');
+    const toastMessage = toast.querySelector('.notification-message');
+    const toastIcon = toast.querySelector('.notification-icon');
+
+    toast.className = 'notification-toast ' + type;
+    toastMessage.textContent = message;
+    toastIcon.textContent = type === 'success' ? '✓' : '✕';
+
+    toast.style.display = 'block';
+
+    setTimeout(function() {
+      hideNotification();
+    }, 5000);
+  };
+
+  window.hideNotification = function() {
+    const toast = document.getElementById('notificationToast');
+    toast.style.display = 'none';
+  };
+
   document.getElementById('jobApplicationForm').addEventListener('submit', async function (e) {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -377,32 +502,46 @@
       email: formData.get('email'),
       phone: formData.get('phone'),
       cover_letter: formData.get('cover_letter'),
-      resume_url: formData.get('resume_url'),
-      portfolio_url: formData.get('portfolio_url'),
       linkedin_url: formData.get('linkedin_url'),
+      is_internship: 0,
     };
+
+    // Handle file uploads
+    const resumeFile = document.getElementById('resumeFile').files[0];
+    const portfolioFile = document.getElementById('portfolioFile').files[0];
+
+    if (resumeFile) {
+      data.resume_file = resumeFile;
+    }
+    if (portfolioFile) {
+      data.portfolio_file = portfolioFile;
+    }
+
     const lang = (window.FT_I18N && window.FT_I18N.current) || 'fa';
 
     try {
-      let ok = false;
-      if (window.FaraTechSync && typeof window.FaraTechSync.submitJobApplication === 'function') {
-        ok = await window.FaraTechSync.submitJobApplication(data);
-      } else {
-        const fd = new FormData();
-        Object.keys(data).forEach(k => data[k] != null && fd.append(k, data[k]));
-        const r = await fetch('http://localhost:8001/api/job_application.php', { method: 'POST', body: fd });
-        const j = await r.json();
-        ok = j.success;
-      }
-      if (ok) {
-        alert(lang === 'fa' ? 'درخواست شما با موفقیت ارسال شد. به‌زودی با شما تماس می‌گیریم.' : 'Application submitted successfully! We will get back to you soon.');
+      const fd = new FormData();
+      Object.keys(data).forEach(k => {
+        if (data[k] != null && data[k] !== '') {
+          fd.append(k, data[k]);
+        }
+      });
+      fd.append('lang', lang);
+
+      const r = await fetch('http://localhost:8000/api/job_application.php', { method: 'POST', body: fd });
+      const j = await r.json();
+
+      console.log('Server response:', j);
+
+      if (j.success) {
+        showNotification(lang === 'fa' ? 'درخواست شما با موفقیت ارسال شد. به‌زودی با شما تماس می‌گیریم.' : 'Application submitted successfully! We will get back to you soon.', 'success');
         closeJobModal();
       } else {
-        alert(lang === 'fa' ? 'خطا در ارسال. لطفاً دوباره تلاش کنید.' : 'Failed to submit. Please try again.');
+        showNotification(lang === 'fa' ? 'خطا در ارسال: ' + (j.message || 'لطفاً دوباره تلاش کنید.') : 'Failed to submit: ' + (j.message || 'Please try again.'), 'error');
       }
     } catch (err) {
       console.error(err);
-      alert(lang === 'fa' ? 'خطا در ارسال.' : 'Submission failed.');
+      showNotification(lang === 'fa' ? 'خطا در ارسال.' : 'Submission failed.', 'error');
     }
   });
 
