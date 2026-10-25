@@ -4,6 +4,17 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
+  // Detect environment and set API base URL
+  function getApiBaseUrl() {
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+      return 'http://localhost:8000/api';
+    } else {
+      return '/api';
+    }
+  }
+
+  const API_BASE = getApiBaseUrl();
+
   contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -30,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     formData.append('topic', topic);
     formData.append('message', message);
 
-    fetch('http://localhost:8000/api/contact.php', {
+    fetch(API_BASE + '/contact.php', {
       method: 'POST',
       body: formData
     })

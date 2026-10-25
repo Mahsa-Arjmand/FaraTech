@@ -215,11 +215,22 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function loadProjects() {
+    // Detect environment and set API base URL
+    function getApiBaseUrl() {
+      if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        return 'http://localhost:8000/api';
+      } else {
+        return '/api';
+      }
+    }
+
+    const API_BASE = getApiBaseUrl();
+
     const lang = (window.FT_I18N && window.FT_I18N.current) || 'fa';
     container.innerHTML = '<p style="opacity:.5; padding:40px; text-align:center; grid-column:1/-1;">' +
       (lang === 'fa' ? 'در حال بارگذاری...' : 'Loading...') + '</p>';
 
-    fetch('http://localhost:8000/api/public_projects.php?lang=' + lang)
+    fetch(API_BASE + '/public_projects.php?lang=' + lang)
       .then(function (r) { return r.json(); })
       .then(function (data) {
         if (!data.success || !data.data || data.data.length === 0) {

@@ -429,6 +429,17 @@
       .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
   }
 
+  // Detect environment and set API base URL
+  function getApiBaseUrl() {
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+      return 'http://localhost:8000/api';
+    } else {
+      return '/api';
+    }
+  }
+
+  const API_BASE = getApiBaseUrl();
+
   async function loadCareers() {
     const container = document.getElementById('careersList');
     if (!container) {
@@ -445,7 +456,7 @@
       if (window.FaraTechSync && typeof window.FaraTechSync.fetchTeamPositions === 'function') {
         positions = await window.FaraTechSync.fetchTeamPositions();
       } else {
-        const r = await fetch('http://localhost:8000/api/public_team_positions.php?lang=' + lang);
+        const r = await fetch(API_BASE + '/public_team_positions.php?lang=' + lang);
         const data = await r.json();
         positions = data.success ? data.data : [];
       }
@@ -555,7 +566,7 @@
       });
       fd.append('lang', lang);
 
-      const r = await fetch('http://localhost:8000/api/job_application.php', { method: 'POST', body: fd });
+      const r = await fetch(API_BASE + '/job_application.php', { method: 'POST', body: fd });
       const j = await r.json();
 
       console.log('Server response:', j);

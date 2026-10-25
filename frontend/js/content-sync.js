@@ -13,7 +13,18 @@
 (function () {
   'use strict';
 
-  const API_BASE = 'http://localhost:8000/api';
+  // Detect environment and set API base URL
+  function getApiBaseUrl() {
+    // Check if running on localhost or production
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+      return 'http://localhost:8000/api';
+    } else {
+      // Production: use relative path to avoid mixed content issues
+      return '/api';
+    }
+  }
+
+  const API_BASE = getApiBaseUrl();
 
   function currentLang() {
     return (window.FT_I18N && window.FT_I18N.current) || 'fa';
