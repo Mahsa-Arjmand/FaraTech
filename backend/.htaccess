@@ -1,0 +1,41 @@
+# Security Headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+</IfModule>
+
+# Disable directory browsing
+Options -Indexes
+
+# Protect sensitive files
+<FilesMatch "\.(env|log|sql|bak|old)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Protect config files
+<FilesMatch "^(config|composer)\.php$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Prevent access to .git directory
+RedirectMatch 404 /\.git
+
+# Prevent access to uploads directory from direct access
+<FilesMatch "\.(php|phtml|php3|php4|php5|phps|php7)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Enable HTTP Strict Transport Security (HTTPS only)
+# Uncomment when using HTTPS
+# Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+
+# Force HTTPS (uncomment when SSL is enabled)
+# RewriteEngine On
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]

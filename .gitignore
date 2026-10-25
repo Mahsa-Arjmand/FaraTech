@@ -1,0 +1,49 @@
+# Environment files
+.env
+.env.local
+.env.production
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Database
+*.sql
+*.sqlite
+*.db
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Uploads (keep structure but not content)
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# XAMPP specific
+xampp/
+tmp/
+
+# Composer
+vendor/
+
+# Node
+node_modules/
+package-lock.json
+yarn.lock
+
+# Backup files
+*.bak
+*.old
+*.backup
