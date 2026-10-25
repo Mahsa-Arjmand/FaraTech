@@ -5,7 +5,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   initPreloader();
   initScrollProgress();
-  initCursor();
   initScrollReveal();
   initSplitText();
   initCounters();
@@ -47,44 +46,6 @@ function initScrollProgress() {
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
     const progress = (scrollTop / docHeight) * 100;
     bar.style.width = progress + '%';
-  });
-}
-
-// ===== CUSTOM CURSOR =====
-function initCursor() {
-  const dot = document.getElementById('cursorDot');
-  const ring = document.getElementById('cursorRing');
-  if (!dot || !ring) return;
-
-  let mouseX = 0, mouseY = 0;
-  let ringX = 0, ringY = 0;
-
-  window.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    dot.style.left = mouseX + 'px';
-    dot.style.top = mouseY + 'px';
-  });
-
-  function animateRing() {
-    ringX += (mouseX - ringX) * 0.15;
-    ringY += (mouseY - ringY) * 0.15;
-    ring.style.left = ringX + 'px';
-    ring.style.top = ringY + 'px';
-    requestAnimationFrame(animateRing);
-  }
-  animateRing();
-
-  // Hover states
-  document.querySelectorAll('a, button, [data-tilt], .flip-card, .service-item').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      dot.classList.add('hover');
-      ring.classList.add('hover');
-    });
-    el.addEventListener('mouseleave', () => {
-      dot.classList.remove('hover');
-      ring.classList.remove('hover');
-    });
   });
 }
 
