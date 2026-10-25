@@ -4,7 +4,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://faratech.ir/sitemap.xml
+Sitemap: https://faratechlab.ir/sitemap.xml
 
 # Disallow sensitive directories
 Disallow: /admin/

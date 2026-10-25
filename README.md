@@ -113,6 +113,7 @@ faratech/
    - Backend: http://localhost:8000
    - Admin Panel: http://localhost:8000/admin/
    - Default login: admin / admin123
+   - Production URL: https://faratechlab.ir
 
 ## Deployment
 
@@ -185,7 +186,7 @@ DB_HOST=localhost
 DB_NAME=FaraTech
 DB_USER=root
 DB_PASS=
-SITE_URL=https://faratech.ir
+SITE_URL=https://faratechlab.ir
 ADMIN_PASSWORD=change_this
 APP_ENV=production
 ```

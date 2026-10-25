@@ -133,8 +133,8 @@ define('DB_PASS', getenv('DB_PASS') ?: 'your_password');
 Create `/etc/apache2/sites-available/faratech.conf`:
 ```apache
 <VirtualHost *:80>
-    ServerName faratech.ir
-    ServerAlias www.faratech.ir
+    ServerName faratechlab.ir
+    ServerAlias www.faratechlab.ir
     DocumentRoot /var/www/faratech/frontend
 
     <Directory /var/www/faratech/frontend>
@@ -154,8 +154,8 @@ Create `/etc/apache2/sites-available/faratech.conf`:
 </VirtualHost>
 
 <VirtualHost *:443>
-    ServerName faratech.ir
-    ServerAlias www.faratech.ir
+    ServerName faratechlab.ir
+    ServerAlias www.faratechlab.ir
     DocumentRoot /var/www/faratech/frontend
 
     SSLEngine on
@@ -191,13 +191,13 @@ Create `/etc/nginx/sites-available/faratech`:
 ```nginx
 server {
     listen 80;
-    server_name faratech.ir www.faratech.ir;
+    server_name faratechlab.ir www.faratechlab.ir;
     return 301 https://$server_name$request_uri;
 }
 
 server {
     listen 443 ssl http2;
-    server_name faratech.ir www.faratech.ir;
+    server_name faratechlab.ir www.faratechlab.ir;
 
     root /var/www/faratech/frontend;
     index index.html;
@@ -262,7 +262,7 @@ sudo systemctl reload nginx
 sudo apt install certbot python3-certbot-apache
 
 # Get certificate
-sudo certbot --apache -d faratech.ir -d www.faratech.ir
+sudo certbot --apache -d faratechlab.ir -d www.faratechlab.ir
 
 # Auto-renewal is configured automatically
 ```
@@ -270,7 +270,7 @@ sudo certbot --apache -d faratech.ir -d www.faratech.ir
 #### For Nginx:
 ```bash
 sudo apt install certbot python3-certbot-nginx
-sudo certbot --nginx -d faratech.ir -d www.faratech.ir
+sudo certbot --nginx -d faratechlab.ir -d www.faratechlab.ir
 ```
 
 ### 8. Update Security Settings
@@ -311,14 +311,14 @@ chmod 775 /var/www/faratech/backend/logs
 ### 10. Test the Deployment
 
 #### Test Frontend
-- Visit: https://faratech.ir
+- Visit: https://faratechlab.ir
 - Check all pages load correctly
 - Test language switching
 - Test contact form
 - Test portfolio links
 
 #### Test Backend
-- Visit: https://faratech.ir/admin/
+- Visit: https://faratechlab.ir/admin/
 - Login with admin credentials
 - Test dashboard
 - Test job application management
@@ -327,10 +327,10 @@ chmod 775 /var/www/faratech/backend/logs
 #### Test API
 ```bash
 # Test projects API
-curl https://faratech.ir/api/public_projects.php?lang=fa
+curl https://faratechlab.ir/api/public_projects.php?lang=fa
 
 # Test job application API
-curl -X POST https://faratech.ir/api/job_application.php \
+curl -X POST https://faratechlab.ir/api/job_application.php \
   -F "position_id=1" \
   -F "full_name=Test" \
   -F "email=test@example.com" \

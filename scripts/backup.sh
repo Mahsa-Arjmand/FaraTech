@@ -9,6 +9,7 @@ DATE=$(date +%Y%m%d_%H%M%S)
 DB_NAME="FaraTech"
 DB_USER="faratech_user"
 FILES_DIR="/var/www/faratech"
+SITE_URL="https://faratechlab.ir"
 
 # Create backup directory if it doesn't exist
 mkdir -p "$BACKUP_DIR"
