@@ -8,6 +8,11 @@ html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+  overflow-x: hidden;
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -16,9 +21,24 @@ body {
   line-height: 1.7;
   color: #1A202C;
   background: #FFFFFF;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+html.preloader-active,
+html.preloader-active body {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+html.nav-open,
+html.nav-open body {
+  overflow: hidden;
+  overscroll-behavior: none;
 }
 
 a {
@@ -30,7 +50,7 @@ ul, ol {
   list-style: none;
 }
 
-img, svg, video {
+img, svg, video, canvas {
   max-width: 100%;
   display: block;
 }

@@ -3,14 +3,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const navLinks = document.getElementById('navLinks');
 
   if (menuToggle && navLinks) {
+    const setMenuOpen = (open) => {
+      navLinks.classList.toggle('active', open);
+      menuToggle.classList.toggle('active', open);
+      document.documentElement.classList.toggle('nav-open', open);
+    };
+
     const toggleMenu = () => {
-      navLinks.classList.toggle('active');
-      menuToggle.classList.toggle('active');
+      setMenuOpen(!navLinks.classList.contains('active'));
     };
 
     const closeMenu = () => {
-      navLinks.classList.remove('active');
-      menuToggle.classList.remove('active');
+      setMenuOpen(false);
     };
 
     menuToggle.addEventListener('click', toggleMenu);

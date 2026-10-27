@@ -16,13 +16,20 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ===== PRELOADER =====
+function hidePreloader(preloader) {
+  preloader.classList.add('hidden');
+  document.documentElement.classList.remove('preloader-active');
+}
+
 function initPreloader() {
   const preloader = document.getElementById('preloader');
   if (!preloader) return;
 
+  document.documentElement.classList.add('preloader-active');
+
   window.addEventListener('load', () => {
     setTimeout(() => {
-      preloader.classList.add('hidden');
+      hidePreloader(preloader);
       // Trigger hero animations after preloader
       document.querySelectorAll('.hero [data-reveal]').forEach(el => {
         el.classList.add('revealed');
@@ -32,7 +39,7 @@ function initPreloader() {
 
   // Fallback
   setTimeout(() => {
-    preloader.classList.add('hidden');
+    hidePreloader(preloader);
   }, 3000);
 }
 

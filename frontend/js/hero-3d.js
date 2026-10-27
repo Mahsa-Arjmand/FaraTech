@@ -4,13 +4,24 @@ export function initHero3D() {
   const canvas = document.getElementById('heroCanvas');
   if (!canvas) return;
 
+  const heroSection = canvas.closest('.hero') || canvas.parentElement;
+
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+  const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 1000);
   camera.position.set(0, 0, 30);
 
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-  renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  function resizeRenderer() {
+    const width = Math.max(heroSection.clientWidth, 1);
+    const height = Math.max(heroSection.clientHeight, 1);
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+    renderer.setSize(width, height, false);
+  }
+
+  resizeRenderer();
 
   // === Particle Network ===
   const particleCount = 2200;
@@ -198,11 +209,12 @@ export function initHero3D() {
 
   animate();
 
-  window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-  });
+  window.addEventListener('resize', resizeRenderer);
+
+  if (typeof ResizeObserver !== 'undefined') {
+    const ro = new ResizeObserver(resizeRenderer);
+    ro.observe(heroSection);
+  }
 }
 
 if (document.readyState === 'loading') {

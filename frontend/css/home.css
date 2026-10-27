@@ -62,17 +62,25 @@
 
 .hero h1 .hero-title-line1 {
   display: block;
-  white-space: nowrap;
+  white-space: normal;
 }
 
 .hero h1 .hero-title-line2 {
   display: block;
-  white-space: nowrap;
+  white-space: normal;
 }
 
 .hero h1 .accent {
   position: relative;
-  white-space: nowrap;
+  white-space: normal;
+}
+
+@media (min-width: 768px) {
+  .hero h1 .hero-title-line1,
+  .hero h1 .hero-title-line2,
+  .hero h1 .accent {
+    white-space: nowrap;
+  }
 }
 
 @media (max-width: 900px) {
@@ -938,7 +946,9 @@
   padding: 90px 0;
   border-radius: 24px;
   margin: 80px auto;
+  width: min(100%, var(--container));
   max-width: var(--container);
+  box-sizing: border-box;
   position: relative;
   overflow: hidden;
 }
