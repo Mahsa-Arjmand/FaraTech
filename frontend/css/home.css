@@ -398,7 +398,7 @@
    ================================================================ */
 .portfolio-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr) !important;
+  grid-template-columns: repeat(4, 1fr);
   gap: 16px;
   min-width: 0;
 }

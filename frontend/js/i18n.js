@@ -113,7 +113,7 @@
 
       // Home — Portfolio
       'home.portfolio.eyebrow': 'نمونه‌کارهای منتخب',
-      'home.portfolio.title': 'پروژه‌هایی که با دقت ساختیم',
+      'home.portfolio.title': 'نمونه کارهای ما',
       'home.portfolio.viewAll': 'مشاهده همه پروژه‌ها',
 
       // Home — AI Teaser
@@ -144,9 +144,9 @@
       'home.why.stat3Lbl': '4 سال تجربه در صنعت',
       'home.why.stat4Lbl': 'برای شروع پروژه',
       'home.why.item1Title': 'تیم داخلی اختصاصی',
-      'home.why.item1Desc': 'پروژه شما توسط یک تیم با ثبات و باتجربه مدیریت می‌شود — نه فریلنسرهای پراکنده.',
+      'home.why.item1Desc': 'مدیریت پروژه شما بر عهده تیمی با ثبات و باتجربه است که در تمام مراحل همراه شما می‌ماند.',
       'home.why.item2Title': 'سرعت و کیفیت در کنار هم',
-      'home.why.item2Desc': 'فرآیندهای آزموده‌شده به ما اجازه می‌دهند سریع تحویل دهیم — بدون قربانی کردن کیفیت.',
+      'home.why.item2Desc': 'فرآیندهای آزموده‌شده = تحویل سریع + کیفیت پایدار.',
       'home.why.item3Title': 'قیمت‌گذاری شفاف',
       'home.why.item3Desc': 'هزینه دقیق و زمان‌بندی را قبل از شروع می‌دانید. بدون هزینه‌های پنهان.',
       'home.why.item4Title': 'پشتیبانی واقعی، نه فقط وعده',
@@ -249,7 +249,7 @@
 
       // Portfolio
       'portfolio.eyebrow': 'نمونه‌کارهای منتخب',
-      'portfolio.title': 'پروژه‌هایی که با دقت ساختیم',
+      'portfolio.title': 'نمونه کارهای ما',
       'portfolio.headerDesc': 'گزیده‌ای از وب‌سایت‌ها، پلتفرم‌ها و محصولات مبتنی بر AI که با مشتریان‌مان ساخته‌ایم.',
       'portfolio.cta.title': 'پروژه‌ای در ذهن دارید؟',
       'portfolio.cta.desc': 'بیایید ایده شما را به محصولی تبدیل کنیم که کاربران‌تان عاشقش شوند.',
@@ -425,7 +425,7 @@
       'home.services.viewAll': 'View All Services',
 
       'home.portfolio.eyebrow': 'SELECTED WORK',
-      'home.portfolio.title': "Projects we've carefully crafted",
+      'home.portfolio.title': 'Our Portfolio',
       'home.portfolio.viewAll': 'View All Projects',
 
       'home.aiTeaser.tag': 'FARATECH AI LAB',
@@ -551,7 +551,7 @@
       'service.automation.item3': 'Intelligent integration',
 
       'portfolio.eyebrow': 'SELECTED WORK',
-      'portfolio.title': "Projects we've carefully crafted",
+      'portfolio.title': 'Our Portfolio',
       'portfolio.headerDesc': "A selection of recent websites, platforms and AI-powered products we've built with our clients.",
       'portfolio.cta.title': 'Have a project in mind?',
       'portfolio.cta.desc': "Let's turn your idea into a product your users will love.",
