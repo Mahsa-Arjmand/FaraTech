@@ -257,7 +257,7 @@ document.addEventListener('DOMContentLoaded', function () {
           const tag = technologies.length > 0 ? technologies[0] : 'WEB';
           const tagClass = getCategoryTagClass(project.category);
           return `
-            <article class="portfolio-card flip-card">
+            <article class="portfolio-card flip-card" data-project-id="${project.id}" data-lang="${lang}">
               <div class="flip-inner">
                 <div class="flip-front">
                   <div class="portfolio-thumb">
@@ -289,12 +289,32 @@ document.addEventListener('DOMContentLoaded', function () {
         if (window.FaraTechReveal && typeof window.FaraTechReveal.refresh === 'function') {
           window.FaraTechReveal.refresh();
         }
+        
+        // Add click handler for mobile
+        container.addEventListener('click', handleMobileProjectClick);
       })
       .catch(function (err) {
         console.error('Error loading projects:', err);
         container.innerHTML = '<p style="opacity:.5; padding:40px; text-align:center; grid-column:1/-1;">' +
           (lang === 'fa' ? 'خطا در بارگذاری پروژه‌ها.' : 'Error loading projects.') + '</p>';
       });
+  }
+
+  // Mobile click handler for project cards
+  function handleMobileProjectClick(e) {
+    const card = e.target.closest('.portfolio-card');
+    if (!card) return;
+    
+    const projectId = card.getAttribute('data-project-id');
+    const lang = card.getAttribute('data-lang') || 'fa';
+    
+    // Check if clicking on a link - let it handle the navigation
+    if (e.target.closest('a')) return;
+    
+    // On mobile/touch devices, navigate to project detail
+    if (window.matchMedia('(max-width: 767px)').matches || 'ontouchstart' in window) {
+      window.location.href = 'project-detail.html?id=' + projectId + '&lang=' + lang;
+    }
   }
 
   loadProjects();

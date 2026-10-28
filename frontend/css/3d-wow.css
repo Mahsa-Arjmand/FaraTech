@@ -366,6 +366,7 @@
   perspective: 1500px;
   height: 320px;
   cursor: pointer;
+  position: relative;
 }
 
 .flip-inner {
@@ -397,6 +398,12 @@
   background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(245, 176, 65, 0.05));
   display: grid;
   place-items: center;
+}
+
+/* Make flip cards clickable on touch devices */
+.flip-card:active {
+  transform: scale(0.98);
+}
   padding: 32px 28px;
   border-color: rgba(59, 130, 246, 0.3);
 }

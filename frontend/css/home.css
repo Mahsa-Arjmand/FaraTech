@@ -419,6 +419,7 @@
   transition: var(--t);
   cursor: pointer;
   min-width: 0;
+  position: relative;
 }
 
 .portfolio-card:hover {

@@ -672,7 +672,7 @@ document.addEventListener('DOMContentLoaded', function () {
           const tagClass = getCategoryTagClass(project.category);
           const viewText = lang === 'fa' ? 'مشاهده جزئیات' : 'View details';
           return `
-            <article class="portfolio-card flip-card">
+            <article class="portfolio-card flip-card" data-project-id="${project.id}" data-lang="${lang}">
               <div class="flip-inner">
                 <div class="flip-front">
                   <div class="portfolio-thumb">
@@ -701,6 +701,9 @@ document.addEventListener('DOMContentLoaded', function () {
         if (window.FaraTechReveal && typeof window.FaraTechReveal.refresh === 'function') {
           window.FaraTechReveal.refresh();
         }
+        
+        // Add click handler for mobile
+        grid.addEventListener('click', handleMobileProjectClick);
       })
       .catch(function (err) {
         console.error('Error loading projects:', err);
@@ -727,12 +730,36 @@ document.addEventListener('DOMContentLoaded', function () {
     };
     return map[category] || 'tag-blue';
   }
+  
+  // Mobile click handler for project cards
+  function handleMobileProjectClick(e) {
+    const card = e.target.closest('.portfolio-card');
+    if (!card) return;
+    
+    const projectId = card.getAttribute('data-project-id');
+    const lang = card.getAttribute('data-lang') || 'fa';
+    
+    // Check if clicking on a link - let it handle the navigation
+    if (e.target.closest('a')) return;
+    
+    // On mobile/touch devices, navigate to project detail
+    if (window.matchMedia('(max-width: 767px)').matches || 'ontouchstart' in window) {
+      window.location.href = 'project-detail.html?id=' + projectId + '&lang=' + lang;
+    }
+  }
 
   // بارگذاری اولیه
   loadProjects();
 
   // بارگذاری مجدد با تغییر زبان
-  document.addEventListener('ft:langchange', loadProjects);
+  document.addEventListener('ft:langchange', function() {
+    // Remove old handler to prevent duplicates
+    const oldGrid = document.getElementById('homeProjects');
+    if (oldGrid) {
+      oldGrid.removeEventListener('click', handleMobileProjectClick);
+    }
+    loadProjects();
+  });
 });
 </script>
 

@@ -418,6 +418,35 @@
   .lightbox-prev { left: 10px; }
   .lightbox-next { right: 10px; }
 }
+
+@media (max-width: 767px) {
+  .project-media-section { margin: 20px 0; }
+  .project-media-video, .project-media-image {
+    max-height: 300px;
+    border-radius: 12px;
+  }
+  .gallery-title { font-size: 20px; margin-bottom: 20px; }
+  .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+  .gallery-item img { height: 150px; }
+  .project-details-grid { margin: 40px 0; gap: 24px; }
+  .project-main-content h2, .project-tech h2, .project-details h2 { font-size: 20px; }
+  .project-description p, .project-details p { font-size: 15px; }
+  .project-info-card { padding: 20px; border-radius: 12px; }
+  .tech-tag { padding: 6px 14px; font-size: 12px; }
+  .lightbox-close { top: -30px; font-size: 28px; }
+  .lightbox-prev, .lightbox-next { font-size: 24px; padding: 10px 15px; }
+}
+
+@media (max-width: 480px) {
+  .project-media-video, .project-media-image { max-height: 250px; }
+  .gallery-grid { grid-template-columns: 1fr; }
+  .gallery-item img { height: 200px; }
+  .project-main-content h2, .project-tech h2, .project-details h2 { font-size: 18px; }
+  .project-description p, .project-details p { font-size: 14px; }
+  .project-info-card { padding: 16px; }
+  .info-row { padding: 10px 0; }
+  .btn-full { padding: 12px 20px; }
+}
 </style>
 
 <script src="js/i18n.js"></script>
