@@ -131,9 +131,18 @@ html[dir="rtl"] .btn:hover svg {
   transform: scaleX(-1) translateX(-4px);
 }
 
-/* marquee برای RTL */
+/* marquee برای RTL
+   در RTL ریل به لبهٔ راست چسبیده و به سمت چپ سرریز می‌کند؛ پس حرکت باید به سمت
+   راست (+50%) باشد. با reverse، انیمیشن از keyframe پایانی (-50%) شروع می‌شد و
+   کل ریل چند ثانیه بیرون از کادر (خالی) می‌ماند. */
 html[dir="rtl"] .marquee-track {
-  animation-direction: reverse;
+  animation-direction: normal;
+  animation-name: marqueeScrollRTL;
+}
+
+@keyframes marqueeScrollRTL {
+  from { transform: translateX(0); }
+  to { transform: translateX(50%); }
 }
 
 /* بولت‌ها و لیست‌ها */
