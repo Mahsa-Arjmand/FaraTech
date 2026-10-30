@@ -1,42 +1,36 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const menuToggle = document.getElementById('menuToggle');
+  const toggle = document.getElementById('menuToggle');
   const navLinks = document.getElementById('navLinks');
 
-  if (menuToggle && navLinks) {
-    const setMenuOpen = (open) => {
+  if (toggle && navLinks) {
+    // Keep in sync with the breakpoint in css/responsive.css where the menu collapses
+    const compactNav = window.matchMedia('(max-width: 1024px)');
+
+    toggle.setAttribute('aria-controls', 'navLinks');
+    toggle.setAttribute('aria-expanded', 'false');
+
+    const setOpen = (open) => {
       navLinks.classList.toggle('active', open);
-      menuToggle.classList.toggle('active', open);
-      document.documentElement.classList.toggle('nav-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
     };
 
-    const toggleMenu = () => {
-      setMenuOpen(!navLinks.classList.contains('active'));
-    };
+    toggle.addEventListener('click', () => setOpen(!navLinks.classList.contains('active')));
+    navLinks.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setOpen(false)));
 
-    const closeMenu = () => {
-      setMenuOpen(false);
-    };
-
-    menuToggle.addEventListener('click', toggleMenu);
-
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', closeMenu);
+    document.addEventListener('click', (e) => {
+      if (navLinks.classList.contains('active') && !navLinks.contains(e.target) && !toggle.contains(e.target)) {
+        setOpen(false);
+      }
     });
 
-    // Close menu on escape key
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && navLinks.classList.contains('active')) {
-        closeMenu();
+        setOpen(false);
+        toggle.focus();
       }
     });
 
-    // Close menu when clicking outside the menu
-    document.addEventListener('click', (e) => {
-      if (navLinks.classList.contains('active') &&
-          !navLinks.contains(e.target) &&
-          !menuToggle.contains(e.target)) {
-        closeMenu();
-      }
-    });
+    // Reset when rotating/resizing into the full desktop navigation
+    compactNav.addEventListener('change', (e) => { if (!e.matches) setOpen(false); });
   }
 });

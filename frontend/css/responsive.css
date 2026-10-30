@@ -51,46 +51,36 @@
 
   .hero h1 { font-size: 2.5rem; }
   .hero-lead { font-size: 1.05rem; }
-  
+
   .site-header .container {
-    padding: 0 28px;
-    gap: 28px;
+    padding: 0 24px;
+    gap: 24px;
   }
-  
-  /* Hide mobile menu toggle on tablets */
-  .menu-toggle {
-    display: none;
-  }
-  
-  /* Show nav links on tablets */
-  .nav-links {
-    display: flex;
-  }
-  
+
   .nav { gap: 20px; }
   .nav-links { gap: 2px; }
-  .nav-links a { padding: 8px 12px; font-size: 0.88rem; }
-  
+  .nav-links a { padding: 8px 11px; font-size: 0.86rem; }
+
   .nav-actions .btn-primary {
-    padding: 10px 18px;
-    font-size: 0.82rem;
+    padding: 10px 16px;
+    font-size: 0.8rem;
   }
-  
+
   .nav-actions .btn-primary svg {
-    width: 13px;
-    height: 13px;
+    width: 12px;
+    height: 12px;
   }
-  
-  .brand { gap: 10px; }
+
+  .brand { gap: 9px; }
   .brand-mark { width: 36px; height: 36px; font-size: 1rem; }
-  .brand-name strong { font-size: 0.95rem; }
+  .brand-name strong { font-size: 0.92rem; }
   .brand-name span { font-size: 0.6rem; }
-  
+
   /* Hide mobile menu toggle on tablets */
   .menu-toggle {
     display: none;
   }
-  
+
   /* Show nav links on tablets */
   .nav-links {
     display: flex;
@@ -106,50 +96,37 @@
   .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
   .team-grid { grid-template-columns: repeat(2, 1fr); }
   .services-grid { grid-template-columns: 1fr 1fr; }
-  .nav { gap: 24px; }
-  .nav-links { gap: 2px; }
-  .nav-links a { padding: 8px 12px; font-size: 0.88rem; }
-  
+
   .site-header .container {
-    padding: 0 28px;
-    gap: 28px;
+    padding: 0 20px;
+    gap: 20px;
   }
-  
+
+  .nav { gap: 16px; }
+  .nav-links { gap: 2px; }
+  .nav-links a { padding: 8px 10px; font-size: 0.84rem; }
+
+  .nav-actions { gap: 8px; }
   .nav-actions .btn-primary {
-    padding: 10px 18px;
-    font-size: 0.82rem;
+    padding: 9px 15px;
+    font-size: 0.78rem;
   }
-  
+
   .nav-actions .btn-primary svg {
-    width: 13px;
-    height: 13px;
+    width: 11px;
+    height: 11px;
   }
-  
-  .brand { gap: 10px; }
-  .brand-mark { width: 36px; height: 36px; font-size: 1rem; }
-  .brand-name strong { font-size: 0.95rem; }
-  .brand-name span { font-size: 0.6rem; }
-  
+
+  .brand { gap: 8px; }
+  .brand-mark { width: 34px; height: 34px; font-size: 0.95rem; }
+  .brand-name strong { font-size: 0.9rem; }
+  .brand-name span { font-size: 0.58rem; }
+
   /* Hide mobile menu toggle on tablets */
   .menu-toggle {
     display: none;
   }
-  
-  /* Show nav links on tablets */
-  .nav-links {
-    display: flex;
-  }
-  
-  .brand { gap: 10px; }
-  .brand-mark { width: 36px; height: 36px; font-size: 1rem; }
-  .brand-name strong { font-size: 0.95rem; }
-  .brand-name span { font-size: 0.6rem; }
-  
-  /* Hide mobile menu toggle on tablets */
-  .menu-toggle {
-    display: none;
-  }
-  
+
   /* Show nav links on tablets */
   .nav-links {
     display: flex;
@@ -177,7 +154,35 @@
   .ai-process { grid-template-columns: repeat(2, 1fr); }
   .ai-teaser-card { grid-template-columns: 1fr; padding: 50px 40px; }
   .ai-hero-visual { min-height: 320px; }
-  
+
+  /* Compact navigation: the full link row needs ~980px, so collapse it here */
+  .nav-links {
+    position: fixed;
+    top: var(--header-h);
+    left: -100%;
+    width: 260px;
+    height: calc(100vh - var(--header-h));
+    background: var(--white);
+    flex-direction: column;
+    align-items: stretch;
+    padding: 20px;
+    gap: 2px;
+    border-right: 1px solid var(--gray-200);
+    transition: left 0.35s var(--ease), visibility 0.35s;
+    box-shadow: 8px 0 30px rgba(11, 31, 58, 0.06);
+    overflow-y: auto;
+    visibility: hidden;
+  }
+
+  .nav-links.active { left: 0; visibility: visible; }
+  .nav-links a { padding: 13px 15px; }
+  .menu-toggle { display: flex; }
+
+  /* Single-column hero: centre the whole composition, not just the heading */
+  .ai-hero-content { text-align: center; }
+  .ai-hero p { margin-left: auto; margin-right: auto; }
+  .ai-hero .hero-actions { justify-content: center; }
+
   .site-header .container {
     padding: 0 24px;
   }
@@ -224,34 +229,6 @@
 
   .nav-links.active {
     display: flex;
-    position: fixed;
-    top: 56px;
-    left: 0;
-    width: 100%;
-    height: calc(100vh - 56px);
-    background: var(--white);
-    flex-direction: column;
-    align-items: stretch;
-    padding: 20px;
-    padding-top: max(20px, env(safe-area-inset-top));
-    padding-bottom: max(20px, env(safe-area-inset-bottom));
-    gap: 2px;
-    transition: transform 0.3s ease;
-    box-shadow: 0 4px 20px rgba(11, 31, 58, 0.1);
-    overflow-y: auto;
-    z-index: 1000;
-    -webkit-overflow-scrolling: touch;
-    transform: translateX(-100%);
-  }
-
-  .nav-links.active {
-    transform: translateX(0);
-  }
-
-  [dir="rtl"] .nav-links.active {
-    left: auto;
-    right: 0;
-    transform: translateX(0);
   }
 
   .nav-links a {
@@ -282,16 +259,14 @@
     width: 14px;
     height: 2px;
   }
-  
+
   [dir="rtl"] .menu-toggle {
     margin-right: 12px;
   }
-  
+
   [dir="ltr"] .menu-toggle {
     margin-left: 12px;
   }
-
-  .nav-actions .btn-ghost { display: none; }
   
   .nav-actions .btn-primary {
     padding: 10px 18px;
@@ -567,6 +542,11 @@
 }
 
 /* Mobile Standard - 480px to 575px */
+@media (max-width: 480px) {
+  /* Logo + CTA + menu button no longer fit; "Contact" stays in the menu */
+  .nav-actions .btn { display: none; }
+}
+
 @media (max-width: 575px) {
   .container { padding: 0 18px; }
   
@@ -830,16 +810,4 @@
   .contact-form { padding: 16px; }
 
   .why-stats { grid-template-columns: 1fr; }
-
-  .nav-actions .btn { display: none; }
-  
-  .nav-actions .btn-primary {
-    padding: 8px 14px;
-    font-size: 0.75rem;
-  }
-  
-  .nav-actions .btn-primary svg {
-    width: 11px;
-    height: 11px;
-  }
 }

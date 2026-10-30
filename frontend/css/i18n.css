@@ -149,6 +149,24 @@ html[dir="rtl"] .breadcrumb span:first-child {
   display: inline-block;
 }
 
+/* Page header should stay centred in RTL */
+html[dir="rtl"] .page-header,
+html[dir="rtl"] .page-header .eyebrow,
+html[dir="rtl"] .page-header h1,
+html[dir="rtl"] .page-header p,
+html[dir="rtl"] .page-header-3d,
+html[dir="rtl"] .page-header-3d h1,
+html[dir="rtl"] .page-header-3d p {
+  text-align: center;
+}
+
+/* AI Lab hero should stay centred in RTL */
+html[dir="rtl"] .ai-hero-content,
+html[dir="rtl"] .ai-hero h1,
+html[dir="rtl"] .ai-hero p {
+  text-align: center;
+}
+
 /* فرم‌ها */
 html[dir="rtl"] .form-group label {
   text-align: right;

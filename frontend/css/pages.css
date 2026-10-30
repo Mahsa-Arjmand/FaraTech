@@ -13,6 +13,13 @@
   display: inline-flex;
 }
 
+.page-header .eyebrow::after {
+  content: '';
+  width: 20px;
+  height: 2px;
+  background: var(--gold);
+}
+
 .page-header h1 {
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 900;
@@ -24,6 +31,7 @@
   margin-left: auto;
   margin-right: auto;
   word-break: keep-all;
+  text-wrap: balance;
 }
 
 html[lang="fa"] .page-header h1 {
@@ -36,6 +44,7 @@ html[lang="fa"] .page-header h1 {
   line-height: 1.85;
   max-width: 620px;
   margin: 0 auto 24px;
+  text-wrap: balance;
 }
 
 .breadcrumb {
@@ -603,7 +612,10 @@ html[lang="fa"] .page-header h1 {
 
 .page-header-3d h1 {
   font-size: clamp(2rem, 5vw, 3.5rem);
-  margin: 16px 0 20px;
+  /* auto side margins keep the capped-width title box centred on the same axis
+     as the paragraph below it (without them the 700px box sticks to the
+     inline-start edge, i.e. to the right in RTL, and looks off-centre) */
+  margin: 16px auto 20px;
 }
 
 .page-header-3d p {

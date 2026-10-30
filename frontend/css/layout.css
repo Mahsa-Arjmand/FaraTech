@@ -36,14 +36,17 @@
   padding-right: max(24px, env(safe-area-inset-right));
 }
 
+/* Brand | links | actions. Equal outer columns keep the links centred on the   page; the middle column is sized by the links so they never wrap or shrink. */
 .nav {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
   height: var(--header-h);
-  gap: 40px;
-  flex: 1;
+  gap: 24px;
 }
+
+.nav > .brand { justify-self: start; }
+.nav > .nav-actions { justify-self: end; }
 
 /* Logo */
 .brand {
@@ -113,6 +116,7 @@
   color: var(--gray-700);
   border-radius: 8px;
   transition: var(--t-fast);
+  white-space: nowrap;
 }
 
 .nav-links a:hover,
@@ -125,7 +129,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-left: auto;
+  justify-content: flex-end;
 }
 
 [dir="rtl"] .nav-actions {
