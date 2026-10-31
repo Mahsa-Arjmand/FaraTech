@@ -6,8 +6,11 @@ requireAdmin();
 
 $db = getDBConnection();
 
-// Get statistics
+// Reporting period is restricted to known values before it is used in the interval query.
 $days = isset($_GET['days']) ? (int)$_GET['days'] : 30;
+if (!in_array($days, [7, 30, 90, 365], true)) {
+    $days = 30;
+}
 
 // Get total views by page
 $stmt = $db->query("SELECT page, SUM(views_count) as total_views FROM page_views WHERE view_date >= DATE_SUB(CURDATE(), INTERVAL $days DAY) GROUP BY page ORDER BY total_views DESC");
@@ -154,6 +157,7 @@ $viewsList = $stmt->fetchAll();
             <option value="about" <?php echo $pageFilter === 'about' ? 'selected' : ''; ?>>About</option>
             <option value="services" <?php echo $pageFilter === 'services' ? 'selected' : ''; ?>>Services</option>
             <option value="portfolio" <?php echo $pageFilter === 'portfolio' ? 'selected' : ''; ?>>Portfolio</option>
+            <option value="project-detail" <?php echo $pageFilter === 'project-detail' ? 'selected' : ''; ?>>Project Details</option>
             <option value="team" <?php echo $pageFilter === 'team' ? 'selected' : ''; ?>>Team</option>
             <option value="contact" <?php echo $pageFilter === 'contact' ? 'selected' : ''; ?>>Contact</option>
             <option value="ai-lab" <?php echo $pageFilter === 'ai-lab' ? 'selected' : ''; ?>>AI Lab</option>

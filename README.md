@@ -89,7 +89,8 @@ faratech/
 2. **Setup database**
    - Create a MySQL database named `FaraTech`
    - Import the database schema
-   - Run `php backend/setup_database.php`
+   - Run `php backend/setup_database.php` (creates project details, gallery, and view-tracking tables)
+   - For an existing database, apply missing migrations: `php backend/migrations/add_project_details.php`, `php backend/migrations/add_video_url.php`, and `php backend/migrations/create_project_images.php`
 
 3. **Configure environment**
    ```bash
@@ -97,15 +98,15 @@ faratech/
    # Edit .env with your local settings
    ```
 
-4. **Start servers**
+4. **Start servers** (use two terminals)
    ```bash
-   # Backend (port 8000)
+   # Terminal 1 — PHP API, bound locally; the browser never calls this port directly
    cd backend
-   php -S localhost:8000
+   php -S 127.0.0.1:8000
 
-   # Frontend (port 3000)
+   # Terminal 2 — frontend and same-origin /api proxy
    cd frontend
-   php -S localhost:3000
+   node dev-server.cjs
    ```
 
 5. **Access the site**

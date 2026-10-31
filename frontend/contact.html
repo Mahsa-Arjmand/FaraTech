@@ -2,6 +2,8 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
 <meta name="theme-color" content="#0B1F3A" />
 <meta name="mobile-web-app-capable" content="yes" />
@@ -12,7 +14,7 @@
 
 <!-- Primary Meta Tags -->
 <meta name="title" content="تماس با FaraTech | ارتباط با ما">
-<meta name="description" content="با FaraTech تماس بگیرید. ما آماده کمک به شما در طراحی وب، توسعه نرم‌افزار و راهکارهای هوش مصنوعی هستیم. ایمیل: faratechteam@gmail.com | اینستاگرام: @faratech.lab">
+<meta name="description" content="با FaraTech درباره طراحی وب، توسعه نرم‌افزار، هوش مصنوعی و اتوماسیون کسب‌وکار صحبت کنید. برای مشاوره با ما در تماس باشید.">
 <meta name="keywords" content="تماس با فراتک, ارتباط با FaraTech, درخواست پروژه, مشاوره رایگان, طراحی سایت, توسعه نرم‌افزار">
 <meta name="author" content="FaraTech">
 <meta name="robots" content="index, follow">
@@ -21,16 +23,21 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://faratechlab.ir/contact.html">
 <meta property="og:title" content="تماس با FaraTech | ارتباط با ما">
-<meta property="og:description" content="با FaraTech تماس بگیرید. ما آماده کمک به شما در طراحی وب، توسعه نرم‌افزار و راهکارهای هوش مصنوعی هستیم.">
-<meta property="og:image" content="https://faratechlab.ir/images/og-image.jpg">
+<meta property="og:description" content="با FaraTech درباره طراحی وب، توسعه نرم‌افزار، هوش مصنوعی و اتوماسیون کسب‌وکار صحبت کنید. برای مشاوره با ما در تماس باشید.">
+<meta property="og:image" content="https://faratechlab.ir/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="FaraTech — Digital Technology Studio">
+<meta property="og:site_name" content="FaraTech">
 <meta property="og:locale" content="fa_IR">
 
 <!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://faratechlab.ir/contact.html">
-<meta property="twitter:title" content="تماس با FaraTech | ارتباط با ما">
-<meta property="twitter:description" content="با FaraTech تماس بگیرید. ما آماده کمک به شما در طراحی وب، توسعه نرم‌افزار و راهکارهای هوش مصنوعی هستیم.">
-<meta property="twitter:image" content="https://faratechlab.ir/images/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://faratechlab.ir/contact.html">
+<meta name="twitter:title" content="تماس با FaraTech | ارتباط با ما">
+<meta name="twitter:description" content="با FaraTech درباره طراحی وب، توسعه نرم‌افزار، هوش مصنوعی و اتوماسیون کسب‌وکار صحبت کنید. برای مشاوره با ما در تماس باشید.">
+<meta name="twitter:image" content="https://faratechlab.ir/og-image.png">
+<meta name="twitter:image:alt" content="FaraTech — Digital Technology Studio">
 
 <!-- Canonical URL -->
 <link rel="canonical" href="https://faratechlab.ir/contact.html">
@@ -310,11 +317,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Detect environment and set API base URL
     function getApiBaseUrl() {
-      if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-        return 'http://localhost:8000/api';
-      } else {
-        return '/api';
-      }
+      return window.FARATECH_API_BASE || '/api';
     }
 
     const API_BASE = getApiBaseUrl();
@@ -347,5 +350,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 
+<script src="js/page-views.js" defer></script>
 </body>
 </html>

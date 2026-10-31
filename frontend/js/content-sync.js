@@ -15,13 +15,8 @@
 
   // Detect environment and set API base URL
   function getApiBaseUrl() {
-    // Check if running on localhost or production
-    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-      return 'http://localhost:8000/api';
-    } else {
-      // Production: use relative path to avoid mixed content issues
-      return '/api';
-    }
+    // Relative requests are served by the site host; the dev server proxies /api to PHP.
+    return window.FARATECH_API_BASE || '/api';
   }
 
   const API_BASE = getApiBaseUrl();

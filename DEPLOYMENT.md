@@ -19,6 +19,8 @@
 - zip
 - fileinfo
 
+For project video uploads up to 100 MB, set PHP `upload_max_filesize=100M` and `post_max_size=110M` in the active `php.ini`, then restart PHP-FPM/Apache. Nginx admin/API locations also need compatible `client_max_body_size` limits.
+
 ## Deployment Steps
 
 ### 1. Prepare the Server
@@ -82,7 +84,7 @@ Update the following values:
 - `DB_NAME`: Your database name
 - `DB_USER`: Your database username
 - `DB_PASS`: Your database password
-- `SITE_URL`: Your production URL (e.g., https://faratech.ir)
+- `SITE_URL`: Your canonical production URL (for this project: `https://faratechlab.ir`)
 - `ADMIN_PASSWORD`: Strong password for admin
 - `APP_ENV`: Set to `production`
 
@@ -137,6 +139,11 @@ Create `/etc/apache2/sites-available/faratech.conf`:
     ServerAlias www.faratechlab.ir
     DocumentRoot /var/www/faratech/frontend
 
+    # Keep the browser API/media URLs same-origin while executing the PHP backend.
+    Alias /api/ /var/www/faratech/backend/api/
+    Alias /admin/ /var/www/faratech/backend/admin/
+    Alias /uploads.php /var/www/faratech/backend/uploads.php
+
     <Directory /var/www/faratech/frontend>
         Options -Indexes +FollowSymLinks
         AllowOverride All
@@ -157,6 +164,11 @@ Create `/etc/apache2/sites-available/faratech.conf`:
     ServerName faratechlab.ir
     ServerAlias www.faratechlab.ir
     DocumentRoot /var/www/faratech/frontend
+
+    # Same-origin routes are required for public API calls, analytics and uploaded media.
+    Alias /api/ /var/www/faratech/backend/api/
+    Alias /admin/ /var/www/faratech/backend/admin/
+    Alias /uploads.php /var/www/faratech/backend/uploads.php
 
     SSLEngine on
     SSLCertificateFile /path/to/certificate.crt
@@ -212,8 +224,9 @@ server {
         try_files $uri $uri/ /index.html;
     }
 
-    # Backend API
+    # Backend API (gallery image uploads)
     location /api/ {
+        client_max_body_size 20M;
         alias /var/www/faratech/backend/api/;
         try_files $uri $uri/ =404;
         location ~ \.php$ {
@@ -224,8 +237,17 @@ server {
         }
     }
 
-    # Backend Admin
+    # Uploaded project media (including byte-range video playback)
+    location = /uploads.php {
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME /var/www/faratech/backend/uploads.php;
+        fastcgi_param SCRIPT_NAME /uploads.php;
+        fastcgi_pass unix:/var/run/php/php8.0-fpm.sock;
+    }
+
+    # Backend Admin (project forms can upload video files)
     location /admin/ {
+        client_max_body_size 100M;
         alias /var/www/faratech/backend/admin/;
         try_files $uri $uri/ /admin/login.php;
         location ~ \.php$ {

@@ -12,7 +12,10 @@ $publishedProjects = $db->query("SELECT COUNT(*) FROM projects WHERE status = 'p
 $commentCount = $db->query("SELECT COUNT(*) FROM comments")->fetchColumn();
 $pendingComments = $db->query("SELECT COUNT(*) FROM comments WHERE status = 'pending'")->fetchColumn();
 $positionCount = $db->query("SELECT COUNT(*) FROM team_positions")->fetchColumn();
-$totalViews = $db->query("SELECT SUM(views_count) FROM page_views WHERE view_date >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)")->fetchColumn() ?: 0;
+$totalViews = (int)$db->query("SELECT COALESCE(SUM(views_count), 0) FROM page_views WHERE view_date >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)")->fetchColumn();
+$todayViews = (int)$db->query("SELECT COALESCE(SUM(views_count), 0) FROM page_views WHERE view_date = CURDATE()")->fetchColumn();
+$allTimeViews = (int)$db->query("SELECT COALESCE(SUM(views_count), 0) FROM page_views")->fetchColumn();
+$topPage = $db->query("SELECT page, SUM(views_count) AS views FROM page_views WHERE view_date >= DATE_SUB(CURDATE(), INTERVAL 30 DAY) GROUP BY page ORDER BY views DESC LIMIT 1")->fetch();
 $jobApplicationCount = $db->query("SELECT COUNT(*) FROM job_applications")->fetchColumn();
 $pendingApplications = $db->query("SELECT COUNT(*) FROM job_applications WHERE status = 'pending'")->fetchColumn();
 
@@ -60,6 +63,18 @@ $recentProjects = $db->query("SELECT * FROM projects ORDER BY created_at DESC LI
     <div class="stat-card">
         <h3>Page Views (30d)</h3>
         <div class="value"><?php echo number_format($totalViews); ?></div>
+    </div>
+    <div class="stat-card">
+        <h3>Today's Views</h3>
+        <div class="value"><?php echo number_format($todayViews); ?></div>
+    </div>
+    <div class="stat-card">
+        <h3>All-time Page Views</h3>
+        <div class="value"><?php echo number_format($allTimeViews); ?></div>
+    </div>
+    <div class="stat-card">
+        <h3>Top Page (30d)</h3>
+        <div class="value" style="font-size: 1.2rem;"><?php echo $topPage ? htmlspecialchars(ucfirst($topPage['page'])) . ' · ' . number_format((int)$topPage['views']) : 'No traffic yet'; ?></div>
     </div>
 </div>
 

@@ -9,6 +9,40 @@ function cleanInput($data) {
     return $data;
 }
 
+// Convert legacy localhost upload links to same-origin URLs without changing external media.
+function publicMediaUrl($url) {
+    $url = trim((string)$url);
+    if ($url === '') {
+        return '';
+    }
+
+    $parts = parse_url($url);
+    if (!is_array($parts)) {
+        return '';
+    }
+
+    $host = strtolower($parts['host'] ?? '');
+    $path = $parts['path'] ?? '';
+    $localHost = in_array($host, ['localhost', '127.0.0.1'], true);
+    $localPath = $host === '' && preg_match('#^/?uploads/projects/[a-z0-9_.-]+$#i', $path);
+
+    if ($localPath) {
+        $file = ltrim($path, '/');
+        return '/uploads.php?file=' . rawurlencode($file);
+    }
+
+    if ($localHost && strtolower(basename($path)) === 'uploads.php') {
+        parse_str($parts['query'] ?? '', $query);
+        $file = str_replace(chr(92), '/', (string)($query['file'] ?? ''));
+        $file = ltrim($file, '/');
+        if (preg_match('#^uploads/projects/[a-z0-9_.-]+$#i', $file)) {
+            return '/uploads.php?file=' . rawurlencode($file);
+        }
+    }
+
+    return $url;
+}
+
 // JSON response helper
 function jsonResponse($success, $message, $data = null) {
     header('Content-Type: application/json');

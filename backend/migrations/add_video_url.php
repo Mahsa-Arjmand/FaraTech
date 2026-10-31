@@ -3,18 +3,14 @@ require_once __DIR__ . '/../config/database.php';
 
 try {
     $db = getDBConnection();
-    
-    // Add video_url column if it doesn't exist
-    $db->exec("ALTER TABLE projects ADD COLUMN video_url VARCHAR(500) AFTER image_url");
-    echo "Column 'video_url' added to projects table successfully.\n";
-    
-} catch (PDOException $e) {
-    // Column might already exist, check if that's the case
-    $db = getDBConnection();
-    $stmt = $db->query("SHOW COLUMNS FROM projects LIKE 'video_url'");
-    if ($stmt->fetch()) {
-        echo "Column 'video_url' already exists in projects table.\n";
+    $column = $db->query("SHOW COLUMNS FROM projects LIKE 'video_url'");
+    if ($column->rowCount() === 0) {
+        $db->exec('ALTER TABLE projects ADD COLUMN video_url VARCHAR(500) NULL AFTER image_url');
+        echo "Added projects.video_url.\n";
     } else {
-        die("Migration failed: " . $e->getMessage());
+        echo "projects.video_url already exists.\n";
     }
+} catch (Throwable $e) {
+    http_response_code(500);
+    echo 'Migration failed: ' . htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8');
 }

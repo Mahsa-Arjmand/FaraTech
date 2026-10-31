@@ -25,11 +25,8 @@ Options -Indexes
 # Prevent access to .git directory
 RedirectMatch 404 /\.git
 
-# Prevent access to uploads directory from direct access
-<FilesMatch "\.(php|phtml|php3|php4|php5|phps|php7)$">
-    Order allow,deny
-    Deny from all
-</FilesMatch>
+# Uploaded assets are not aliased as a public directory; serve them only through
+# backend/uploads.php, which confines reads to the uploads tree and sets MIME/range headers.
 
 # Enable HTTP Strict Transport Security (HTTPS only)
 # Uncomment when using HTTPS

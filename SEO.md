@@ -16,7 +16,7 @@
 - **og:url**: Full URL for each page
 - **og:title**: Optimized titles for social sharing
 - **og:description**: Descriptions optimized for social media
-- **og:image**: Placeholder for shared images
+- **og:image**: Branded 1200 × 630 social preview at `/og-image.png`
 - **og:locale**: fa_IR for Persian content
 
 #### Twitter Card Tags:
@@ -24,7 +24,7 @@
 - **twitter:url**: Full URL
 - **twitter:title**: Optimized titles
 - **twitter:description**: Social-friendly descriptions
-- **twitter:image**: Placeholder for Twitter sharing
+- **twitter:image**: Branded 1200 × 630 social preview at `/og-image.png`
 
 ### 2. HTML Structure Improvements
 
@@ -45,8 +45,8 @@
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "FaraTech",
-  "url": "https://faratech.ir",
-  "logo": "https://faratech.ir/images/logo.png",
+  "url": "https://faratechlab.ir/",
+  "logo": "https://faratechlab.ir/favicon.svg",
   "description": "...",
   "address": {
     "@type": "PostalAddress",
@@ -87,7 +87,14 @@ Created `sitemap.xml` with:
 - Change frequency (weekly for dynamic content, monthly for static)
 - Last modification dates
 
-### 6. Page-Specific SEO
+### 6. Dynamic Portfolio SEO and Analytics
+- Each project detail updates its title, description, canonical URL, Open Graph/Twitter tags, image alt text, and `CreativeWork`/`BreadcrumbList` JSON-LD from published project data.
+- The portfolio collection exposes `CollectionPage` and breadcrumb structured data.
+- `/api/sitemap.php` lists published project detail URLs and their modification dates; `robots.txt` advertises it alongside the static sitemap.
+- A first-party page-view tracker records real page loads in `page_views`; the admin dashboard and analytics page read those rows. Demo seeding no longer fabricates view totals.
+- Project image/video URLs are same-origin, and the upload endpoint supports byte-range requests for video seeking.
+
+### 7. Page-Specific SEO
 
 #### Homepage (index.html):
 - Title: "FaraTech | شرکت طراحی وب و توسعه نرم‌افزار هوشمند"

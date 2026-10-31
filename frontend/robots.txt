@@ -1,21 +1,16 @@
-# robots.txt for FaraTech
-
+# FaraTech — robots.txt
 User-agent: *
 Allow: /
-
-# Sitemap
-Sitemap: https://faratechlab.ir/sitemap.xml
-
-# Disallow sensitive directories
+Allow: /api/sitemap.php
+Allow: /api/public_projects.php
+Allow: /api/public_project.php
+Allow: /api/project_images.php
 Disallow: /admin/
 Disallow: /api/
-Disallow: /uploads/
 Disallow: /logs/
+Disallow: /*.env$
+Disallow: /*.log$
+Disallow: /*.sql$
 
-# Disallow development files
-Disallow: /*.env
-Disallow: /*.log
-Disallow: /*.sql
-
-# Crawl delay (optional)
-Crawl-delay: 1
+Sitemap: https://faratechlab.ir/api/sitemap.php
+Sitemap: https://faratechlab.ir/sitemap.xml

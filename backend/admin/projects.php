@@ -147,7 +147,7 @@ if ($action === 'create' || $action === 'edit') {
     <?php if ($project && $id > 0): ?>
     // Load existing gallery images
     const projectId = <?php echo $id; ?>;
-    fetch('api/project_images.php?project_id=' + projectId)
+    fetch('../api/project_images.php?project_id=' + projectId)
         .then(response => response.json())
         .then(data => {
             if (data.success && data.data.length > 0) {
@@ -162,7 +162,7 @@ if ($action === 'create' || $action === 'edit') {
                     imgDiv.innerHTML = `
                         <img src="${img.image_url}" style="max-width: 100px; max-height: 100px; margin-right: 10px;">
                         <span>${img.caption || 'No caption'}</span>
-                        <a href="api/project_images.php?action=delete&id=${img.id}" class="btn btn-small btn-danger" style="margin-left: 10px;">Delete</a>
+                        <a href="../api/project_images.php?action=delete&id=${img.id}" class="btn btn-small btn-danger" style="margin-left: 10px;">Delete</a>
                     `;
                     currentGallery.appendChild(imgDiv);
                 });

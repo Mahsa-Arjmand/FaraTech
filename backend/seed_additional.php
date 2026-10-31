@@ -30,9 +30,9 @@ try {
 
     // Sample comments
     $comments = [
-        ['page' => 'index', 'author_name' => 'John Doe', 'author_email' => 'john@example.com', 'comment_text' => 'Great website! Very professional and clean design.', 'status' => 'approved'],
-        ['page' => 'index', 'author_name' => 'Jane Smith', 'author_email' => 'jane@example.com', 'comment_text' => 'Love the portfolio section. Would love to work with you guys!', 'status' => 'approved'],
-        ['page' => 'about', 'author_name' => 'Mike Johnson', 'author_email' => 'mike@example.com', 'comment_text' => 'Impressive team and vision. Keep up the good work!', 'status' => 'approved'],
+        ['page' => 'index', 'author_name' => 'Akram Akbari', 'author_email' => '', 'comment_text' => 'Great website! Very professional and clean design.', 'status' => 'approved'],
+        ['page' => 'index', 'author_name' => 'Mahdeh', 'author_email' => '', 'comment_text' => 'Love the portfolio section. Would love to work with you guys!', 'status' => 'approved'],
+        ['page' => 'index', 'author_name' => 'Hedieh', 'author_email' => '', 'comment_text' => 'Impressive team and vision. Keep up the good work!', 'status' => 'approved'],
         ['page' => 'services', 'author_name' => 'Sarah Williams', 'author_email' => 'sarah@example.com', 'comment_text' => 'Do you offer mobile app development as well?', 'status' => 'pending'],
         ['page' => 'portfolio', 'author_name' => 'David Brown', 'author_email' => 'david@example.com', 'comment_text' => 'Amazing projects! The AI Lab work is particularly interesting.', 'status' => 'approved'],
         ['page' => 'contact', 'author_name' => 'Emily Davis', 'author_email' => 'emily@example.com', 'comment_text' => 'Spam comment - delete this', 'status' => 'rejected'],
@@ -47,22 +47,7 @@ try {
         echo "Added comment from {$comment['author_name']} ({$comment['status']})\n";
     }
 
-    // Sample page views (simulate some traffic)
-    $pages = ['index', 'about', 'services', 'portfolio', 'team', 'contact', 'ai-lab'];
-    $today = date('Y-m-d');
-
-    $stmt = $db->prepare("INSERT INTO page_views (page, view_date, views_count) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE views_count = views_count + VALUES(views_count)");
-
-    // Add views for last 7 days
-    for ($i = 0; $i < 7; $i++) {
-        $date = date('Y-m-d', strtotime("-$i days"));
-        foreach ($pages as $page) {
-            $views = rand(10, 100);
-            $stmt->execute([$page, $date, $views]);
-        }
-    }
-
-    echo "Added sample page views for last 7 days\n";
+    // Page-view analytics are intentionally not seeded; the public tracker records real traffic.
 
     // Sample projects
     $projects = [

@@ -6,12 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Detect environment and set API base URL
   function getApiBaseUrl() {
-    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-      return 'http://localhost:8000/api';
-    } else {
-      return '/api';
+      return window.FARATECH_API_BASE || '/api';
     }
-  }
 
   const API_BASE = getApiBaseUrl();
 

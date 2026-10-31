@@ -2,6 +2,8 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
 <meta name="theme-color" content="#0B1F3A" />
 <meta name="mobile-web-app-capable" content="yes" />
@@ -12,7 +14,7 @@
 
 <!-- Primary Meta Tags -->
 <meta name="title" content="نمونه‌کارها | پروژه‌های FaraTech">
-<meta name="description" content="مشاهده نمونه‌کارهای FaraTech - پروژه‌های طراحی وب، توسعه نرم‌افزار، اپلیکیشن‌های موبایل و راهکارهای هوش مصنوعی. پروژه‌های موفق ما در حوزه‌های مختلف کسب‌وکار.">
+<meta name="description" content="نمونه‌کارهای FaraTech در طراحی وب، توسعه نرم‌افزار، پلتفرم‌های دیجیتال و راهکارهای هوش مصنوعی را ببینید.">
 <meta name="keywords" content="نمونه کار طراحی سایت, پورتفولیو فراتک, پروژه‌های طراحی وب, نمونه کار نرم‌افزار, portfolio, کارهای انجام شده">
 <meta name="author" content="FaraTech">
 <meta name="robots" content="index, follow">
@@ -21,19 +23,46 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://faratechlab.ir/portfolio.html">
 <meta property="og:title" content="نمونه‌کارها | پروژه‌های FaraTech">
-<meta property="og:description" content="مشاهده نمونه‌کارهای FaraTech - پروژه‌های طراحی وب، توسعه نرم‌افزار، اپلیکیشن‌های موبایل و راهکارهای هوش مصنوعی.">
-<meta property="og:image" content="https://faratechlab.ir/images/og-image.jpg">
+<meta property="og:description" content="نمونه‌کارهای FaraTech در طراحی وب، توسعه نرم‌افزار، پلتفرم‌های دیجیتال و راهکارهای هوش مصنوعی را ببینید.">
+<meta property="og:image" content="https://faratechlab.ir/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="FaraTech — Digital Technology Studio">
+<meta property="og:site_name" content="FaraTech">
 <meta property="og:locale" content="fa_IR">
 
 <!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://faratechlab.ir/portfolio.html">
-<meta property="twitter:title" content="نمونه‌کارها | پروژه‌های FaraTech">
-<meta property="twitter:description" content="مشاهده نمونه‌کارهای FaraTech - پروژه‌های طراحی وب، توسعه نرم‌افزار، اپلیکیشن‌های موبایل و راهکارهای هوش مصنوعی.">
-<meta property="twitter:image" content="https://faratechlab.ir/images/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://faratechlab.ir/portfolio.html">
+<meta name="twitter:title" content="نمونه‌کارها | پروژه‌های FaraTech">
+<meta name="twitter:description" content="نمونه‌کارهای FaraTech در طراحی وب، توسعه نرم‌افزار، پلتفرم‌های دیجیتال و راهکارهای هوش مصنوعی را ببینید.">
+<meta name="twitter:image" content="https://faratechlab.ir/og-image.png">
+<meta name="twitter:image:alt" content="FaraTech — Digital Technology Studio">
 
 <!-- Canonical URL -->
 <link rel="canonical" href="https://faratechlab.ir/portfolio.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "name": "نمونه‌کارهای FaraTech",
+      "description": "نمونه‌کارهای FaraTech در طراحی وب، توسعه نرم‌افزار، پلتفرم‌های دیجیتال و راهکارهای هوش مصنوعی را ببینید.",
+      "url": "https://faratechlab.ir/portfolio.html",
+      "inLanguage": "fa",
+      "isPartOf": { "@type": "WebSite", "name": "FaraTech", "url": "https://faratechlab.ir/" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "خانه", "item": "https://faratechlab.ir/" },
+        { "@type": "ListItem", "position": 2, "name": "نمونه‌کارها", "item": "https://faratechlab.ir/portfolio.html" }
+      ]
+    }
+  ]
+}
+</script>
 
 <title>نمونه‌کارها | پروژه‌های FaraTech</title>
 
@@ -65,6 +94,7 @@
 <link rel="stylesheet" href="css/3d-wow.css" />
 <link rel="stylesheet" href="css/i18n.css" />
 <link rel="stylesheet" href="css/responsive.css" />
+<link rel="stylesheet" href="css/project-work.css" />
 </head>
 <body>
 
@@ -133,7 +163,7 @@
 <section class="section section-3d">
   <div class="section-bg-3d" data-parallax="0.1"></div>
   <div class="container">
-    <div class="portfolio-full-grid" id="portfolioContainer">
+    <div class="portfolio-full-grid portfolio-work-grid" id="portfolioContainer" aria-live="polite" aria-busy="true">
       <p data-i18n="common.loading">Loading...</p>
     </div>
   </div>
@@ -201,126 +231,9 @@
 <script src="js/menu.js"></script>
 <script src="js/content-sync.js"></script>
 
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  const container = document.getElementById('portfolioContainer');
-  if (!container) return;
-
-  function escapeHtml(s) {
-    return String(s == null ? '' : s)
-      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-  }
-
-  function getCategoryTagClass(category) {
-    const map = {
-      'E-Commerce': 'tag-gold', 'فروشگاه اینترنتی': 'tag-gold',
-      'Corporate': 'tag-blue', 'شرکتی': 'tag-blue',
-      'Web App': 'tag-purple', 'وب اپلیکیشن': 'tag-purple',
-      'Website': 'tag-green', 'وب‌سایت': 'tag-green',
-      'Platform': 'tag-red', 'پلتفرم': 'tag-red',
-      'AI Product': 'tag-orange', 'محصول AI': 'tag-orange',
-      'SaaS': 'tag-pink',
-    };
-    return map[category] || 'tag-blue';
-  }
-
-  function loadProjects() {
-    // Detect environment and set API base URL
-    function getApiBaseUrl() {
-      if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-        return 'http://localhost:8000/api';
-      } else {
-        return '/api';
-      }
-    }
-
-    const API_BASE = getApiBaseUrl();
-
-    const lang = (window.FT_I18N && window.FT_I18N.current) || 'fa';
-    container.innerHTML = '<p style="opacity:.5; padding:40px; text-align:center; grid-column:1/-1;">' +
-      (lang === 'fa' ? 'در حال بارگذاری...' : 'Loading...') + '</p>';
-
-    fetch(API_BASE + '/public_projects.php?lang=' + lang)
-      .then(function (r) { return r.json(); })
-      .then(function (data) {
-        if (!data.success || !data.data || data.data.length === 0) {
-          container.innerHTML = '<p style="opacity:.5; padding:40px; text-align:center; grid-column:1/-1;">' +
-            (lang === 'fa' ? 'هنوز پروژه‌ای ثبت نشده.' : 'No projects yet.') + '</p>';
-          return;
-        }
-        const viewText = lang === 'fa' ? 'مشاهده جزئیات' : 'View details';
-        const visitText = lang === 'fa' ? 'مشاهده پروژه' : 'Visit project';
-
-        container.innerHTML = data.data.map(function (project) {
-          const technologies = project.technologies || [];
-          const tag = technologies.length > 0 ? technologies[0] : 'WEB';
-          const tagClass = getCategoryTagClass(project.category);
-          return `
-            <article class="portfolio-card flip-card" data-project-id="${project.id}" data-lang="${lang}">
-              <div class="flip-inner">
-                <div class="flip-front">
-                  <div class="portfolio-thumb">
-                    <div class="portfolio-thumb-overlay">${escapeHtml(project.title).substring(0, 4).toUpperCase()}</div>
-                  </div>
-                  <div class="portfolio-body">
-                    <span class="tag ${tagClass}">${escapeHtml(String(tag)).toUpperCase()}</span>
-                    <h3>${escapeHtml(project.title)}</h3>
-                  </div>
-                </div>
-                <div class="flip-back">
-                  <div class="flip-back-content">
-                    <span class="tag ${tagClass}">${escapeHtml(String(tag)).toUpperCase()}</span>
-                    <h3>${escapeHtml(project.title)}</h3>
-                    <p>${escapeHtml(project.description || '')}</p>
-                    <a href="project-detail.html?id=${project.id}&lang=${lang}" class="flip-link">${viewText}
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </a>
-                    ${project.project_url ? `<a href="${escapeHtml(project.project_url)}" class="flip-link" target="_blank" rel="noopener">${visitText}
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </a>` : ''}
-                  </div>
-                </div>
-              </div>
-            </article>
-          `;
-        }).join('');
-
-        if (window.FaraTechReveal && typeof window.FaraTechReveal.refresh === 'function') {
-          window.FaraTechReveal.refresh();
-        }
-        
-        // Add click handler for mobile
-        container.addEventListener('click', handleMobileProjectClick);
-      })
-      .catch(function (err) {
-        console.error('Error loading projects:', err);
-        container.innerHTML = '<p style="opacity:.5; padding:40px; text-align:center; grid-column:1/-1;">' +
-          (lang === 'fa' ? 'خطا در بارگذاری پروژه‌ها.' : 'Error loading projects.') + '</p>';
-      });
-  }
-
-  // Mobile click handler for project cards
-  function handleMobileProjectClick(e) {
-    const card = e.target.closest('.portfolio-card');
-    if (!card) return;
-    
-    const projectId = card.getAttribute('data-project-id');
-    const lang = card.getAttribute('data-lang') || 'fa';
-    
-    // Check if clicking on a link - let it handle the navigation
-    if (e.target.closest('a')) return;
-    
-    // On mobile/touch devices, navigate to project detail
-    if (window.matchMedia('(max-width: 767px)').matches || 'ontouchstart' in window) {
-      window.location.href = 'project-detail.html?id=' + projectId + '&lang=' + lang;
-    }
-  }
-
-  loadProjects();
-  document.addEventListener('ft:langchange', loadProjects);
-});
-</script>
+<script src="js/project-cards.js"></script>
+<script src="js/portfolio.js"></script>
+<script src="js/page-views.js" defer></script>
 
 </body>
 </html>

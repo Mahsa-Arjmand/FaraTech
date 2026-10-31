@@ -30,7 +30,7 @@ if (isset($_FILES['image_upload']) && $_FILES['image_upload']['error'] === UPLOA
     $uploadPath = __DIR__ . '/../uploads/projects/' . $imageName;
 
     if (move_uploaded_file($imageFile['tmp_name'], $uploadPath)) {
-        $image_url = 'http://localhost:8001/uploads.php?file=uploads/projects/' . $imageName;
+        $image_url = '/uploads.php?file=' . rawurlencode('uploads/projects/' . $imageName);
     }
 }
 
@@ -42,7 +42,7 @@ if (isset($_FILES['video_upload']) && $_FILES['video_upload']['error'] === UPLOA
     $uploadPath = __DIR__ . '/../uploads/projects/' . $videoName;
 
     if (move_uploaded_file($videoFile['tmp_name'], $uploadPath)) {
-        $video_url = 'http://localhost:8001/uploads.php?file=uploads/projects/' . $videoName;
+        $video_url = '/uploads.php?file=' . rawurlencode('uploads/projects/' . $videoName);
     }
 }
 
@@ -80,7 +80,7 @@ if ($id > 0 && !empty($gallery_images['name'])) {
             $uploadPath = __DIR__ . '/../uploads/projects/' . $newImageName;
 
             if (move_uploaded_file($gallery_images['tmp_name'][$index], $uploadPath)) {
-                $imageUrl = 'http://localhost:8001/uploads.php?file=uploads/projects/' . $newImageName;
+                $imageUrl = '/uploads.php?file=' . rawurlencode('uploads/projects/' . $newImageName);
                 $caption = cleanInput($gallery_captions[$index] ?? '');
 
                 $stmt = $db->prepare("INSERT INTO project_images (project_id, image_url, caption, display_order) VALUES (?, ?, ?, ?)");

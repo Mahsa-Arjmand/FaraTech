@@ -12,7 +12,7 @@
 
 <!-- Primary Meta Tags -->
 <meta name="title" content="FaraTech | شرکت طراحی وب و توسعه نرم‌افزار هوشمند">
-<meta name="description" content="FaraTech - ارائه خدمات طراحی وب، توسعه نرم‌افزار، راهکارهای هوش مصنوعی و اتوماسیون کسب‌وکار. ایده‌های شما را به راه‌حل‌های دیجیتال تبدیل می‌کنیم. خدمات طراحی سایت، توسعه وب، AI و اتوماسیون فرآیندهای کسب‌وکار.">
+<meta name="description" content="FaraTech؛ طراحی و توسعه وب‌سایت، نرم‌افزار سفارشی، راهکارهای هوش مصنوعی و اتوماسیون کسب‌وکار برای رشد دیجیتال.">
 <meta name="keywords" content="طراحی وب, توسعه نرم‌افزار, هوش مصنوعی, AI, اتوماسیون, راهکارهای دیجیتال, شرکت نرم‌افزاری, طراحی سایت در ایران, FaraTech, فراتک">
 <meta name="author" content="FaraTech">
 <meta name="robots" content="index, follow">
@@ -21,22 +21,27 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://faratechlab.ir/">
 <meta property="og:title" content="FaraTech | شرکت طراحی وب و توسعه نرم‌افزار هوشمند">
-<meta property="og:description" content="ارائه خدمات طراحی وب، توسعه نرم‌افزار، راهکارهای هوش مصنوعی و اتوماسیون کسب‌وکار. ایده‌های شما را به راه‌حل‌های دیجیتال تبدیل می‌کنیم.">
-<meta property="og:image" content="https://faratechlab.ir/images/og-image.jpg">
+<meta property="og:description" content="FaraTech؛ طراحی و توسعه وب‌سایت، نرم‌افزار سفارشی، راهکارهای هوش مصنوعی و اتوماسیون کسب‌وکار برای رشد دیجیتال.">
+<meta property="og:image" content="https://faratechlab.ir/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="FaraTech — Digital Technology Studio">
+<meta property="og:site_name" content="FaraTech">
 <meta property="og:locale" content="fa_IR">
 
 <!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://faratechlab.ir/">
-<meta property="twitter:title" content="FaraTech | شرکت طراحی وب و توسعه نرم‌افزار هوشمند">
-<meta property="twitter:description" content="ارائه خدمات طراحی وب، توسعه نرم‌افزار، راهکارهای هوش مصنوعی و اتوماسیون کسب‌وکار.">
-<meta property="twitter:image" content="https://faratechlab.ir/images/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://faratechlab.ir/">
+<meta name="twitter:title" content="FaraTech | شرکت طراحی وب و توسعه نرم‌افزار هوشمند">
+<meta name="twitter:description" content="FaraTech؛ طراحی و توسعه وب‌سایت، نرم‌افزار سفارشی، راهکارهای هوش مصنوعی و اتوماسیون کسب‌وکار برای رشد دیجیتال.">
+<meta name="twitter:image" content="https://faratechlab.ir/og-image.png">
+<meta name="twitter:image:alt" content="FaraTech — Digital Technology Studio">
 
 <!-- Canonical URL -->
 <link rel="canonical" href="https://faratechlab.ir/">
 
 <!-- Favicon -->
-<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
 <title>FaraTech | شرکت طراحی وب و توسعه نرم‌افزار هوشمند</title>
@@ -59,7 +64,7 @@
   "@type": "Organization",
   "name": "FaraTech",
   "url": "https://faratechlab.ir",
-  "logo": "https://faratechlab.ir/images/logo.png",
+  "logo": "https://faratechlab.ir/favicon.svg",
   "description": "شرکت طراحی وب و توسعه نرم‌افزار هوشمند با تخصص در راهکارهای AI و اتوماسیون کسب‌وکار",
   "address": {
     "@type": "PostalAddress",
@@ -94,6 +99,7 @@
 <link rel="stylesheet" href="css/3d-wow.css" />
 <link rel="stylesheet" href="css/i18n.css" />
 <link rel="stylesheet" href="css/responsive.css" />
+<link rel="stylesheet" href="css/project-work.css" />
 </head>
 <body>
 
@@ -298,7 +304,17 @@
       <h2 data-split data-i18n="home.portfolio.title">Projects we've carefully crafted</h2>
     </div>
 
-    <div class="portfolio-grid" data-ft-render="projects" id="homeProjects"></div>
+    <div class="portfolio-carousel" role="region" data-i18n-attr="aria-label:home.portfolio.title" aria-label="نمونه‌کارهای ما">
+      <div class="portfolio-slider-controls" aria-label="Project carousel controls">
+        <button type="button" class="portfolio-slider-control" id="homeProjectsPrevious" aria-controls="homeProjects" data-i18n-attr="aria-label:home.portfolio.previous" aria-label="پروژه قبلی">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button type="button" class="portfolio-slider-control" id="homeProjectsNext" aria-controls="homeProjects" data-i18n-attr="aria-label:home.portfolio.next" aria-label="پروژه بعدی">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+      <div class="portfolio-rail" data-ft-render="projects" id="homeProjects" tabindex="0" aria-live="polite" aria-busy="true"></div>
+    </div>
 
     <div class="section-cta" data-reveal="up">
       <a href="portfolio.html" class="btn btn-outline magnetic">
@@ -481,8 +497,8 @@
         <div class="testimonial-author">
           <div class="avatar">M</div>
           <div>
-            <strong data-i18n="home.testimonials.t1Author">Maryam Rezaei</strong>
-            <span data-i18n="home.testimonials.t1Role">Manager, Aram Store</span>
+            <strong data-i18n="home.testimonials.t1Author">Akram Akbari</strong>
+            <span data-i18n="home.testimonials.t1Role">Client</span>
           </div>
         </div>
       </article>
@@ -500,8 +516,8 @@
         <div class="testimonial-author">
           <div class="avatar">A</div>
           <div>
-            <strong data-i18n="home.testimonials.t2Author">Ali Mohammadi</strong>
-            <span data-i18n="home.testimonials.t2Role">Founder, Zarrin Fintech</span>
+            <strong data-i18n="home.testimonials.t2Author">Mahdeh</strong>
+            <span data-i18n="home.testimonials.t2Role">Client</span>
           </div>
         </div>
       </article>
@@ -519,8 +535,8 @@
         <div class="testimonial-author">
           <div class="avatar">S</div>
           <div>
-            <strong data-i18n="home.testimonials.t3Author">Sara Karimi</strong>
-            <span data-i18n="home.testimonials.t3Role">Marketing Manager, Safarin</span>
+            <strong data-i18n="home.testimonials.t3Author">Hedieh</strong>
+            <span data-i18n="home.testimonials.t3Role">Client</span>
           </div>
         </div>
       </article>
@@ -650,132 +666,9 @@
 <script src="js/content-sync.js"></script>
 <script src="js/marquee.js?v=2"></script>
 
-<!-- Load projects from API (bilingual) -->
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  const grid = document.getElementById('homeProjects');
-  if (!grid) return;
-
-  // Detect environment and set API base URL
-  function getApiBaseUrl() {
-    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-      return 'http://localhost:8000/api';
-    } else {
-      return '/api';
-    }
-  }
-
-  const API_BASE = getApiBaseUrl();
-
-  function loadProjects() {
-    const lang = (window.FT_I18N && window.FT_I18N.current) || 'fa';
-    grid.innerHTML = '<p style="opacity:.5; padding:20px; grid-column:1/-1; text-align:center;">' +
-      (lang === 'fa' ? 'در حال بارگذاری...' : 'Loading...') + '</p>';
-
-    fetch(API_BASE + '/public_projects.php?lang=' + lang + '&limit=4')
-      .then(function (r) { return r.json(); })
-      .then(function (data) {
-        if (!data.success || !data.data || data.data.length === 0) {
-          grid.innerHTML = '<p style="opacity:.5; padding:20px; grid-column:1/-1; text-align:center;">' +
-            (lang === 'fa' ? 'هنوز پروژه‌ای ثبت نشده.' : 'No projects yet.') + '</p>';
-          return;
-        }
-        grid.innerHTML = data.data.map(function (project, index) {
-          const technologies = project.technologies || [];
-          const tag = technologies.length > 0 ? technologies[0] : 'WEB';
-          const tagClass = getCategoryTagClass(project.category);
-          const viewText = lang === 'fa' ? 'مشاهده جزئیات' : 'View details';
-          return `
-            <article class="portfolio-card flip-card" data-project-id="${project.id}" data-lang="${lang}">
-              <div class="flip-inner">
-                <div class="flip-front">
-                  <div class="portfolio-thumb">
-                    <div class="portfolio-thumb-overlay">${escapeHtml(project.title).substring(0, 4).toUpperCase()}</div>
-                  </div>
-                  <div class="portfolio-body">
-                    <span class="tag ${tagClass}">${escapeHtml(String(tag)).toUpperCase()}</span>
-                    <h3>${escapeHtml(project.title)}</h3>
-                  </div>
-                </div>
-                <div class="flip-back">
-                  <div class="flip-back-content">
-                    <span class="tag ${tagClass}">${escapeHtml(String(tag)).toUpperCase()}</span>
-                    <h3>${escapeHtml(project.title)}</h3>
-                    <p>${escapeHtml(project.description || (lang === 'fa' ? 'یک پروژه سفارشی.' : 'A custom project.'))}</p>
-                    <a href="project-detail.html?id=${project.id}&lang=${lang}" class="flip-link">${viewText}
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </article>
-          `;
-        }).join('');
-
-        if (window.FaraTechReveal && typeof window.FaraTechReveal.refresh === 'function') {
-          window.FaraTechReveal.refresh();
-        }
-        
-        // Add click handler for mobile
-        grid.addEventListener('click', handleMobileProjectClick);
-      })
-      .catch(function (err) {
-        console.error('Error loading projects:', err);
-        grid.innerHTML = '<p style="opacity:.5; padding:20px; grid-column:1/-1; text-align:center;">' +
-          (lang === 'fa' ? 'خطا در بارگذاری پروژه‌ها.' : 'Error loading projects.') + '</p>';
-      });
-  }
-
-  function escapeHtml(s) {
-    return String(s == null ? '' : s)
-      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-  }
-
-  function getCategoryTagClass(category) {
-    const map = {
-      'E-Commerce': 'tag-gold', 'فروشگاه اینترنتی': 'tag-gold',
-      'Corporate': 'tag-blue', 'شرکتی': 'tag-blue',
-      'Web App': 'tag-purple', 'وب اپلیکیشن': 'tag-purple',
-      'Website': 'tag-green', 'وب‌سایت': 'tag-green',
-      'Platform': 'tag-red', 'پلتفرم': 'tag-red',
-      'AI Product': 'tag-orange', 'محصول AI': 'tag-orange',
-      'SaaS': 'tag-pink',
-    };
-    return map[category] || 'tag-blue';
-  }
-  
-  // Mobile click handler for project cards
-  function handleMobileProjectClick(e) {
-    const card = e.target.closest('.portfolio-card');
-    if (!card) return;
-    
-    const projectId = card.getAttribute('data-project-id');
-    const lang = card.getAttribute('data-lang') || 'fa';
-    
-    // Check if clicking on a link - let it handle the navigation
-    if (e.target.closest('a')) return;
-    
-    // On mobile/touch devices, navigate to project detail
-    if (window.matchMedia('(max-width: 767px)').matches || 'ontouchstart' in window) {
-      window.location.href = 'project-detail.html?id=' + projectId + '&lang=' + lang;
-    }
-  }
-
-  // بارگذاری اولیه
-  loadProjects();
-
-  // بارگذاری مجدد با تغییر زبان
-  document.addEventListener('ft:langchange', function() {
-    // Remove old handler to prevent duplicates
-    const oldGrid = document.getElementById('homeProjects');
-    if (oldGrid) {
-      oldGrid.removeEventListener('click', handleMobileProjectClick);
-    }
-    loadProjects();
-  });
-});
-</script>
+<script src="js/project-cards.js"></script>
+<script src="js/home-projects.js"></script>
+<script src="js/page-views.js" defer></script>
 
 </body>
 </html>

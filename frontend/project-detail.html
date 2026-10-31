@@ -2,6 +2,8 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
 <meta name="theme-color" content="#0B1F3A" />
 <meta name="mobile-web-app-capable" content="yes" />
@@ -11,7 +13,7 @@
 
 <!-- Primary Meta Tags -->
 <meta name="title" content="جزئیات پروژه | FaraTech">
-<meta name="description" content="مشاهده جزئیات پروژه‌های FaraTech - اطلاعات کامل، تکنولوژی‌های استفاده شده و مشخصات پروژه.">
+<meta name="description" content="جزئیات پروژه‌های FaraTech شامل معرفی، فناوری‌های استفاده‌شده، تصاویر و ویدئوهای هر نمونه‌کار.">
 <meta name="keywords" content="جزئیات پروژه, مشخصات پروژه, تکنولوژی‌ها, پروژه نرم‌افزار, پروژه وب">
 <meta name="author" content="FaraTech">
 <meta name="robots" content="index, follow">
@@ -20,20 +22,23 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://faratechlab.ir/project-detail.html">
 <meta property="og:title" content="جزئیات پروژه | FaraTech">
-<meta property="og:description" content="مشاهده جزئیات پروژه‌های FaraTech - اطلاعات کامل، تکنولوژی‌های استفاده شده و مشخصات پروژه.">
-<meta property="og:image" content="https://faratechlab.ir/images/og-image.jpg">
+<meta property="og:description" content="جزئیات پروژه‌های FaraTech شامل معرفی، فناوری‌های استفاده‌شده، تصاویر و ویدئوهای هر نمونه‌کار.">
+<meta property="og:image" content="https://faratechlab.ir/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="FaraTech — Digital Technology Studio">
+<meta property="og:site_name" content="FaraTech">
 <meta property="og:locale" content="fa_IR">
 
 <!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://faratechlab.ir/project-detail.html">
-<meta property="twitter:title" content="جزئیات پروژه | FaraTech">
-<meta property="twitter:description" content="مشاهده جزئیات پروژه‌های FaraTech - اطلاعات کامل، تکنولوژی‌های استفاده شده و مشخصات پروژه.">
-<meta property="twitter:image" content="https://faratechlab.ir/images/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://faratechlab.ir/project-detail.html">
+<meta name="twitter:title" content="جزئیات پروژه | FaraTech">
+<meta name="twitter:description" content="جزئیات پروژه‌های FaraTech شامل معرفی، فناوری‌های استفاده‌شده، تصاویر و ویدئوهای هر نمونه‌کار.">
+<meta name="twitter:image" content="https://faratechlab.ir/og-image.png">
+<meta name="twitter:image:alt" content="FaraTech — Digital Technology Studio">
 
-<!-- Canonical URL -->
-<link rel="canonical" href="https://faratechlab.ir/project-detail.html">
-
+<!-- Canonical URL is set from the loaded project ID by project-detail.js. -->
 <title>جزئیات پروژه | FaraTech</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -65,6 +70,7 @@
 <link rel="stylesheet" href="css/3d-wow.css" />
 <link rel="stylesheet" href="css/i18n.css" />
 <link rel="stylesheet" href="css/responsive.css" />
+<link rel="stylesheet" href="css/project-work.css" />
 </head>
 <body>
 
@@ -115,7 +121,7 @@
   </div>
 </header>
 
-<section class="page-header page-header-3d">
+<section class="page-header page-header-3d project-detail-hero">
   <canvas id="pageCanvas" class="page-canvas" aria-hidden="true"></canvas>
   <div class="page-header-overlay" aria-hidden="true"></div>
   <div class="container page-header-content">
@@ -129,27 +135,32 @@
   </div>
 </section>
 
-<section class="section">
+<section class="section project-showcase-section">
   <div class="container">
     <div class="project-media-section" id="projectMediaSection">
-      <div id="videoContainer" style="display: none;">
-        <video id="projectVideo" controls class="project-media-video"></video>
+      <div id="videoContainer" class="project-media-frame" hidden>
+        <video id="projectVideo" controls playsinline preload="metadata" class="project-media-video">
+          Your browser does not support embedded video.
+        </video>
       </div>
-      <div id="imageContainer" style="display: none;">
-        <img id="projectImage" alt="Project Image" class="project-media-image" loading="lazy">
+      <div id="imageContainer" class="project-media-frame" hidden>
+        <img id="projectImage" alt="Project preview" class="project-media-image" loading="eager" fetchpriority="high">
       </div>
-      <div id="galleryContainer" style="display: none;">
-        <h2 class="gallery-title" data-i18n="project.gallery">Project Gallery</h2>
+      <section id="galleryContainer" class="project-gallery" hidden aria-labelledby="galleryTitle">
+        <div class="project-gallery-heading">
+          <h2 id="galleryTitle" data-i18n="project.gallery">Project Gallery</h2>
+          <p data-i18n="project.galleryHint">A closer look at the work.</p>
+        </div>
         <div class="gallery-grid" id="galleryGrid"></div>
-      </div>
-      <div id="noMediaContainer" style="display: none;">
+      </section>
+      <div id="noMediaContainer" hidden>
         <p class="no-media-message" data-i18n="project.noMedia">No media available for this project.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section section-alt">
+<section class="section section-alt project-details-section">
   <div class="container">
     <div class="project-details-grid">
       <div class="project-main-content">
@@ -191,7 +202,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
             <span data-i18n="project.backToPortfolio">Back to Portfolio</span>
           </a>
-          <a href="#" class="btn btn-primary btn-full" id="projectUrl" target="_blank" style="display: none;">
+          <a href="#" class="btn btn-primary btn-full" id="projectUrl" target="_blank" rel="noopener noreferrer" hidden>
             <span data-i18n="project.viewLive">View Live Project</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
@@ -255,199 +266,23 @@
   </div>
 </footer>
 
-<!-- Image Lightbox -->
-<div id="imageLightbox" class="image-lightbox" style="display:none;">
+<!-- Accessible project image viewer -->
+<div id="imageLightbox" class="image-lightbox" hidden role="dialog" aria-modal="true" aria-label="Project image viewer" tabindex="-1">
   <div class="lightbox-content">
-    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
-    <button class="lightbox-prev" onclick="prevImage()">&#10094;</button>
-    <button class="lightbox-next" onclick="nextImage()">&#10095;</button>
+    <button type="button" class="lightbox-button lightbox-close" id="lightboxClose" data-i18n-attr="aria-label:project.closeImage" aria-label="Close image viewer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m18 6-12 12M6 6l12 12"/></svg>
+    </button>
+    <button type="button" class="lightbox-button" id="lightboxPrevious" data-i18n-attr="aria-label:project.previousImage" aria-label="Previous image">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+    </button>
     <img id="lightboxImage" src="" alt="">
+    <button type="button" class="lightbox-button" id="lightboxNext" data-i18n-attr="aria-label:project.nextImage" aria-label="Next image">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+    </button>
   </div>
 </div>
 
-<style>
-.project-media-section { margin: 40px 0; max-width: 900px; margin-left: auto; margin-right: auto; text-align: center; }
-.project-media-video, .project-media-image {
-  width: 100%; max-height: 400px; object-fit: contain;
-  border-radius: 16px; box-shadow: 0 12px 40px rgba(0,0,0,0.08);
-  background: #000;
-  display: block;
-  margin: 0 auto;
-}
 
-.project-media-image {
-  cursor: pointer;
-}
-
-#videoContainer, #imageContainer {
-  margin-bottom: 60px;
-}
-.gallery-title { font-size: 24px; margin-bottom: 24px; color: var(--color-primary); font-weight: 700; text-align: center; margin-top: 60px; }
-.gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin-top: 40px; }
-.gallery-item { 
-  position: relative; 
-  border-radius: 16px; 
-  overflow: hidden; 
-  box-shadow: 0 8px 24px rgba(0,0,0,0.06); 
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  background: #fff;
-}
-.gallery-item:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.12); }
-.gallery-item img { width: 100%; height: 200px; object-fit: cover; display: block; cursor: pointer; }
-.gallery-caption { 
-  position: absolute; 
-  bottom: 0; 
-  left: 0; 
-  right: 0; 
-  background: linear-gradient(transparent, rgba(0,0,0,0.85)); 
-  color: white; 
-  padding: 16px 20px; 
-  font-size: 13px; 
-  opacity: 0; 
-  transition: opacity 0.3s ease;
-}
-.gallery-item:hover .gallery-caption { opacity: 1; }
-.no-media-message { 
-  text-align: center; 
-  padding: 40px 20px; 
-  color: var(--color-text-muted); 
-  font-size: 16px;
-  background: #fff;
-  border-radius: 12px;
-  border: 1px solid var(--color-border);
-}
-.project-details-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; margin: 60px 0; }
-.project-main-content h2 { font-size: 24px; margin-bottom: 16px; color: var(--color-primary); font-weight: 700; }
-.project-description { margin-bottom: 40px; }
-.project-description p { font-size: 16px; line-height: 1.7; color: var(--color-text); }
-.project-tech { margin-bottom: 40px; }
-.project-tech h2 { font-size: 24px; margin-bottom: 16px; color: var(--color-primary); font-weight: 700; }
-.tech-tags { display: flex; flex-wrap: wrap; gap: 10px; }
-.tech-tag { 
-  background: var(--navy-900); 
-  color: white; 
-  padding: 8px 18px; 
-  border-radius: 20px; 
-  font-size: 13px; 
-  font-weight: 500;
-}
-.project-details h2 { font-size: 24px; margin-bottom: 16px; color: var(--color-primary); font-weight: 700; }
-.project-details p { font-size: 16px; line-height: 1.7; color: var(--color-text); }
-.project-sidebar { position: sticky; top: 100px; height: fit-content; }
-.project-info-card { 
-  background: #fff; 
-  padding: 24px; 
-  border-radius: 16px; 
-  margin-bottom: 24px;
-  border: 1px solid var(--color-border);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
-}
-.project-info-card h3 { font-size: 18px; margin-bottom: 16px; color: var(--color-primary); font-weight: 700; }
-.info-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--color-border); }
-.info-row:last-child { border-bottom: none; }
-.info-label { font-weight: 600; color: var(--color-text-muted); font-size: 14px; }
-.info-value { font-weight: 500; color: var(--color-text); font-size: 14px; }
-.project-actions { display: flex; flex-direction: column; gap: 12px; }
-.btn-full { width: 100%; justify-content: center; }
-
-/* Image Lightbox */
-.image-lightbox {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0,0,0,0.95);
-  z-index: 10000;
-  display: none;
-  align-items: center;
-  justify-content: center;
-}
-
-.lightbox-content {
-  position: relative;
-  max-width: 90%;
-  max-height: 90%;
-}
-
-.lightbox-content img {
-  max-width: 100%;
-  max-height: 90vh;
-  object-fit: contain;
-  border-radius: 8px;
-}
-
-.lightbox-close {
-  position: absolute;
-  top: -40px;
-  right: 0;
-  background: none;
-  border: none;
-  color: white;
-  font-size: 36px;
-  cursor: pointer;
-  padding: 10px;
-  line-height: 1;
-}
-
-.lightbox-prev, .lightbox-next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255,255,255,0.2);
-  border: none;
-  color: white;
-  font-size: 32px;
-  cursor: pointer;
-  padding: 15px 20px;
-  border-radius: 50%;
-  transition: background 0.3s;
-}
-
-.lightbox-prev { left: -60px; }
-.lightbox-next { right: -60px; }
-
-.lightbox-prev:hover, .lightbox-next:hover {
-  background: rgba(255,255,255,0.4);
-}
-
-@media (max-width: 968px) {
-  .project-details-grid { grid-template-columns: 1fr; gap: 30px; }
-  .project-sidebar { position: static; }
-  .project-media-section { max-width: 100%; }
-  .lightbox-prev { left: 10px; }
-  .lightbox-next { right: 10px; }
-}
-
-@media (max-width: 767px) {
-  .project-media-section { margin: 20px 0; }
-  .project-media-video, .project-media-image {
-    max-height: 300px;
-    border-radius: 12px;
-  }
-  .gallery-title { font-size: 20px; margin-bottom: 20px; }
-  .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
-  .gallery-item img { height: 150px; }
-  .project-details-grid { margin: 40px 0; gap: 24px; }
-  .project-main-content h2, .project-tech h2, .project-details h2 { font-size: 20px; }
-  .project-description p, .project-details p { font-size: 15px; }
-  .project-info-card { padding: 20px; border-radius: 12px; }
-  .tech-tag { padding: 6px 14px; font-size: 12px; }
-  .lightbox-close { top: -30px; font-size: 28px; }
-  .lightbox-prev, .lightbox-next { font-size: 24px; padding: 10px 15px; }
-}
-
-@media (max-width: 480px) {
-  .project-media-video, .project-media-image { max-height: 250px; }
-  .gallery-grid { grid-template-columns: 1fr; }
-  .gallery-item img { height: 200px; }
-  .project-main-content h2, .project-tech h2, .project-details h2 { font-size: 18px; }
-  .project-description p, .project-details p { font-size: 14px; }
-  .project-info-card { padding: 16px; }
-  .info-row { padding: 10px 0; }
-  .btn-full { padding: 12px 20px; }
-}
-</style>
 
 <script src="js/i18n.js"></script>
 <script src="js/company-config.js"></script>
@@ -457,254 +292,8 @@
 <script src="js/menu.js"></script>
 <script src="js/content-sync.js"></script>
 
-<script>
-(function () {
-  function t(key, fb) { return (window.FT_I18N && window.FT_I18N.t(key)) || fb || key; }
-  function escapeHtml(s) {
-    return String(s == null ? '' : s)
-      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-  }
-
-  // Detect environment and set API base URL
-  function getApiBaseUrl() {
-    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-      return 'http://localhost:8000/api';
-    } else {
-      return '/api';
-    }
-  }
-
-  const API_BASE = getApiBaseUrl();
-
-  const urlParams = new URLSearchParams(window.location.search);
-  const projectId = urlParams.get('id');
-  let currentProject = null;
-
-  function updateUI() {
-    if (!currentProject) return;
-    const lang = (window.FT_I18N && window.FT_I18N.current) || 'fa';
-    const project = currentProject;
-
-    document.getElementById('projectHeaderTitle').textContent = project.title || '';
-    document.getElementById('projectHeaderSubtitle').textContent = project.description || '';
-    document.getElementById('breadcrumbTitle').textContent = project.title || '';
-    document.getElementById('projectDescription').textContent = project.description || t('project.noDescription', 'No description available.');
-    document.getElementById('projectClient').textContent = project.client || '-';
-    document.getElementById('projectCategory').textContent = project.category || '-';
-    document.getElementById('projectDetails').textContent = project.details || t('project.noDetails', 'No additional details available.');
-
-    const techContainer = document.getElementById('projectTechnologies');
-    techContainer.innerHTML = '';
-    if (project.technologies && project.technologies.length > 0) {
-      project.technologies.forEach(function (tech) {
-        const tag = document.createElement('span');
-        tag.className = 'tech-tag';
-        tag.textContent = tech;
-        techContainer.appendChild(tag);
-      });
-    }
-
-    if (project.project_url) {
-      const link = document.getElementById('projectUrl');
-      link.href = project.project_url;
-      link.style.display = 'inline-flex';
-    }
-  }
-
-  function loadProject() {
-    const lang = (window.FT_I18N && window.FT_I18N.current) || 'fa';
-
-    console.log('Loading project with ID:', projectId, 'Language:', lang);
-
-    if (!projectId) {
-      document.getElementById('projectHeaderTitle').textContent = t('project.notFound', 'Project Not Found');
-      document.getElementById('projectHeaderSubtitle').textContent = t('project.notFoundDesc', 'Please go back to the portfolio page.');
-      document.getElementById('projectDescription').textContent = t('project.notFoundDesc', 'Please go back.');
-      return;
-    }
-
-    fetch(API_BASE + '/public_project.php?id=' + encodeURIComponent(projectId) + '&lang=' + lang)
-      .then(function (r) {
-        console.log('Response status:', r.status);
-        return r.json();
-      })
-      .then(function (data) {
-        console.log('Project data:', data);
-        if (data.success && data.data) {
-          currentProject = data.data;
-          updateUI();
-          document.title = (currentProject.title || 'Project') + ' | FaraTech';
-          loadGallery(lang);
-        } else {
-          document.getElementById('projectHeaderTitle').textContent = t('project.notFound', 'Project Not Found');
-          document.getElementById('projectHeaderSubtitle').textContent = data.message || '';
-          document.getElementById('projectDescription').textContent = t('project.notFoundDesc', 'Not found.');
-        }
-      })
-      .catch(function (err) {
-        console.error('Error loading project:', err);
-        document.getElementById('projectHeaderTitle').textContent = t('project.errorLoading', 'Error Loading Project');
-        document.getElementById('projectHeaderSubtitle').textContent = '';
-        document.getElementById('projectDescription').textContent = t('project.errorLoadingDesc', 'Error.');
-      });
-  }
-
-  function loadGallery(lang) {
-    const videoContainer = document.getElementById('videoContainer');
-    const imageContainer = document.getElementById('imageContainer');
-    const galleryContainer = document.getElementById('galleryContainer');
-    const noMediaContainer = document.getElementById('noMediaContainer');
-    const project = currentProject;
-
-    // reset
-    videoContainer.style.display = 'none';
-    imageContainer.style.display = 'none';
-    galleryContainer.style.display = 'none';
-    noMediaContainer.style.display = 'none';
-
-    if (project.video_url) {
-      document.getElementById('projectVideo').src = project.video_url;
-      videoContainer.style.display = 'block';
-    }
-
-    fetch(API_BASE + '/project_images.php?project_id=' + encodeURIComponent(projectId))
-      .then(function (r) { return r.json(); })
-      .then(function (galleryData) {
-        if (galleryData.success && galleryData.data && galleryData.data.length > 0) {
-          const grid = document.getElementById('galleryGrid');
-          const allImages = galleryData.data.map(function(img) { return img.image_url; });
-          window.galleryImages = allImages;
-          grid.innerHTML = galleryData.data.map(function (img, index) {
-            return `
-              <div class="gallery-item" onclick="openLightbox('${escapeHtml(img.image_url)}', ${index})">
-                <img src="${escapeHtml(img.image_url)}" alt="${escapeHtml(img.caption || '')}" loading="lazy">
-                ${img.caption ? `<div class="gallery-caption">${escapeHtml(img.caption)}</div>` : ''}
-              </div>
-            `;
-          }).join('');
-          galleryContainer.style.display = 'block';
-        } else if (!project.video_url && project.image_url) {
-          const mainImage = document.getElementById('projectImage');
-          mainImage.src = project.image_url;
-          imageContainer.style.display = 'block';
-          // Make main image clickable to open in lightbox
-          mainImage.style.cursor = 'pointer';
-          mainImage.onclick = function() {
-            window.galleryImages = [project.image_url];
-            openLightbox(project.image_url, 0);
-          };
-        }
-
-        if (project.video_url || project.image_url || (galleryData.success && galleryData.data.length > 0)) {
-          noMediaContainer.style.display = 'none';
-        } else {
-          noMediaContainer.style.display = 'block';
-        }
-      })
-      .catch(function (err) {
-        console.error('Error loading gallery:', err);
-        if (project.video_url) {
-          videoContainer.style.display = 'block';
-        } else if (project.image_url) {
-          const mainImage = document.getElementById('projectImage');
-          mainImage.src = project.image_url;
-          imageContainer.style.display = 'block';
-          // Make main image clickable to open in lightbox
-          mainImage.style.cursor = 'pointer';
-          mainImage.onclick = function() {
-            window.galleryImages = [project.image_url];
-            openLightbox(project.image_url, 0);
-          };
-        } else {
-          noMediaContainer.style.display = 'block';
-        }
-      });
-  }
-
-  // اجرای فوری بدون منتظر ماندن برای i18n
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', loadProject);
-  } else {
-    loadProject();
-  }
-
-  document.addEventListener('ft:langchange', function () {
-    // اگر داده‌ها لود شده‌اند، دوباره از API با زبان جدید بگیر
-    loadProject();
-  });
-
-  // Lightbox functionality
-  let currentImageIndex = 0;
-  window.galleryImages = [];
-
-  window.openLightbox = function(src, index) {
-    const lightbox = document.getElementById('imageLightbox');
-    const lightboxImage = document.getElementById('lightboxImage');
-    
-    currentImageIndex = index;
-    lightboxImage.src = src;
-    lightbox.style.display = 'flex';
-    
-    // Show/hide navigation buttons based on number of images
-    const prevBtn = document.querySelector('.lightbox-prev');
-    const nextBtn = document.querySelector('.lightbox-next');
-    if (window.galleryImages.length <= 1) {
-      prevBtn.style.display = 'none';
-      nextBtn.style.display = 'none';
-    } else {
-      prevBtn.style.display = 'block';
-      nextBtn.style.display = 'block';
-    }
-  };
-
-  window.closeLightbox = function() {
-    document.getElementById('imageLightbox').style.display = 'none';
-  };
-
-  window.prevImage = function() {
-    if (window.galleryImages.length === 0) return;
-    currentImageIndex = (currentImageIndex - 1 + window.galleryImages.length) % window.galleryImages.length;
-    document.getElementById('lightboxImage').src = window.galleryImages[currentImageIndex];
-  };
-
-  window.nextImage = function() {
-    if (window.galleryImages.length === 0) return;
-    currentImageIndex = (currentImageIndex + 1) % window.galleryImages.length;
-    document.getElementById('lightboxImage').src = window.galleryImages[currentImageIndex];
-  };
-
-  // Initialize lightbox event listeners
-  function initLightboxEvents() {
-    // Close lightbox on Escape key
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        closeLightbox();
-      } else if (e.key === 'ArrowLeft') {
-        prevImage();
-      } else if (e.key === 'ArrowRight') {
-        nextImage();
-      }
-    });
-
-    // Close lightbox on background click
-    const lightbox = document.getElementById('imageLightbox');
-    if (lightbox) {
-      lightbox.addEventListener('click', function(e) {
-        if (e.target === this) {
-          closeLightbox();
-        }
-      });
-    }
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initLightboxEvents);
-  } else {
-    initLightboxEvents();
-  }
-})();
-</script>
+<script src="js/project-detail.js" defer></script>
+<script src="js/page-views.js" defer></script>
 
 </body>
 </html>

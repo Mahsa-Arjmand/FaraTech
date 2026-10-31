@@ -1,7 +1,8 @@
 <?php
 require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../includes/functions.php';
 
-header('Content-Type: application/json');
+header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
@@ -24,11 +25,28 @@ try {
             exit;
         }
 
+        $projectStmt = $db->prepare('SELECT status FROM projects WHERE id = ? LIMIT 1');
+        $projectStmt->execute([$project_id]);
+        $projectStatus = $projectStmt->fetchColumn();
+        if ($projectStatus === false) {
+            http_response_code(404);
+            echo json_encode(['success' => false, 'message' => 'Project not found']);
+            exit;
+        }
+        if ($projectStatus !== 'published') {
+            require_once __DIR__ . '/../includes/auth.php';
+            requireLogin();
+        }
+
         $stmt = $db->prepare("SELECT * FROM project_images WHERE project_id = ? ORDER BY display_order ASC, created_at ASC");
         $stmt->execute([$project_id]);
         $images = $stmt->fetchAll();
+        foreach ($images as &$image) {
+            $image['image_url'] = publicMediaUrl($image['image_url'] ?? '');
+        }
+        unset($image);
 
-        echo json_encode(['success' => true, 'data' => $images]);
+        echo json_encode(['success' => true, 'data' => $images], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
     } elseif ($action === 'delete') {
         require_once __DIR__ . '/../includes/auth.php';
@@ -79,7 +97,7 @@ try {
         $uploadPath = __DIR__ . '/../uploads/projects/' . $imageName;
 
         if (move_uploaded_file($imageFile['tmp_name'], $uploadPath)) {
-            $image_url = 'http://localhost:8001/uploads.php?file=uploads/projects/' . $imageName;
+            $image_url = '/uploads.php?file=' . rawurlencode('uploads/projects/' . $imageName);
 
             $stmt = $db->prepare("INSERT INTO project_images (project_id, image_url, caption, display_order) VALUES (?, ?, ?, 0)");
             $stmt->execute([$project_id, $image_url, $caption]);
